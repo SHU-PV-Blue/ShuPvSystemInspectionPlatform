@@ -16,7 +16,7 @@ namespace 光伏发电系统实验监测平台
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
+			Application.Run(new MainForm());
 		}
 	}
 }

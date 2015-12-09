@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace 光伏发电系统实验监测平台
 {
-	public partial class Form1 : Form
+	public partial class MainForm : Form
 	{
-		public Form1()
+		public MainForm()
 		{
 			InitializeComponent();
 		}
