@@ -8,5 +8,6 @@ namespace 光伏发电系统实验监测平台.Analyzer
 {
 	class ComponentAnalyzer
 	{
+#warning 需要重新写
 	}
 }
