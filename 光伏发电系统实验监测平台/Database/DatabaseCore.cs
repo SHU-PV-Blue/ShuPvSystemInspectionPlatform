@@ -56,8 +56,7 @@ namespace 光伏发电系统实验监测平台.Database
 		/// </summary>
 		/// <param name="tableName">表名字</param>
 		/// <param name="terms">修改的列和目标值的键值对</param>
-		/// <returns>插入是否成功</returns>
-		public bool InsertData(string tableName, Dictionary<string, string> terms)
+		public void InsertData(string tableName, Dictionary<string, string> terms)
 		{
 			string queryString = "insert into " + tableName;
 			if (terms != null && terms.Count != 0)
@@ -99,11 +98,10 @@ namespace 光伏发电系统实验监测平台.Database
 							break;
 						}
 				}
-				return true;
 			}
-			catch
+			catch(Exception ex)
 			{
-				return false;
+				throw new Exception("插入失败:" + ex.Message, ex);
 			}
 
 		}
@@ -113,8 +111,7 @@ namespace 光伏发电系统实验监测平台.Database
 		/// </summary>
 		/// <param name="tableName">表名字</param>
 		/// <param name="queryTerms">删除条件where键值对</param>
-		/// <returns>删除是否成功</returns>
-		public bool DeleteData(string tableName, Dictionary<string, string> queryTerms)
+		public void DeleteData(string tableName, Dictionary<string, string> queryTerms)
 		{
 			string queryString = "delete from " + tableName;
 			if (queryTerms != null && queryTerms.Count != 0)
@@ -146,11 +143,10 @@ namespace 光伏发电系统实验监测平台.Database
 							break;
 						}
 				}
-				return true;
 			}
-			catch
+			catch(Exception ex)
 			{
-				return false;
+				throw new Exception("删除失败:" + ex.Message, ex);
 			}
 		}
 
@@ -160,8 +156,7 @@ namespace 光伏发电系统实验监测平台.Database
 		/// <param name="tableName">表名字</param>
 		/// <param name="updateTerms">更新的列和值的键值对</param>
 		/// <param name="queryTerms">查询条件where键值对</param>
-		/// <returns>更新是否成功</returns>
-		public bool UpdateData(string tableName, Dictionary<string, string> updateTerms, Dictionary<string, string> queryTerms)
+		public void UpdateData(string tableName, Dictionary<string, string> updateTerms, Dictionary<string, string> queryTerms)
 		{
 			string queryString = "update " + tableName;
 			if (updateTerms != null && updateTerms.Count != 0)
@@ -205,11 +200,10 @@ namespace 光伏发电系统实验监测平台.Database
 							break;
 						}
 				}
-				return true;
 			}
-			catch
+			catch (Exception ex)
 			{
-				return false;
+				throw new Exception("更新失败:" + ex.Message, ex);
 			}
 		}
 
@@ -235,20 +229,27 @@ namespace 光伏发电系统实验监测平台.Database
 				}
 			}
 			DataTable result = new DataTable(tableName);
-			switch (_connectionType)
+			try
 			{
-				case ConnectionType.SQL:
-					{
-						SqlDataAdapter sda = new SqlDataAdapter(queryString, _sqlCon);
-						sda.Fill(result);
-						break;
-					}
-				case ConnectionType.OLE:
-					{
-						OleDbDataAdapter odda = new OleDbDataAdapter(queryString, _oleCon);
-						odda.Fill(result);
-						break;
-					}
+				switch (_connectionType)
+				{
+					case ConnectionType.SQL:
+						{
+							SqlDataAdapter sda = new SqlDataAdapter(queryString, _sqlCon);
+							sda.Fill(result);
+							break;
+						}
+					case ConnectionType.OLE:
+						{
+							OleDbDataAdapter odda = new OleDbDataAdapter(queryString, _oleCon);
+							odda.Fill(result);
+							break;
+						}
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("查询失败:" + ex.Message, ex);
 			}
 			return result;//返回查询数据
 		}
