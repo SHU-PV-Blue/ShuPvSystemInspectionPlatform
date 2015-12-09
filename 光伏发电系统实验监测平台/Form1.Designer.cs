@@ -1,4 +1,4 @@
-﻿namespace ShuPvSystemInspectionPlatform
+﻿namespace 光伏发电系统实验监测平台
 {
 	partial class Form1
 	{

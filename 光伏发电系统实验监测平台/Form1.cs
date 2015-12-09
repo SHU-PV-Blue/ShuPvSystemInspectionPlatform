@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ShuPvSystemInspectionPlatform
+namespace 光伏发电系统实验监测平台
 {
 	public partial class Form1 : Form
 	{

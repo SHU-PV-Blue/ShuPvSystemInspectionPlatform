@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("ShuPvSystemInspectionPlatform")]
+[assembly: AssemblyTitle("光伏发电系统实验监测平台")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ShuPvSystemInspectionPlatform")]
+[assembly: AssemblyProduct("光伏发电系统实验监测平台")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("83402dbd-ab49-40f1-94ae-78674433cc47")]
+[assembly: Guid("888fca50-2d68-4c44-bc10-0d4292d2c5f0")]
 
 // 程序集的版本信息由下面四个值组成: 
 //

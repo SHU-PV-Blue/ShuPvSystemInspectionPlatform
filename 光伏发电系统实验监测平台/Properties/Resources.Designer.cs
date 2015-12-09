@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShuPvSystemInspectionPlatform.Properties
+namespace 光伏发电系统实验监测平台.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace ShuPvSystemInspectionPlatform.Properties
 			{
 				if ((resourceMan == null))
 				{
-					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ShuPvSystemInspectionPlatform.Properties.Resources", typeof(Resources).Assembly);
+					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("光伏发电系统实验监测平台.Properties.Resources", typeof(Resources).Assembly);
 					resourceMan = temp;
 				}
 				return resourceMan;

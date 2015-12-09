@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{045522B7-BF2F-4211-94D8-BC581C146168}</ProjectGuid>
+    <ProjectGuid>{9ABB255E-16F6-452E-B2AC-8CEB6026D30A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ShuPvSystemInspectionPlatform</RootNamespace>
-    <AssemblyName>ShuPvSystemInspectionPlatform</AssemblyName>
+    <RootNamespace>光伏发电系统实验监测平台</RootNamespace>
+    <AssemblyName>光伏发电系统实验监测平台</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
