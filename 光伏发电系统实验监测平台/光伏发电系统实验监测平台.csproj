@@ -54,6 +54,7 @@
     <Compile Include="Commands\CommandReader.cs" />
     <Compile Include="Database\DatabaseConnection.cs" />
     <Compile Include="Database\DatabaseCore.cs" />
+    <Compile Include="Database\DatabaseExporter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
