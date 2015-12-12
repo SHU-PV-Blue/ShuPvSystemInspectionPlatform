@@ -52,6 +52,8 @@
     <Compile Include="Analyzer\VIAnalyzer.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandReader.cs" />
+    <Compile Include="Components\Component.cs" />
+    <Compile Include="Components\Status.cs" />
     <Compile Include="Database\DatabaseConnection.cs" />
     <Compile Include="Database\DatabaseCore.cs" />
     <Compile Include="MainForm.cs">
@@ -92,9 +94,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
