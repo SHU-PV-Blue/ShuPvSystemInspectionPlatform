@@ -45,11 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analyzer\AtmospheriumAnalyzer.cs" />
-    <Compile Include="Analyzer\ComponentAnalyzer.cs" />
     <Compile Include="Manager\MainAnalyzer.cs" />
-    <Compile Include="Analyzer\SCMAnalyzer.cs" />
-    <Compile Include="Analyzer\VIAnalyzer.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandReader.cs" />
     <Compile Include="Components\Atmospherium.cs" />
