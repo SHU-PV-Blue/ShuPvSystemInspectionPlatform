@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using 光伏发电系统实验监测平台.Commands;
+using 光伏发电系统实验监测平台.Manager;
 using System.IO.Ports;
 using Microsoft.Office;
 using System.IO;
@@ -238,6 +239,7 @@ namespace 光伏发电系统实验监测平台
 			lblTip.Text = "每天六点整时，程序将自动按下启动按钮\n收发结束后，将自动解析";
 			lblTip.ForeColor = Color.Green;
 		}
+
 
 	}
 }

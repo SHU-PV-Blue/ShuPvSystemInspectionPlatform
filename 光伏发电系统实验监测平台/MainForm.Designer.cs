@@ -81,9 +81,9 @@
 			this.pctbxSetFunction = new System.Windows.Forms.PictureBox();
 			this.pctbxSetOrder = new System.Windows.Forms.PictureBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.lblTip = new System.Windows.Forms.Label();
 			this.lblTimeNow = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
-			this.lblTip = new System.Windows.Forms.Label();
 			this.gpbSetting.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -347,7 +347,7 @@
 			// 
 			// pctbxAnalyze
 			// 
-			this.pctbxAnalyze.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.Green;
+			this.pctbxAnalyze.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.Balck;
 			this.pctbxAnalyze.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.pctbxAnalyze.Location = new System.Drawing.Point(352, 9);
 			this.pctbxAnalyze.Name = "pctbxAnalyze";
@@ -685,6 +685,16 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "信息";
 			// 
+			// lblTip
+			// 
+			this.lblTip.AutoSize = true;
+			this.lblTip.ForeColor = System.Drawing.Color.Red;
+			this.lblTip.Location = new System.Drawing.Point(15, 35);
+			this.lblTip.Name = "lblTip";
+			this.lblTip.Size = new System.Drawing.Size(221, 12);
+			this.lblTip.TabIndex = 2;
+			this.lblTip.Text = "串口未配置，程序不会自动按下自动按钮";
+			// 
 			// lblTimeNow
 			// 
 			this.lblTimeNow.AutoSize = true;
@@ -701,16 +711,6 @@
 			this.label8.Size = new System.Drawing.Size(59, 12);
 			this.label8.TabIndex = 0;
 			this.label8.Text = "当前时间:";
-			// 
-			// lblTip
-			// 
-			this.lblTip.AutoSize = true;
-			this.lblTip.ForeColor = System.Drawing.Color.Red;
-			this.lblTip.Location = new System.Drawing.Point(15, 35);
-			this.lblTip.Name = "lblTip";
-			this.lblTip.Size = new System.Drawing.Size(221, 12);
-			this.lblTip.TabIndex = 2;
-			this.lblTip.Text = "串口未配置，程序不会自动按下自动按钮";
 			// 
 			// MainForm
 			// 
