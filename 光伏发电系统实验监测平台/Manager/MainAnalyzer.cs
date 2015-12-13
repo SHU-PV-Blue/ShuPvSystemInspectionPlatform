@@ -17,9 +17,15 @@ namespace 光伏发电系统实验监测平台.Manager
 	{
 		static public bool Analy(Status status)
 		{
-			bool isSCM = false;
-			//TODO:调用各个组件的解析,优先检测角度仪
-			//TODO:如果角度仪有返回， 置isSCM为true，跳过其他解析
+			bool isSCM = true;
+			if(!(new SCM()).Analyze(status))
+			{
+				isSCM = false;
+				(new Relay32()).Analyze(status);
+				(new Relay8()).Analyze(status);
+				(new Atmospherium()).Analyze(status);
+				(new IV()).Analyze(status);
+			}
 
 			while (true)
 			{
