@@ -93,7 +93,7 @@ namespace 光伏发电系统实验监测平台.Components
 
         public override byte[] GetCommand(string commandName)
         {
-            throw new NotImplementedException();
+            return Transfer.SToBa("AA000105CC33C33C");
         }
     }
 }

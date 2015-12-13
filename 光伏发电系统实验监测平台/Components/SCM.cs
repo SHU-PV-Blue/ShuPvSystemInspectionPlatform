@@ -57,7 +57,11 @@ namespace 光伏发电系统实验监测平台.Components
 
         public override byte[] GetCommand(string commandName)
         {
-            throw new NotImplementedException();
+            if(commandName=="查询方位角")
+                return Transfer.SToBa("680404030B");
+            if (commandName == "查询倾斜角")
+                return Transfer.SToBa("6804040109");
+            return Transfer.SToBa("");
         }
     }
 }
