@@ -23,9 +23,15 @@ namespace 光伏发电系统实验监测平台.Components
             if (ObRe.IsMatch(byteStr))
             {
                 Match match = ObRe.Match(byteStr);
-                if (SumChecker.CheckSum(match.Value.Substring(2, 12), match.Value.Substring(14, 2)))
+                if (SumChecker.CheckSum(match.Value.Substring(2, 12), match.Groups[2].Value))
                 {
                     status.Obliquity = Convert.ToInt32(match.Groups[1].Value) / 100.0;
+                    int index = -1;
+                    if ((index = byteStr.IndexOf(match.Value, index + 1)) != -1)
+                    {
+                        for (int i = index / 2; i < (index + match.Length) / 2; i++)
+                            status.MessageQueue[i] = new KeyValuePair<byte, bool>(status.MessageQueue[i].Key, false);
+                    }
                     return true;
                 }
             }
@@ -33,9 +39,15 @@ namespace 光伏发电系统实验监测平台.Components
             if (AzRe.IsMatch(byteStr))
             {
                 Match match = AzRe.Match(byteStr);
-                if (SumChecker.CheckSum(match.Value.Substring(2, 12), match.Value.Substring(14, 2)))
+                if (SumChecker.CheckSum(match.Value.Substring(2, 12), match.Groups[2].Value))
                 {
-                    status.Obliquity = Convert.ToInt32(match.Groups[1].Value) / 100.0;
+                    status.Azimuth = Convert.ToInt32(match.Groups[1].Value) / 100.0;
+                    int index = -1;
+                    if ((index = byteStr.IndexOf(match.Value, index + 1)) != -1)
+                    {
+                        for (int i = index / 2; i < (index + match.Length) / 2; i++)
+                            status.MessageQueue[i] = new KeyValuePair<byte, bool>(status.MessageQueue[i].Key, false);
+                    }
                     return true;
                 }
             }
