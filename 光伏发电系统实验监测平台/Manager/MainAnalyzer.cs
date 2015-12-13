@@ -15,6 +15,11 @@ namespace 光伏发电系统实验监测平台.Manager
 {
 	static class MainAnalyzer
 	{
+		/// <summary>
+		/// 解析
+		/// </summary>
+		/// <param name="status">当前状态</param>
+		/// <returns>是否是角度变化</returns>
 		static public bool Analyze(Status status)
 		{
 			bool isSCM = true;

@@ -17,24 +17,47 @@ using 光伏发电系统实验监测平台.Database;
 
 namespace 光伏发电系统实验监测平台.Manager
 {
+	/// <summary>
+	/// 指令执行完毕事件
+	/// </summary>
+	public delegate void EndedEventHandler();
+
+	/// <summary>
+	/// 状体改变事件
+	/// </summary>
+	public delegate void ChangedEventHandler();
+
 	class Transceiver
 	{
 		SerialPort _serialPort;
 		Thread _sendTread;
 		Command[] _commands;
 		int _cycle;
-		Status status;
+		public Status status;
 
 		const int initComponentId = 6;
 		const double initAzimuth = -10;
 		const double initObliquity = 22;
 
+		public event EndedEventHandler Ended;
+
+		public event ChangedEventHandler Changed;
+
+		/// <summary>
+		/// 构造函数
+		/// </summary>
+		/// <param name="serialPort">串口</param>
 		public Transceiver(SerialPort serialPort)
 		{
 			_serialPort = serialPort;
 			_serialPort.DataReceived += DataReceivedHandler;
 		}
 
+		/// <summary>
+		/// 开始执行指令
+		/// </summary>
+		/// <param name="commands">伪指令数组</param>
+		/// <param name="cycle">执行周期</param>
 		public void Start(Command[] commands, int cycle)
 		{
 			_commands = commands;
@@ -63,7 +86,10 @@ namespace 光伏发电系统实验监测平台.Manager
 			_sendTread.Start();
 		}
 
-		public void Stop(List<Command> listCommand)
+		/// <summary>
+		/// 强行停止
+		/// </summary>
+		public void Stop()
 		{
 			if (_sendTread != null && _sendTread.IsAlive)
 				_sendTread.Abort();
@@ -79,9 +105,11 @@ namespace 光伏发电系统实验监测平台.Manager
 				_serialPort.Close();
 			}
 
-
 		}
 
+		/// <summary>
+		/// 复位
+		/// </summary>
 		public void Reset()
 		{
 			Command[] commands = new Command[4];
@@ -101,6 +129,8 @@ namespace 光伏发电系统实验监测平台.Manager
 			foreach(var b in readbyte)
 				status.MessageQueue.Add(new KeyValuePair<byte, bool>(b, true));
 			Recorder.ReciveLog(status.Time, Transfer.BaToS(readbyte));
+			if(MainAnalyzer.Analyze(status))
+				Changed();
 		}
 
 		void Work()
@@ -222,6 +252,8 @@ namespace 光伏发电系统实验监测平台.Manager
 							{
 								byte[] bytes = (new Relay8()).GetCommand("组件" + command.Argument);
 								WritePort(bytes);
+								status.ComponentId = command.Argument;
+								Changed();
 								break;
 							}
 						case Command.Operates.断开组件:
@@ -239,6 +271,8 @@ namespace 光伏发电系统实验监测平台.Manager
 			}
 			if (status.OleDbCon != null && status.OleDbCon.State == ConnectionState.Open)
 				status.OleDbCon.Close();
+			if (_serialPort != null && _serialPort.IsOpen)
+				_serialPort.Close();
 		}
 
 		void WritePort(byte [] bytes)
