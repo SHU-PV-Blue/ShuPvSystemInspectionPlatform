@@ -56,6 +56,29 @@ namespace 光伏发电系统实验监测平台
 			pctbxSetOrder.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Neptune;
 			pctbxSetFunction.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Earth__2_;
 			pctbxSearchData.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Venus__2_;
+			pnlOrder.Visible = true;
+			pnlFunction.Visible = false;
+			pnlSearchData.Visible = false;
+		}
+
+		private void pctbxSetFunction_Click(object sender, EventArgs e)
+		{
+			pctbxSetOrder.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Neptune__2_;
+			pctbxSetFunction.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Earth;
+			pctbxSearchData.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Venus__2_;
+			pnlOrder.Visible = false;
+			pnlFunction.Visible = true;
+			pnlSearchData.Visible = false;
+		}
+
+		private void pctbxSearchData_Click(object sender, EventArgs e)
+		{
+			pctbxSetOrder.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Neptune__2_;
+			pctbxSetFunction.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Earth__2_;
+			pctbxSearchData.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Venus;
+			pnlOrder.Visible = false;
+			pnlFunction.Visible = false;
+			pnlSearchData.Visible = true;
 		}
 
 	}

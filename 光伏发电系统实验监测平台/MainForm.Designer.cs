@@ -36,6 +36,7 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.cmbStopBit = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
+			this.pctbxStatu = new System.Windows.Forms.PictureBox();
 			this.cmbDataBit = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -60,6 +61,8 @@
 			this.txtStaYear = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
@@ -73,11 +76,11 @@
 			this.label24 = new System.Windows.Forms.Label();
 			this.label25 = new System.Windows.Forms.Label();
 			this.pnlOrder = new System.Windows.Forms.Panel();
-			this.pnlFunction = new System.Windows.Forms.Panel();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.btnSaveFile = new System.Windows.Forms.Button();
 			this.btnOpenFile = new System.Windows.Forms.Button();
 			this.label26 = new System.Windows.Forms.Label();
+			this.pnlFunction = new System.Windows.Forms.Panel();
 			this.pnlSearchData = new System.Windows.Forms.Panel();
 			this.btnSearch = new System.Windows.Forms.Button();
 			this.label30 = new System.Windows.Forms.Label();
@@ -87,27 +90,24 @@
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label29 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.pctbxSearchData = new System.Windows.Forms.PictureBox();
 			this.pctbxSetFunction = new System.Windows.Forms.PictureBox();
 			this.pctbxSetOrder = new System.Windows.Forms.PictureBox();
-			this.pctbxStatu = new System.Windows.Forms.PictureBox();
 			this.gpbSetting.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.panel2.SuspendLayout();
-			this.pnlOrder.SuspendLayout();
-			this.pnlSearchData.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.pnlOrder.SuspendLayout();
+			this.pnlSearchData.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSearchData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetFunction)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetOrder)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gpbSetting
@@ -190,6 +190,18 @@
 			this.label4.Size = new System.Drawing.Size(74, 20);
 			this.label4.TabIndex = 3;
 			this.label4.Text = "停 止 位 :  ";
+			// 
+			// pctbxStatu
+			// 
+			this.pctbxStatu.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.off;
+			this.pctbxStatu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pctbxStatu.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pctbxStatu.Location = new System.Drawing.Point(55, 207);
+			this.pctbxStatu.Name = "pctbxStatu";
+			this.pctbxStatu.Size = new System.Drawing.Size(139, 69);
+			this.pctbxStatu.TabIndex = 1;
+			this.pctbxStatu.TabStop = false;
+			this.pctbxStatu.Click += new System.EventHandler(this.pictureBox1_Click);
 			// 
 			// cmbDataBit
 			// 
@@ -446,6 +458,26 @@
 			this.panel2.Size = new System.Drawing.Size(402, 112);
 			this.panel2.TabIndex = 3;
 			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pictureBox2.Location = new System.Drawing.Point(355, 63);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(44, 33);
+			this.pictureBox2.TabIndex = 13;
+			this.pictureBox2.TabStop = false;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pictureBox1.Location = new System.Drawing.Point(352, 9);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(44, 33);
+			this.pictureBox1.TabIndex = 12;
+			this.pictureBox1.TabStop = false;
+			// 
 			// label21
 			// 
 			this.label21.AutoSize = true;
@@ -582,15 +614,6 @@
 			this.pnlOrder.Size = new System.Drawing.Size(408, 153);
 			this.pnlOrder.TabIndex = 18;
 			// 
-			// pnlFunction
-			// 
-			this.pnlFunction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-			this.pnlFunction.Location = new System.Drawing.Point(300, 134);
-			this.pnlFunction.Name = "pnlFunction";
-			this.pnlFunction.Size = new System.Drawing.Size(408, 153);
-			this.pnlFunction.TabIndex = 19;
-			this.pnlFunction.Visible = false;
-			// 
 			// textBox1
 			// 
 			this.textBox1.BackColor = System.Drawing.SystemColors.MenuHighlight;
@@ -630,6 +653,15 @@
 			this.label26.TabIndex = 3;
 			this.label26.Text = "路径:";
 			this.label26.Visible = false;
+			// 
+			// pnlFunction
+			// 
+			this.pnlFunction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+			this.pnlFunction.Location = new System.Drawing.Point(300, 134);
+			this.pnlFunction.Name = "pnlFunction";
+			this.pnlFunction.Size = new System.Drawing.Size(408, 153);
+			this.pnlFunction.TabIndex = 19;
+			this.pnlFunction.Visible = false;
 			// 
 			// pnlSearchData
 			// 
@@ -728,26 +760,6 @@
 			this.textBox3.TabIndex = 16;
 			this.textBox3.Text = "12";
 			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pictureBox2.Location = new System.Drawing.Point(355, 63);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(44, 33);
-			this.pictureBox2.TabIndex = 13;
-			this.pictureBox2.TabStop = false;
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pictureBox1.Location = new System.Drawing.Point(352, 9);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(44, 33);
-			this.pictureBox1.TabIndex = 12;
-			this.pictureBox1.TabStop = false;
-			// 
 			// pictureBox4
 			// 
 			this.pictureBox4.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.Sun2;
@@ -769,6 +781,7 @@
 			this.pctbxSearchData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pctbxSearchData.TabIndex = 5;
 			this.pctbxSearchData.TabStop = false;
+			this.pctbxSearchData.Click += new System.EventHandler(this.pctbxSearchData_Click);
 			// 
 			// pctbxSetFunction
 			// 
@@ -780,6 +793,7 @@
 			this.pctbxSetFunction.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pctbxSetFunction.TabIndex = 4;
 			this.pctbxSetFunction.TabStop = false;
+			this.pctbxSetFunction.Click += new System.EventHandler(this.pctbxSetFunction_Click);
 			// 
 			// pctbxSetOrder
 			// 
@@ -792,18 +806,6 @@
 			this.pctbxSetOrder.TabIndex = 3;
 			this.pctbxSetOrder.TabStop = false;
 			this.pctbxSetOrder.Click += new System.EventHandler(this.pctbxSetOrder_Click);
-			// 
-			// pctbxStatu
-			// 
-			this.pctbxStatu.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.off;
-			this.pctbxStatu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pctbxStatu.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.pctbxStatu.Location = new System.Drawing.Point(55, 207);
-			this.pctbxStatu.Name = "pctbxStatu";
-			this.pctbxStatu.Size = new System.Drawing.Size(139, 69);
-			this.pctbxStatu.TabIndex = 1;
-			this.pctbxStatu.TabStop = false;
-			this.pctbxStatu.Click += new System.EventHandler(this.pictureBox1_Click);
 			// 
 			// MainForm
 			// 
@@ -831,23 +833,23 @@
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.gpbSetting.ResumeLayout(false);
 			this.gpbSetting.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.pnlOrder.ResumeLayout(false);
 			this.pnlOrder.PerformLayout();
 			this.pnlSearchData.ResumeLayout(false);
 			this.pnlSearchData.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSearchData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetFunction)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetOrder)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
