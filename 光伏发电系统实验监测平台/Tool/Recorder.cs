@@ -22,7 +22,14 @@ namespace 光伏发电系统实验监测平台.Tool
 
 		static public bool ReciveLog(DateTime time, string data)
 		{
-			if (Write("ReciveData", time, data))
+			if (Write("ReceiveData", time, data))
+				return true;
+			return false;
+		}
+
+		static public bool ErrorLog(DateTime time, string data)
+		{
+			if (Write("ErrorLog", time, data))
 				return true;
 			return false;
 		}
@@ -47,6 +54,5 @@ namespace 光伏发电系统实验监测平台.Tool
 				throw new Exception("写入文件失败: " + ex.Message, ex);
 			}
 		}
-#warning 未完成
 	}
 }
