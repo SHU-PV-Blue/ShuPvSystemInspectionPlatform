@@ -15,7 +15,7 @@ namespace 光伏发电系统实验监测平台.Manager
 {
 	static class MainAnalyzer
 	{
-		static public bool Analy(Status status)
+		static public bool Analyze(Status status)
 		{
 			bool isSCM = true;
 			if(!(new SCM()).Analyze(status))

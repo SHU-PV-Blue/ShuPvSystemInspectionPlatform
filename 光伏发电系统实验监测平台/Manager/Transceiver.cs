@@ -97,8 +97,10 @@ namespace 光伏发电系统实验监测平台.Manager
 			byte[] readbyte = new byte[_serialPort.BytesToRead];
 
 			_serialPort.Read(readbyte, 0, readbyte.Length);
-			DateTime dt = DateTime.Now;
-			//TODO:在这里写解析过程
+			status.Time = DateTime.Now;
+			foreach(var b in readbyte)
+				status.MessageQueue.Add(new KeyValuePair<byte, bool>(b, true));
+			MainAnalyzer.Analyze(status);
 		}
 
 		void Work()
