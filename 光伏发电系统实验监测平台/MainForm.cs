@@ -54,7 +54,21 @@ namespace 光伏发电系统实验监测平台
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-
+			DirectoryInfo dirInfo;
+			dirInfo = new DirectoryInfo("ReceiveData");
+			if (!dirInfo.Exists)
+				dirInfo.Create();
+			dirInfo = new DirectoryInfo("SendData");
+			if (!dirInfo.Exists)
+				dirInfo.Create();
+			dirInfo = new DirectoryInfo("ErrorLog");
+			if (!dirInfo.Exists)
+				dirInfo.Create();
+			dirInfo = new DirectoryInfo("Excel");
+			if (!dirInfo.Exists)
+				dirInfo.Create();
+				
+			
 		}
 
 		private void pctbxSetOrder_Click(object sender, EventArgs e)
@@ -105,6 +119,13 @@ namespace 光伏发电系统实验监测平台
 				return;
 			}
 			System.Diagnostics.Process.Start(path);
+		}
+
+		private void btnOpenFile_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog openSettingFile = new OpenFileDialog();
+			if (openSettingFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+				System.Diagnostics.Process.Start(openSettingFile.FileName);
 		}
 
 	}

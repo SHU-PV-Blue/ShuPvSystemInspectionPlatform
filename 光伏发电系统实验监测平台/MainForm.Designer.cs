@@ -374,6 +374,7 @@
 			this.btnOpenFile.TabIndex = 0;
 			this.btnOpenFile.Text = "打开文件";
 			this.btnOpenFile.UseVisualStyleBackColor = true;
+			this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
 			// 
 			// label26
 			// 
