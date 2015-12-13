@@ -17,47 +17,45 @@ namespace 光伏发电系统实验监测平台.Manager
 	{
 		static public bool Analy(Status status)
 		{
-			try
+			bool isSCM = false;
+			//TODO:调用各个组件的解析,优先检测角度仪
+			//TODO:如果角度仪有返回， 置isSCM为true，跳过其他解析
+
+			while (true)
 			{
+				
+				//删掉队首已被取走的字节
+				while (status.MessageQueue.Count != 0 && !status.MessageQueue[0].Value)
+					status.MessageQueue.RemoveAt(0);
 
-				OleDbConnection oleDbCon = DatabaseConnection.GetConnection();
-				oleDbCon.Open();
-
-				while (true)
+				//寻找第一个被取走的字节
+				int indexOfFirstNotUse = -1;
+				for (int i = 0; i < status.MessageQueue.Count; ++i)
 				{
-					//删掉队首已被取走的字节
-					while (status.MessageQueue.Count != 0 && !status.MessageQueue[0].Value)
-						status.MessageQueue.RemoveAt(0);
-					int indexOfFirstNotUse = -1;
-					for (int i = 0; i < status.MessageQueue.Count; ++i)
+					if (!status.MessageQueue[i].Value)
 					{
-						if (!status.MessageQueue[i].Value)
-						{
-							indexOfFirstNotUse = i;
-							break;
-						}
-					}
-
-					//如果队列中没有被取走的字节，说明没有出错
-					if (indexOfFirstNotUse == -1)
+						indexOfFirstNotUse = i;
 						break;
-
-					//取走队列中的出错的数据
-					List<byte> errorData = new List<byte>();
-					for (int i = 0; i < indexOfFirstNotUse; ++i)
-					{
-						errorData.Add(status.MessageQueue[i].Key);
-						status.MessageQueue[i] = new KeyValuePair<byte, bool>(status.MessageQueue[i].Key, false);
 					}
-					//_errorLog.Add("Error#" + time + "#" + lineIndex + "#" + Transfer.BaToS(errorData.ToArray()));
 				}
-				oleDbCon.Close();
+
+				//如果队列中没有被取走的字节，说明没有出错
+				if (indexOfFirstNotUse == -1)
+					break;
+
+				//取走队列中的出错的数据
+				List<byte> errorData = new List<byte>();
+				for (int i = 0; i < indexOfFirstNotUse; ++i)
+				{
+					errorData.Add(status.MessageQueue[i].Key);
+					status.MessageQueue[i] = new KeyValuePair<byte, bool>(status.MessageQueue[i].Key, false);
+				}
+
+				//TODO:写入出错记录
+				//_errorLog.Add("Error#" + time + "#" + lineIndex + "#" + Transfer.BaToS(errorData.ToArray()));
 			}
-			catch (Exception ex)
-			{
-				//throw new Exception(_receiveFilePath + "解析失败:" + ex.Message, ex);
-			}
-			return true;
+
+			return isSCM;
 		}
 	}
 }
