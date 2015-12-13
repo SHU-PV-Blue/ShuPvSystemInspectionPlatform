@@ -53,7 +53,7 @@ namespace 光伏发电系统实验监测平台.Components
                     str = obliquityInc[new Random().Next(2)];
                     break;
                 case "倾角减少":
-                    str = obliquityInc[new Random().Next(2)];
+                    str = obliquityDec[new Random().Next(2)];
                     break;
                 default:
                     break;
