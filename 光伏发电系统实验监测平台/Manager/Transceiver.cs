@@ -17,24 +17,47 @@ using 光伏发电系统实验监测平台.Database;
 
 namespace 光伏发电系统实验监测平台.Manager
 {
+	/// <summary>
+	/// 指令执行完毕事件
+	/// </summary>
+	public delegate void EndedEventHandler();
+
+	/// <summary>
+	/// 状体改变事件
+	/// </summary>
+	public delegate void ChangedEventHandler();
+
 	class Transceiver
 	{
 		SerialPort _serialPort;
 		Thread _sendTread;
 		Command[] _commands;
 		int _cycle;
-		Status status;
+		public Status status;
 
 		const int initComponentId = 6;
 		const double initAzimuth = -10;
 		const double initObliquity = 22;
 
+		public event EndedEventHandler Ended;
+
+		public event ChangedEventHandler Changed;
+
+		/// <summary>
+		/// 构造函数
+		/// </summary>
+		/// <param name="serialPort">串口</param>
 		public Transceiver(SerialPort serialPort)
 		{
 			_serialPort = serialPort;
 			_serialPort.DataReceived += DataReceivedHandler;
 		}
 
+		/// <summary>
+		/// 开始执行指令
+		/// </summary>
+		/// <param name="commands">伪指令数组</param>
+		/// <param name="cycle">执行周期</param>
 		public void Start(Command[] commands, int cycle)
 		{
 			_commands = commands;
@@ -63,7 +86,10 @@ namespace 光伏发电系统实验监测平台.Manager
 			_sendTread.Start();
 		}
 
-		public void Stop(List<Command> listCommand)
+		/// <summary>
+		/// 强行停止
+		/// </summary>
+		public void Stop()
 		{
 			if (_sendTread != null && _sendTread.IsAlive)
 				_sendTread.Abort();
@@ -75,13 +101,15 @@ namespace 光伏发电系统实验监测平台.Manager
 				_serialPort.BaudRate = 9600;
 				_serialPort.Open();
 				byte[] bytes = (new Relay32()).GetCommand("停转");
-				_serialPort.Write(bytes, 0, bytes.Length);
+				WritePort(bytes);
 				_serialPort.Close();
 			}
 
-
 		}
 
+		/// <summary>
+		/// 复位
+		/// </summary>
 		public void Reset()
 		{
 			Command[] commands = new Command[4];
@@ -100,7 +128,9 @@ namespace 光伏发电系统实验监测平台.Manager
 			status.Time = DateTime.Now;
 			foreach(var b in readbyte)
 				status.MessageQueue.Add(new KeyValuePair<byte, bool>(b, true));
-			MainAnalyzer.Analyze(status);
+			Recorder.ReciveLog(status.Time, Transfer.BaToS(readbyte));
+			if(MainAnalyzer.Analyze(status))
+				Changed();
 		}
 
 		void Work()
@@ -123,24 +153,94 @@ namespace 光伏发电系统实验监测平台.Manager
 							}
 						case Command.Operates.旋转倾角:
 							{
-								//TODO
+								byte[] bytes = (new SCM()).GetCommand("查询倾斜角");
+								WritePort(bytes);
+								Thread.Sleep(100);
+
+
+								if(status.Obliquity < command.Argument)
+								{
+									bytes = (new Relay32()).GetCommand("倾角增加");
+									WritePort(bytes);
+								}
+								else
+								{
+									bytes = (new Relay32()).GetCommand("倾角减少");
+									WritePort(bytes);
+								}
+
+								Stopwatch sw = new Stopwatch();
+								sw.Start();
+								while (true)
+								{
+									bytes = (new SCM()).GetCommand("查询倾斜角");
+									WritePort(bytes);
+									Thread.Sleep(100);
+									if (Math.Abs(status.Obliquity - command.Argument) < 0.5)
+										break;
+									if(sw.ElapsedMilliseconds > 20 * 1000)
+									{
+										bytes = (new Relay32()).GetCommand("停转");
+										WritePort(bytes);
+										Thread.Sleep(100);
+										throw new Exception("电机运作异常,调整倾斜角失败");
+									}
+								}
+								bytes = (new SCM()).GetCommand("查询倾斜角");
+								WritePort(bytes);
+								Thread.Sleep(100);
 								break;
 							}
 						case Command.Operates.旋转方位角:
 							{
-								//TODO
+								byte[] bytes = (new SCM()).GetCommand("查询方位角");
+								WritePort(bytes);
+								Thread.Sleep(100);
+
+
+								if (status.Azimuth < command.Argument)
+								{
+									bytes = (new Relay32()).GetCommand("方位角增加");
+									WritePort(bytes);
+								}
+								else
+								{
+									bytes = (new Relay32()).GetCommand("方位角减少");
+									WritePort(bytes);
+								}
+
+								Stopwatch sw = new Stopwatch();
+								sw.Start();
+								while (true)
+								{
+									bytes = (new SCM()).GetCommand("查询方位角");
+									WritePort(bytes);
+									Thread.Sleep(100);
+									if (Math.Abs(status.Azimuth - command.Argument) < 0.5)
+										break;
+									if (sw.ElapsedMilliseconds > 20 * 1000)
+									{
+										bytes = (new Relay32()).GetCommand("停转");
+										WritePort(bytes);
+										Thread.Sleep(100);
+										throw new Exception("电机运作异常,调整方位角失败");
+									}
+								}
+								bytes = (new SCM()).GetCommand("查询方位角");
+								WritePort(bytes);
+								Thread.Sleep(100);
 								break;
 							}
 						case Command.Operates.查询曲线仪:
 							{
 								byte[] bytes = (new IV()).GetCommand("查询");
-								_serialPort.Write(bytes, 0, bytes.Length);
+								WritePort(bytes);
 								break;
 							}
 						case Command.Operates.查询气象仪:
 							{
 								byte[] bytes = (new Atmospherium()).GetCommand("查询");
-								_serialPort.Write(bytes, 0, bytes.Length);
+								WritePort(bytes);
 								break;
 							}
 						case Command.Operates.等待:
@@ -151,13 +251,15 @@ namespace 光伏发电系统实验监测平台.Manager
 						case Command.Operates.选择组件:
 							{
 								byte[] bytes = (new Relay8()).GetCommand("组件" + command.Argument);
-								_serialPort.Write(bytes, 0, bytes.Length);
+								WritePort(bytes);
+								status.ComponentId = command.Argument;
+								Changed();
 								break;
 							}
 						case Command.Operates.断开组件:
 							{
 								byte[] bytes = (new Relay8()).GetCommand("断开");
-								_serialPort.Write(bytes, 0, bytes.Length);
+								WritePort(bytes);
 								break;
 							}
 						default:
@@ -169,6 +271,15 @@ namespace 光伏发电系统实验监测平台.Manager
 			}
 			if (status.OleDbCon != null && status.OleDbCon.State == ConnectionState.Open)
 				status.OleDbCon.Close();
+			if (_serialPort != null && _serialPort.IsOpen)
+				_serialPort.Close();
+		}
+
+		void WritePort(byte [] bytes)
+		{
+			status.Time = DateTime.Now;
+			_serialPort.Write(bytes, 0, bytes.Length);
+			Recorder.SendLog(status.Time, Transfer.BaToS(bytes));
 		}
 	}
 }
