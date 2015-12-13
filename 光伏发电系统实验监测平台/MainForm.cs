@@ -26,6 +26,11 @@ namespace 光伏发电系统实验监测平台
 		Timer nowTime;											//用于显示当前时间的计时器
 		SerialPort _serialPort;									//串口对象
 		bool _ifSet = false;									//是否已经设置好了串口
+
+		/// <summary>
+		/// 收发器
+		/// </summary>
+		Transceiver _transceiver;
 	
 		private void pctbxStatu_Click(object sender, EventArgs e)
 		{
@@ -37,8 +42,9 @@ namespace 光伏发电系统实验监测平台
 				btnReset.Enabled = false;
 				pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2;
 				btnSetting.Enabled = false;
+#warning 这里参数要改
+				_transceiver.Start(CommandReader.LoadCommands(txtSettingFilePath.Text), 1);
 			}
-
 			else
 			{
 				pctbxStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.off;
@@ -47,6 +53,7 @@ namespace 光伏发电系统实验监测平台
 				btnReset.Enabled = true;
 				pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2__2_;
 				btnSetting.Enabled = true;
+				_transceiver.Stop();
 			}
 				
 		}
@@ -58,7 +65,28 @@ namespace 光伏发电系统实验监测平台
 			Initcmb();
 			SetNowTimer();
 			_serialPort = new SerialPort();
-
+			_transceiver = new Transceiver(_serialPort);
+			_transceiver.Analyzed += new TransceiverEventHandler(delegate()
+			{
+				//解析时候的工作
+#warning 未完成
+			});
+			_transceiver.Changed += new TransceiverEventHandler(delegate()
+			{
+				//解析时候的工作
+				var x = _transceiver.status.Azimuth.ToString();
+#warning 未完成
+			});
+			_transceiver.Excepted += new TransceiverEventHandler(delegate()
+			{
+				//发生异常时候的工作
+#warning 未完成
+			});
+			_transceiver.Ends += new TransceiverEventHandler(delegate()
+			{
+				//指令完了时候的工作
+#warning 未完成
+			});
 		}
 
 		/// <summary>
@@ -164,7 +192,7 @@ namespace 光伏发电系统实验监测平台
 
 		private void btnReset_Click(object sender, EventArgs e)
 		{
-			
+			_transceiver.Reset();
 		}
 
 		private void btnDataSearch_Click(object sender, EventArgs e)

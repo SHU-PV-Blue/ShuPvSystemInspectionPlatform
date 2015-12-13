@@ -31,6 +31,7 @@ namespace 光伏发电系统实验监测平台.Commands
 						case Command.Operates.关闭:
 						case Command.Operates.查询曲线仪:
 						case Command.Operates.查询气象仪:
+						case Command.Operates.断开组件:
 							if (splitStrs.Length == 2)
 								throw new Exception();
 							break;
