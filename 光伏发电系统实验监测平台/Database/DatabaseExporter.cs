@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.Excel;
+using 光伏发电系统实验监测平台.Tool;
 namespace 光伏发电系统实验监测平台.Database
 {
 	class DatabaseExporter
@@ -16,7 +17,7 @@ namespace 光伏发电系统实验监测平台.Database
 		{
 			_dt = dt;
 		}
-		public bool DatabaseExporter()
+		public bool Exporte()
 		{
 			OleDbConnection dbCon = DatabaseConnection.GetConnection();
 			dbCon.Open();
@@ -69,7 +70,6 @@ namespace 光伏发电系统实验监测平台.Database
 			int sheet2Row = 2;
 			foreach (DataRow dr in ivDt.Rows)
 			{
-				int sheet;
 				int col = 1;
 				int cols = 1;
 				Worksheet wsh = wb.Sheets[1];
@@ -89,7 +89,8 @@ namespace 光伏发电系统实验监测平台.Database
 				wshs.Cells[sheet2Row, cols++] = dr["ComponentId"];
 				wshs.Cells[sheet1Row, col++] = dr["Azimuth"];
 				wshs.Cells[sheet1Row, col++] = dr["Obliquity"];
-
+				IVTransfer ivTransfer = new IVTransfer();
+				//foreach(string ivTransfer.IVStransfer(（string） dr["CurrentSeq"]);
 
 			}
 			return true;
