@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using 光伏发电系统实验监测平台.Commands;
 using System.IO.Ports;
+using Microsoft.Office;
+using System.IO;
 
 namespace 光伏发电系统实验监测平台
 {
@@ -36,19 +38,37 @@ namespace 光伏发电系统实验监测平台
 			{
 				pctbxStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.on;
 				SeriaOpen = true;
+				btnReset.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Reset_gray;
+				btnReset.Enabled = false;
 			}
 
 			else
 			{
 				pctbxStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.off;
 				SeriaOpen = false;
+				btnReset.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Reset;
+				btnReset.Enabled = true;
 			}
 				
 		}
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-
+			DirectoryInfo dirInfo;
+			dirInfo = new DirectoryInfo("ReceiveData");
+			if (!dirInfo.Exists)
+				dirInfo.Create();
+			dirInfo = new DirectoryInfo("SendData");
+			if (!dirInfo.Exists)
+				dirInfo.Create();
+			dirInfo = new DirectoryInfo("ErrorLog");
+			if (!dirInfo.Exists)
+				dirInfo.Create();
+			dirInfo = new DirectoryInfo("Excel");
+			if (!dirInfo.Exists)
+				dirInfo.Create();
+				
+			
 		}
 
 		private void pctbxSetOrder_Click(object sender, EventArgs e)
@@ -79,6 +99,33 @@ namespace 光伏发电系统实验监测平台
 			pnlOrder.Visible = false;
 			pnlFunction.Visible = false;
 			pnlSearchData.Visible = true;
+		}
+
+		private void btnReset_Click(object sender, EventArgs e)
+		{
+			
+		}
+
+		private void btnDataSearch_Click(object sender, EventArgs e)
+		{
+			string year = dtpDataSerach.Value.Year.ToString();
+			string month = dtpDataSerach.Value.Month.ToString();
+			string day = dtpDataSerach.Value.Day.ToString();
+			string path = string.Format(@".\Excel\{0}-{1}-{2}.xlsx",year,month,day);
+			FileInfo fi = new FileInfo(path);
+			if (!fi.Exists)
+			{
+				MessageBox.Show("文件不存在, 请重新确认日期是否正确","文件不存在",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+				return;
+			}
+			System.Diagnostics.Process.Start(path);
+		}
+
+		private void btnOpenFile_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog openSettingFile = new OpenFileDialog();
+			if (openSettingFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+				System.Diagnostics.Process.Start(openSettingFile.FileName);
 		}
 
 	}

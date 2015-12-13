@@ -62,25 +62,25 @@
 			this.dtpEndRun = new System.Windows.Forms.DateTimePicker();
 			this.dtpSatrRun = new System.Windows.Forms.DateTimePicker();
 			this.dtpDataSerach = new System.Windows.Forms.DateTimePicker();
-			this.button1 = new System.Windows.Forms.Button();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.btnReset = new System.Windows.Forms.Button();
 			this.pctbxStatu = new System.Windows.Forms.PictureBox();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.pctbxError = new System.Windows.Forms.PictureBox();
+			this.pctbxAnalyze = new System.Windows.Forms.PictureBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
-			this.label17 = new System.Windows.Forms.Label();
-			this.label18 = new System.Windows.Forms.Label();
-			this.label19 = new System.Windows.Forms.Label();
+			this.lblComID = new System.Windows.Forms.Label();
+			this.lblAzimuth = new System.Windows.Forms.Label();
+			this.lblObliquity = new System.Windows.Forms.Label();
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.pctbxSearchData = new System.Windows.Forms.PictureBox();
 			this.pctbxSetFunction = new System.Windows.Forms.PictureBox();
 			this.pctbxSetOrder = new System.Windows.Forms.PictureBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
 			this.gpbSetting.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -90,8 +90,8 @@
 			this.pnlSearchData.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).BeginInit();
 			this.panel2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxError)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxAnalyze)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSearchData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetFunction)).BeginInit();
@@ -128,6 +128,7 @@
 			// 
 			// btnSetting
 			// 
+			this.btnSetting.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.btnSetting.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.btnSetting.Location = new System.Drawing.Point(60, 204);
 			this.btnSetting.Name = "btnSetting";
@@ -161,7 +162,8 @@
 			// 
 			this.cmbStopBit.FormattingEnabled = true;
 			this.cmbStopBit.Items.AddRange(new object[] {
-            "1"});
+            "1",
+            "2"});
 			this.cmbStopBit.Location = new System.Drawing.Point(127, 131);
 			this.cmbStopBit.Name = "cmbStopBit";
 			this.cmbStopBit.Size = new System.Drawing.Size(82, 20);
@@ -280,6 +282,7 @@
 			// 
 			// btnSetRunTime
 			// 
+			this.btnSetRunTime.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.btnSetRunTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSetRunTime.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.btnSetRunTime.Location = new System.Drawing.Point(53, 72);
@@ -371,6 +374,7 @@
 			this.btnOpenFile.TabIndex = 0;
 			this.btnOpenFile.Text = "打开文件";
 			this.btnOpenFile.UseVisualStyleBackColor = true;
+			this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
 			// 
 			// label26
 			// 
@@ -389,7 +393,7 @@
 			this.pnlFunction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.pnlFunction.Controls.Add(this.label7);
 			this.pnlFunction.Controls.Add(this.label6);
-			this.pnlFunction.Controls.Add(this.button1);
+			this.pnlFunction.Controls.Add(this.btnReset);
 			this.pnlFunction.Controls.Add(this.pctbxStatu);
 			this.pnlFunction.Location = new System.Drawing.Point(300, 134);
 			this.pnlFunction.Name = "pnlFunction";
@@ -418,6 +422,7 @@
 			this.btnDataSearch.TabIndex = 22;
 			this.btnDataSearch.Text = "查询";
 			this.btnDataSearch.UseVisualStyleBackColor = true;
+			this.btnDataSearch.Click += new System.EventHandler(this.btnDataSearch_Click);
 			// 
 			// label30
 			// 
@@ -453,17 +458,39 @@
 			this.dtpDataSerach.Size = new System.Drawing.Size(269, 33);
 			this.dtpDataSerach.TabIndex = 18;
 			// 
-			// button1
+			// label6
 			// 
-			this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-			this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.button1.FlatAppearance.BorderSize = 0;
-			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button1.Location = new System.Drawing.Point(266, 16);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(104, 103);
-			this.button1.TabIndex = 2;
-			this.button1.UseVisualStyleBackColor = true;
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label6.Location = new System.Drawing.Point(103, 122);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(50, 25);
+			this.label6.TabIndex = 21;
+			this.label6.Text = "开关";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label7.Location = new System.Drawing.Point(291, 122);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(50, 25);
+			this.label7.TabIndex = 22;
+			this.label7.Text = "复位";
+			// 
+			// btnReset
+			// 
+			this.btnReset.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReset.BackgroundImage")));
+			this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnReset.FlatAppearance.BorderSize = 0;
+			this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnReset.Location = new System.Drawing.Point(266, 16);
+			this.btnReset.Name = "btnReset";
+			this.btnReset.Size = new System.Drawing.Size(104, 103);
+			this.btnReset.TabIndex = 2;
+			this.btnReset.UseVisualStyleBackColor = true;
+			this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
 			// 
 			// pctbxStatu
 			// 
@@ -482,40 +509,40 @@
 			this.panel2.BackColor = System.Drawing.Color.Transparent;
 			this.panel2.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.实验平台图;
 			this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.panel2.Controls.Add(this.pictureBox2);
-			this.panel2.Controls.Add(this.pictureBox1);
+			this.panel2.Controls.Add(this.pctbxError);
+			this.panel2.Controls.Add(this.pctbxAnalyze);
 			this.panel2.Controls.Add(this.label21);
 			this.panel2.Controls.Add(this.label20);
 			this.panel2.Controls.Add(this.label15);
 			this.panel2.Controls.Add(this.label14);
 			this.panel2.Controls.Add(this.label16);
-			this.panel2.Controls.Add(this.label17);
-			this.panel2.Controls.Add(this.label18);
-			this.panel2.Controls.Add(this.label19);
+			this.panel2.Controls.Add(this.lblComID);
+			this.panel2.Controls.Add(this.lblAzimuth);
+			this.panel2.Controls.Add(this.lblObliquity);
 			this.panel2.Location = new System.Drawing.Point(6, 18);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(402, 112);
 			this.panel2.TabIndex = 3;
 			// 
-			// pictureBox2
+			// pctbxError
 			// 
-			this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pictureBox2.Location = new System.Drawing.Point(352, 63);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(44, 33);
-			this.pictureBox2.TabIndex = 13;
-			this.pictureBox2.TabStop = false;
+			this.pctbxError.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pctbxError.BackgroundImage")));
+			this.pctbxError.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pctbxError.Location = new System.Drawing.Point(352, 63);
+			this.pctbxError.Name = "pctbxError";
+			this.pctbxError.Size = new System.Drawing.Size(44, 33);
+			this.pctbxError.TabIndex = 13;
+			this.pctbxError.TabStop = false;
 			// 
-			// pictureBox1
+			// pctbxAnalyze
 			// 
-			this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pictureBox1.Location = new System.Drawing.Point(352, 9);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(44, 33);
-			this.pictureBox1.TabIndex = 12;
-			this.pictureBox1.TabStop = false;
+			this.pctbxAnalyze.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pctbxAnalyze.BackgroundImage")));
+			this.pctbxAnalyze.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pctbxAnalyze.Location = new System.Drawing.Point(352, 9);
+			this.pctbxAnalyze.Name = "pctbxAnalyze";
+			this.pctbxAnalyze.Size = new System.Drawing.Size(44, 33);
+			this.pctbxAnalyze.TabIndex = 12;
+			this.pctbxAnalyze.TabStop = false;
 			// 
 			// label21
 			// 
@@ -567,36 +594,36 @@
 			this.label16.TabIndex = 7;
 			this.label16.Text = "倾   角：";
 			// 
-			// label17
+			// lblComID
 			// 
-			this.label17.AutoSize = true;
-			this.label17.BackColor = System.Drawing.Color.Transparent;
-			this.label17.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label17.Location = new System.Drawing.Point(95, 3);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(23, 25);
-			this.label17.TabIndex = 4;
-			this.label17.Text = "0";
+			this.lblComID.AutoSize = true;
+			this.lblComID.BackColor = System.Drawing.Color.Transparent;
+			this.lblComID.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.lblComID.Location = new System.Drawing.Point(95, 3);
+			this.lblComID.Name = "lblComID";
+			this.lblComID.Size = new System.Drawing.Size(23, 25);
+			this.lblComID.TabIndex = 4;
+			this.lblComID.Text = "0";
 			// 
-			// label18
+			// lblAzimuth
 			// 
-			this.label18.AutoSize = true;
-			this.label18.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label18.Location = new System.Drawing.Point(95, 38);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(23, 25);
-			this.label18.TabIndex = 5;
-			this.label18.Text = "0";
+			this.lblAzimuth.AutoSize = true;
+			this.lblAzimuth.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.lblAzimuth.Location = new System.Drawing.Point(95, 38);
+			this.lblAzimuth.Name = "lblAzimuth";
+			this.lblAzimuth.Size = new System.Drawing.Size(23, 25);
+			this.lblAzimuth.TabIndex = 5;
+			this.lblAzimuth.Text = "0";
 			// 
-			// label19
+			// lblObliquity
 			// 
-			this.label19.AutoSize = true;
-			this.label19.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label19.Location = new System.Drawing.Point(95, 71);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(23, 25);
-			this.label19.TabIndex = 6;
-			this.label19.Text = "0";
+			this.lblObliquity.AutoSize = true;
+			this.lblObliquity.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.lblObliquity.Location = new System.Drawing.Point(95, 71);
+			this.lblObliquity.Name = "lblObliquity";
+			this.lblObliquity.Size = new System.Drawing.Size(23, 25);
+			this.lblObliquity.TabIndex = 6;
+			this.lblObliquity.Text = "0";
 			// 
 			// pictureBox4
 			// 
@@ -613,6 +640,7 @@
 			// 
 			this.pctbxSearchData.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.Venus__2_;
 			this.pctbxSearchData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pctbxSearchData.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pctbxSearchData.Location = new System.Drawing.Point(612, 6);
 			this.pctbxSearchData.Name = "pctbxSearchData";
 			this.pctbxSearchData.Size = new System.Drawing.Size(100, 98);
@@ -625,6 +653,7 @@
 			// 
 			this.pctbxSetFunction.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.Earth__2_;
 			this.pctbxSetFunction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pctbxSetFunction.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pctbxSetFunction.Location = new System.Drawing.Point(506, 6);
 			this.pctbxSetFunction.Name = "pctbxSetFunction";
 			this.pctbxSetFunction.Size = new System.Drawing.Size(100, 98);
@@ -637,6 +666,7 @@
 			// 
 			this.pctbxSetOrder.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.Neptune;
 			this.pctbxSetOrder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pctbxSetOrder.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pctbxSetOrder.Location = new System.Drawing.Point(400, 6);
 			this.pctbxSetOrder.Name = "pctbxSetOrder";
 			this.pctbxSetOrder.Size = new System.Drawing.Size(100, 98);
@@ -644,26 +674,6 @@
 			this.pctbxSetOrder.TabIndex = 3;
 			this.pctbxSetOrder.TabStop = false;
 			this.pctbxSetOrder.Click += new System.EventHandler(this.pctbxSetOrder_Click);
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label6.Location = new System.Drawing.Point(103, 122);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(50, 25);
-			this.label6.TabIndex = 21;
-			this.label6.Text = "开关";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label7.Location = new System.Drawing.Point(291, 122);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(50, 25);
-			this.label7.TabIndex = 22;
-			this.label7.Text = "复位";
 			// 
 			// MainForm
 			// 
@@ -704,8 +714,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).EndInit();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxError)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxAnalyze)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSearchData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetFunction)).EndInit();
@@ -740,16 +750,16 @@
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.Label label17;
-		private System.Windows.Forms.Label label18;
-		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.Label lblComID;
+		private System.Windows.Forms.Label lblAzimuth;
+		private System.Windows.Forms.Label lblObliquity;
 		private System.Windows.Forms.Label label16;
-		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox pctbxAnalyze;
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.Label label14;
-		private System.Windows.Forms.PictureBox pictureBox2;
+		private System.Windows.Forms.PictureBox pctbxError;
 		private System.Windows.Forms.Label label22;
 		private System.Windows.Forms.Label label23;
 		private System.Windows.Forms.Label label24;
@@ -766,7 +776,7 @@
 		private System.Windows.Forms.DateTimePicker dtpSatrRun;
 		private System.Windows.Forms.DateTimePicker dtpEndRun;
 		private System.Windows.Forms.DateTimePicker dtpDataSerach;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnReset;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label6;
 
