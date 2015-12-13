@@ -32,6 +32,7 @@ namespace 光伏发电系统实验监测平台.Manager
 		public Transceiver(SerialPort serialPort)
 		{
 			_serialPort = serialPort;
+			_serialPort.DataReceived += DataReceivedHandler;
 		}
 
 		public void Start(Command[] commands, int cycle)
@@ -68,7 +69,17 @@ namespace 光伏发电系统实验监测平台.Manager
 				_sendTread.Abort();
 			if (_serialPort != null && _serialPort.IsOpen)
 				_serialPort.Close();
-			//TODO:设置串口与电机通信，查询电机停转指令，停转电机
+			int sendCount = 3;
+			while(sendCount-- > 0)
+			{
+				_serialPort.BaudRate = 9600;
+				_serialPort.Open();
+				byte[] bytes = (new Relay32()).GetCommand("停转");
+				_serialPort.Write(bytes, 0, bytes.Length);
+				_serialPort.Close();
+			}
+
+
 		}
 
 		public void Reset()
@@ -86,8 +97,10 @@ namespace 光伏发电系统实验监测平台.Manager
 			byte[] readbyte = new byte[_serialPort.BytesToRead];
 
 			_serialPort.Read(readbyte, 0, readbyte.Length);
-			DateTime dt = DateTime.Now;
-			//TODO:在这里写解析过程
+			status.Time = DateTime.Now;
+			foreach(var b in readbyte)
+				status.MessageQueue.Add(new KeyValuePair<byte, bool>(b, true));
+			MainAnalyzer.Analyze(status);
 		}
 
 		void Work()
