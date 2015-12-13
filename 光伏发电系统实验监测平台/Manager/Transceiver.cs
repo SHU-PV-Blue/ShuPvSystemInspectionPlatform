@@ -7,9 +7,13 @@ using System.IO.Ports;
 using Microsoft.VisualBasic.Devices;
 using System.Diagnostics;
 using System.Threading;
+
+using System.Data;
+using System.Data.OleDb;
 using 光伏发电系统实验监测平台.Commands;
 using 光伏发电系统实验监测平台.Tool;
 using 光伏发电系统实验监测平台.Components;
+using 光伏发电系统实验监测平台.Database;
 
 namespace 光伏发电系统实验监测平台.Manager
 {
@@ -34,12 +38,24 @@ namespace 光伏发电系统实验监测平台.Manager
 		{
 			_commands = commands;
 			_cycle = cycle;
+
 			status = new Status();
 			status.Time = DateTime.Now;
 			status.MessageQueue = new List<KeyValuePair<byte, bool>>();
 			status.ComponentId = initComponentId;
 			status.Azimuth = initAzimuth;
 			status.Obliquity = initObliquity;
+			OleDbConnection oleDbCon;
+			try
+			{
+				oleDbCon = DatabaseConnection.GetConnection();
+				oleDbCon.Open();
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("数据库连接失败:" + ex.Message, ex);
+			}
+
 			if (_sendTread != null && _sendTread.IsAlive)
 				_sendTread.Abort();
 			_sendTread = new Thread(new ThreadStart(Work));
@@ -53,6 +69,16 @@ namespace 光伏发电系统实验监测平台.Manager
 			if (_serialPort != null && _serialPort.IsOpen)
 				_serialPort.Close();
 			//TODO:设置串口与电机通信，查询电机停转指令，停转电机
+		}
+
+		public void Reset()
+		{
+			Command[] commands = new Command[4];
+			commands[0] = new Command(Command.Operates.打开, 9600);
+			commands[1] = new Command(Command.Operates.旋转方位角, (int)initAzimuth);
+			commands[2] = new Command(Command.Operates.旋转倾角, (int)initObliquity);
+			commands[3] = new Command(Command.Operates.关闭, 0);
+			Start(commands, 1);
 		}
 
 		private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -119,6 +145,8 @@ namespace 光伏发电系统实验监测平台.Manager
 					}
 				--_cycle;
 			}
+			if (status.OleDbCon != null && status.OleDbCon.State == ConnectionState.Open)
+				status.OleDbCon.Close();
 		}
 	}
 }
