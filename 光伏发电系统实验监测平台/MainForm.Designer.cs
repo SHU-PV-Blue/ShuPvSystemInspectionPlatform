@@ -36,7 +36,6 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.cmbStopBit = new System.Windows.Forms.ComboBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.pctbxStatu = new System.Windows.Forms.PictureBox();
 			this.cmbDataBit = new System.Windows.Forms.ComboBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -60,17 +59,6 @@
 			this.txtStaMonth = new System.Windows.Forms.TextBox();
 			this.txtStaYear = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.label21 = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
-			this.label15 = new System.Windows.Forms.Label();
-			this.label14 = new System.Windows.Forms.Label();
-			this.label16 = new System.Windows.Forms.Label();
-			this.label17 = new System.Windows.Forms.Label();
-			this.label18 = new System.Windows.Forms.Label();
-			this.label19 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
 			this.label23 = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
@@ -90,24 +78,37 @@
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label29 = new System.Windows.Forms.Label();
 			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.label21 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
+			this.label15 = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label19 = new System.Windows.Forms.Label();
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.pctbxSearchData = new System.Windows.Forms.PictureBox();
 			this.pctbxSetFunction = new System.Windows.Forms.PictureBox();
 			this.pctbxSetOrder = new System.Windows.Forms.PictureBox();
+			this.pctbxStatu = new System.Windows.Forms.PictureBox();
 			this.gpbSetting.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			this.pnlOrder.SuspendLayout();
+			this.pnlFunction.SuspendLayout();
+			this.pnlSearchData.SuspendLayout();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			this.pnlOrder.SuspendLayout();
-			this.pnlSearchData.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSearchData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetFunction)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetOrder)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gpbSetting
@@ -118,7 +119,6 @@
 			this.gpbSetting.Controls.Add(this.label5);
 			this.gpbSetting.Controls.Add(this.cmbStopBit);
 			this.gpbSetting.Controls.Add(this.label4);
-			this.gpbSetting.Controls.Add(this.pctbxStatu);
 			this.gpbSetting.Controls.Add(this.cmbDataBit);
 			this.gpbSetting.Controls.Add(this.label3);
 			this.gpbSetting.Controls.Add(this.label2);
@@ -133,7 +133,7 @@
 			// 
 			// txtBaudRate
 			// 
-			this.txtBaudRate.Location = new System.Drawing.Point(127, 55);
+			this.txtBaudRate.Location = new System.Drawing.Point(127, 63);
 			this.txtBaudRate.Name = "txtBaudRate";
 			this.txtBaudRate.ReadOnly = true;
 			this.txtBaudRate.Size = new System.Drawing.Size(82, 21);
@@ -142,9 +142,9 @@
 			// btnSetting
 			// 
 			this.btnSetting.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.btnSetting.Location = new System.Drawing.Point(68, 170);
+			this.btnSetting.Location = new System.Drawing.Point(60, 204);
 			this.btnSetting.Name = "btnSetting";
-			this.btnSetting.Size = new System.Drawing.Size(119, 31);
+			this.btnSetting.Size = new System.Drawing.Size(139, 52);
 			this.btnSetting.TabIndex = 12;
 			this.btnSetting.Text = "设  置";
 			this.btnSetting.UseVisualStyleBackColor = true;
@@ -154,7 +154,7 @@
 			this.cmbParity.FormattingEnabled = true;
 			this.cmbParity.Items.AddRange(new object[] {
             "无"});
-			this.cmbParity.Location = new System.Drawing.Point(127, 134);
+			this.cmbParity.Location = new System.Drawing.Point(127, 163);
 			this.cmbParity.Name = "cmbParity";
 			this.cmbParity.Size = new System.Drawing.Size(82, 20);
 			this.cmbParity.TabIndex = 7;
@@ -164,7 +164,7 @@
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("微软雅黑", 10.5F);
 			this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label5.Location = new System.Drawing.Point(42, 134);
+			this.label5.Location = new System.Drawing.Point(42, 163);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(73, 20);
 			this.label5.TabIndex = 2;
@@ -175,7 +175,7 @@
 			this.cmbStopBit.FormattingEnabled = true;
 			this.cmbStopBit.Items.AddRange(new object[] {
             "1"});
-			this.cmbStopBit.Location = new System.Drawing.Point(127, 108);
+			this.cmbStopBit.Location = new System.Drawing.Point(127, 131);
 			this.cmbStopBit.Name = "cmbStopBit";
 			this.cmbStopBit.Size = new System.Drawing.Size(82, 20);
 			this.cmbStopBit.TabIndex = 8;
@@ -185,23 +185,11 @@
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F);
 			this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label4.Location = new System.Drawing.Point(42, 108);
+			this.label4.Location = new System.Drawing.Point(42, 131);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(74, 20);
 			this.label4.TabIndex = 3;
 			this.label4.Text = "停 止 位 :  ";
-			// 
-			// pctbxStatu
-			// 
-			this.pctbxStatu.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.off;
-			this.pctbxStatu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pctbxStatu.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.pctbxStatu.Location = new System.Drawing.Point(55, 207);
-			this.pctbxStatu.Name = "pctbxStatu";
-			this.pctbxStatu.Size = new System.Drawing.Size(139, 69);
-			this.pctbxStatu.TabIndex = 1;
-			this.pctbxStatu.TabStop = false;
-			this.pctbxStatu.Click += new System.EventHandler(this.pictureBox1_Click);
 			// 
 			// cmbDataBit
 			// 
@@ -211,7 +199,7 @@
             "7",
             "6",
             "5"});
-			this.cmbDataBit.Location = new System.Drawing.Point(127, 82);
+			this.cmbDataBit.Location = new System.Drawing.Point(127, 97);
 			this.cmbDataBit.Name = "cmbDataBit";
 			this.cmbDataBit.Size = new System.Drawing.Size(82, 20);
 			this.cmbDataBit.TabIndex = 9;
@@ -221,7 +209,7 @@
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F);
 			this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label3.Location = new System.Drawing.Point(42, 82);
+			this.label3.Location = new System.Drawing.Point(42, 97);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(70, 20);
 			this.label3.TabIndex = 4;
@@ -232,7 +220,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F);
 			this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label2.Location = new System.Drawing.Point(42, 56);
+			this.label2.Location = new System.Drawing.Point(42, 64);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(70, 20);
 			this.label2.TabIndex = 5;
@@ -439,126 +427,6 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "运行状态";
 			// 
-			// panel2
-			// 
-			this.panel2.BackColor = System.Drawing.Color.Transparent;
-			this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.panel2.Controls.Add(this.pictureBox2);
-			this.panel2.Controls.Add(this.pictureBox1);
-			this.panel2.Controls.Add(this.label21);
-			this.panel2.Controls.Add(this.label20);
-			this.panel2.Controls.Add(this.label15);
-			this.panel2.Controls.Add(this.label14);
-			this.panel2.Controls.Add(this.label16);
-			this.panel2.Controls.Add(this.label17);
-			this.panel2.Controls.Add(this.label18);
-			this.panel2.Controls.Add(this.label19);
-			this.panel2.Location = new System.Drawing.Point(6, 18);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(402, 112);
-			this.panel2.TabIndex = 3;
-			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pictureBox2.Location = new System.Drawing.Point(355, 63);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(44, 33);
-			this.pictureBox2.TabIndex = 13;
-			this.pictureBox2.TabStop = false;
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pictureBox1.Location = new System.Drawing.Point(352, 9);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(44, 33);
-			this.pictureBox1.TabIndex = 12;
-			this.pictureBox1.TabStop = false;
-			// 
-			// label21
-			// 
-			this.label21.AutoSize = true;
-			this.label21.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label21.Location = new System.Drawing.Point(294, 13);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(55, 25);
-			this.label21.TabIndex = 11;
-			this.label21.Text = "解析:";
-			// 
-			// label20
-			// 
-			this.label20.AutoSize = true;
-			this.label20.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label20.Location = new System.Drawing.Point(297, 67);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(55, 25);
-			this.label20.TabIndex = 10;
-			this.label20.Text = "异常:";
-			// 
-			// label15
-			// 
-			this.label15.AutoSize = true;
-			this.label15.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label15.Location = new System.Drawing.Point(7, 38);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(88, 25);
-			this.label15.TabIndex = 9;
-			this.label15.Text = "方位角：";
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label14.Location = new System.Drawing.Point(6, 6);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(88, 25);
-			this.label14.TabIndex = 8;
-			this.label14.Text = "组件号：";
-			// 
-			// label16
-			// 
-			this.label16.AutoSize = true;
-			this.label16.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label16.Location = new System.Drawing.Point(6, 71);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(87, 25);
-			this.label16.TabIndex = 7;
-			this.label16.Text = "倾   角：";
-			// 
-			// label17
-			// 
-			this.label17.AutoSize = true;
-			this.label17.BackColor = System.Drawing.Color.Transparent;
-			this.label17.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label17.Location = new System.Drawing.Point(95, 3);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(23, 25);
-			this.label17.TabIndex = 4;
-			this.label17.Text = "0";
-			// 
-			// label18
-			// 
-			this.label18.AutoSize = true;
-			this.label18.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label18.Location = new System.Drawing.Point(95, 38);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(23, 25);
-			this.label18.TabIndex = 5;
-			this.label18.Text = "0";
-			// 
-			// label19
-			// 
-			this.label19.AutoSize = true;
-			this.label19.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label19.Location = new System.Drawing.Point(95, 71);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(23, 25);
-			this.label19.TabIndex = 6;
-			this.label19.Text = "0";
-			// 
 			// label22
 			// 
 			this.label22.AutoSize = true;
@@ -657,6 +525,7 @@
 			// pnlFunction
 			// 
 			this.pnlFunction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+			this.pnlFunction.Controls.Add(this.pctbxStatu);
 			this.pnlFunction.Location = new System.Drawing.Point(300, 134);
 			this.pnlFunction.Name = "pnlFunction";
 			this.pnlFunction.Size = new System.Drawing.Size(408, 153);
@@ -760,6 +629,127 @@
 			this.textBox3.TabIndex = 16;
 			this.textBox3.Text = "12";
 			// 
+			// panel2
+			// 
+			this.panel2.BackColor = System.Drawing.Color.Transparent;
+			this.panel2.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.实验平台图;
+			this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.panel2.Controls.Add(this.pictureBox2);
+			this.panel2.Controls.Add(this.pictureBox1);
+			this.panel2.Controls.Add(this.label21);
+			this.panel2.Controls.Add(this.label20);
+			this.panel2.Controls.Add(this.label15);
+			this.panel2.Controls.Add(this.label14);
+			this.panel2.Controls.Add(this.label16);
+			this.panel2.Controls.Add(this.label17);
+			this.panel2.Controls.Add(this.label18);
+			this.panel2.Controls.Add(this.label19);
+			this.panel2.Location = new System.Drawing.Point(6, 18);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(402, 112);
+			this.panel2.TabIndex = 3;
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pictureBox2.Location = new System.Drawing.Point(352, 63);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(44, 33);
+			this.pictureBox2.TabIndex = 13;
+			this.pictureBox2.TabStop = false;
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pictureBox1.Location = new System.Drawing.Point(352, 9);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(44, 33);
+			this.pictureBox1.TabIndex = 12;
+			this.pictureBox1.TabStop = false;
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label21.Location = new System.Drawing.Point(294, 13);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(55, 25);
+			this.label21.TabIndex = 11;
+			this.label21.Text = "解析:";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label20.Location = new System.Drawing.Point(294, 67);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(55, 25);
+			this.label20.TabIndex = 10;
+			this.label20.Text = "异常:";
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label15.Location = new System.Drawing.Point(7, 38);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(88, 25);
+			this.label15.TabIndex = 9;
+			this.label15.Text = "方位角：";
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label14.Location = new System.Drawing.Point(6, 6);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(88, 25);
+			this.label14.TabIndex = 8;
+			this.label14.Text = "组件号：";
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label16.Location = new System.Drawing.Point(6, 71);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(87, 25);
+			this.label16.TabIndex = 7;
+			this.label16.Text = "倾   角：";
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.BackColor = System.Drawing.Color.Transparent;
+			this.label17.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label17.Location = new System.Drawing.Point(95, 3);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(23, 25);
+			this.label17.TabIndex = 4;
+			this.label17.Text = "0";
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label18.Location = new System.Drawing.Point(95, 38);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(23, 25);
+			this.label18.TabIndex = 5;
+			this.label18.Text = "0";
+			// 
+			// label19
+			// 
+			this.label19.AutoSize = true;
+			this.label19.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label19.Location = new System.Drawing.Point(95, 71);
+			this.label19.Name = "label19";
+			this.label19.Size = new System.Drawing.Size(23, 25);
+			this.label19.TabIndex = 6;
+			this.label19.Text = "0";
+			// 
 			// pictureBox4
 			// 
 			this.pictureBox4.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.Sun2;
@@ -807,12 +797,23 @@
 			this.pctbxSetOrder.TabStop = false;
 			this.pctbxSetOrder.Click += new System.EventHandler(this.pctbxSetOrder_Click);
 			// 
+			// pctbxStatu
+			// 
+			this.pctbxStatu.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.off;
+			this.pctbxStatu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pctbxStatu.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pctbxStatu.Location = new System.Drawing.Point(21, 16);
+			this.pctbxStatu.Name = "pctbxStatu";
+			this.pctbxStatu.Size = new System.Drawing.Size(210, 122);
+			this.pctbxStatu.TabIndex = 1;
+			this.pctbxStatu.TabStop = false;
+			this.pctbxStatu.Click += new System.EventHandler(this.pictureBox1_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(720, 443);
-			this.Controls.Add(this.pnlSearchData);
 			this.Controls.Add(this.pnlFunction);
 			this.Controls.Add(this.label25);
 			this.Controls.Add(this.label24);
@@ -826,6 +827,7 @@
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.gpbSetting);
 			this.Controls.Add(this.pnlOrder);
+			this.Controls.Add(this.pnlSearchData);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
@@ -833,23 +835,24 @@
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.gpbSetting.ResumeLayout(false);
 			this.gpbSetting.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).EndInit();
 			this.groupBox1.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
+			this.pnlOrder.ResumeLayout(false);
+			this.pnlOrder.PerformLayout();
+			this.pnlFunction.ResumeLayout(false);
+			this.pnlSearchData.ResumeLayout(false);
+			this.pnlSearchData.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			this.pnlOrder.ResumeLayout(false);
-			this.pnlOrder.PerformLayout();
-			this.pnlSearchData.ResumeLayout(false);
-			this.pnlSearchData.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSearchData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetFunction)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetOrder)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
