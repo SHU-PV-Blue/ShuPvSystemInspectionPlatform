@@ -23,15 +23,6 @@ namespace 光伏发电系统实验监测平台
 
 		bool SeriaOpen = false;									//串口状态，默认为关
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-			Command[] cms = CommandReader.LoadCommands("code.txt");
-			string str = "";
-			foreach (var cm in cms)
-				str += cm.Operate + " " + cm.Argument + Environment.NewLine;
-			MessageBox.Show(str);
-		}
-
 		private void pictureBox1_Click(object sender, EventArgs e)
 		{
 			if (SeriaOpen == false)
@@ -40,6 +31,7 @@ namespace 光伏发电系统实验监测平台
 				SeriaOpen = true;
 				btnReset.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Reset_gray;
 				btnReset.Enabled = false;
+				pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2;
 			}
 
 			else
@@ -48,11 +40,24 @@ namespace 光伏发电系统实验监测平台
 				SeriaOpen = false;
 				btnReset.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Reset;
 				btnReset.Enabled = true;
+				pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2__2_;
 			}
 				
 		}
 
 		private void MainForm_Load(object sender, EventArgs e)
+		{
+			mkdir();
+			string[] ports = SerialPort.GetPortNames();
+			Array.Sort(ports);
+			cmbPorts.Items.AddRange(ports);
+			Initcmb();
+		}
+
+		/// <summary>
+		/// 检查并创建路径
+		/// </summary>
+		private void mkdir()
 		{
 			DirectoryInfo dirInfo;
 			dirInfo = new DirectoryInfo("ReceiveData");
@@ -67,8 +72,26 @@ namespace 光伏发电系统实验监测平台
 			dirInfo = new DirectoryInfo("Excel");
 			if (!dirInfo.Exists)
 				dirInfo.Create();
-				
-			
+		}
+
+		/// <summary>
+		/// 配置各个列表
+		/// </summary>
+		private void Initcmb()
+		{
+			try
+			{
+				cmbPorts.SelectedIndex = 0;
+				txtBaudRate.Text = "9600";
+				cmbDataBit.SelectedIndex = 0;
+				cmbParity.SelectedIndex = 0;
+				cmbStopBit.SelectedIndex = 0;
+			}
+			catch (Exception ex)
+			{
+				return;
+			}
+
 		}
 
 		private void pctbxSetOrder_Click(object sender, EventArgs e)
@@ -124,8 +147,10 @@ namespace 光伏发电系统实验监测平台
 		private void btnOpenFile_Click(object sender, EventArgs e)
 		{
 			OpenFileDialog openSettingFile = new OpenFileDialog();
+			openSettingFile.Filter = "文本文件(*.txt)|*.txt|所有文件(*.*)|*.*";
 			if (openSettingFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				System.Diagnostics.Process.Start(openSettingFile.FileName);
+			txtSettingFilePath.Text = openSettingFile.FileName;
 		}
 
 	}

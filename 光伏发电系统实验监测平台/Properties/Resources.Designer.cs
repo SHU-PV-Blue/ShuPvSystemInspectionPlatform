@@ -203,6 +203,16 @@ namespace 光伏发电系统实验监测平台.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Sun2__2_ {
+            get {
+                object obj = ResourceManager.GetObject("Sun2__2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Venus {
             get {
                 object obj = ResourceManager.GetObject("Venus", resourceCulture);
