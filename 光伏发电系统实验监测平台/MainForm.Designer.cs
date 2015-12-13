@@ -46,18 +46,6 @@
 			this.label13 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
 			this.btnSetRunTime = new System.Windows.Forms.Button();
-			this.label11 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.txtEndDay = new System.Windows.Forms.TextBox();
-			this.txtStaDay = new System.Windows.Forms.TextBox();
-			this.txtEndMonth = new System.Windows.Forms.TextBox();
-			this.txtEndYear = new System.Windows.Forms.TextBox();
-			this.txtStaMonth = new System.Windows.Forms.TextBox();
-			this.txtStaYear = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.label22 = new System.Windows.Forms.Label();
 			this.label23 = new System.Windows.Forms.Label();
@@ -65,19 +53,17 @@
 			this.label25 = new System.Windows.Forms.Label();
 			this.pnlOrder = new System.Windows.Forms.Panel();
 			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.btnSaveFile = new System.Windows.Forms.Button();
 			this.btnOpenFile = new System.Windows.Forms.Button();
 			this.label26 = new System.Windows.Forms.Label();
 			this.pnlFunction = new System.Windows.Forms.Panel();
 			this.pnlSearchData = new System.Windows.Forms.Panel();
-			this.btnSearch = new System.Windows.Forms.Button();
+			this.btnDataSearch = new System.Windows.Forms.Button();
 			this.label30 = new System.Windows.Forms.Label();
-			this.label27 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.label28 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.label29 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.dtpEndRun = new System.Windows.Forms.DateTimePicker();
+			this.dtpSatrRun = new System.Windows.Forms.DateTimePicker();
+			this.dtpDataSerach = new System.Windows.Forms.DateTimePicker();
+			this.button1 = new System.Windows.Forms.Button();
+			this.pctbxStatu = new System.Windows.Forms.PictureBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -93,7 +79,8 @@
 			this.pctbxSearchData = new System.Windows.Forms.PictureBox();
 			this.pctbxSetFunction = new System.Windows.Forms.PictureBox();
 			this.pctbxSetOrder = new System.Windows.Forms.PictureBox();
-			this.pctbxStatu = new System.Windows.Forms.PictureBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
 			this.gpbSetting.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -101,6 +88,7 @@
 			this.pnlOrder.SuspendLayout();
 			this.pnlFunction.SuspendLayout();
 			this.pnlSearchData.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).BeginInit();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -108,7 +96,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSearchData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetFunction)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetOrder)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// gpbSetting
@@ -126,7 +113,7 @@
 			this.gpbSetting.Controls.Add(this.label1);
 			this.gpbSetting.Location = new System.Drawing.Point(12, 12);
 			this.gpbSetting.Name = "gpbSetting";
-			this.gpbSetting.Size = new System.Drawing.Size(258, 285);
+			this.gpbSetting.Size = new System.Drawing.Size(258, 275);
 			this.gpbSetting.TabIndex = 0;
 			this.gpbSetting.TabStop = false;
 			this.gpbSetting.Text = "参数设置";
@@ -141,7 +128,7 @@
 			// 
 			// btnSetting
 			// 
-			this.btnSetting.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.btnSetting.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.btnSetting.Location = new System.Drawing.Point(60, 204);
 			this.btnSetting.Name = "btnSetting";
 			this.btnSetting.Size = new System.Drawing.Size(139, 52);
@@ -259,21 +246,11 @@
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+			this.panel1.Controls.Add(this.dtpSatrRun);
+			this.panel1.Controls.Add(this.dtpEndRun);
 			this.panel1.Controls.Add(this.label13);
 			this.panel1.Controls.Add(this.label12);
 			this.panel1.Controls.Add(this.btnSetRunTime);
-			this.panel1.Controls.Add(this.label11);
-			this.panel1.Controls.Add(this.label10);
-			this.panel1.Controls.Add(this.label9);
-			this.panel1.Controls.Add(this.label8);
-			this.panel1.Controls.Add(this.label7);
-			this.panel1.Controls.Add(this.label6);
-			this.panel1.Controls.Add(this.txtEndDay);
-			this.panel1.Controls.Add(this.txtStaDay);
-			this.panel1.Controls.Add(this.txtEndMonth);
-			this.panel1.Controls.Add(this.txtEndYear);
-			this.panel1.Controls.Add(this.txtStaMonth);
-			this.panel1.Controls.Add(this.txtStaYear);
 			this.panel1.Location = new System.Drawing.Point(11, 18);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(232, 112);
@@ -304,118 +281,13 @@
 			// btnSetRunTime
 			// 
 			this.btnSetRunTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSetRunTime.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.btnSetRunTime.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.btnSetRunTime.Location = new System.Drawing.Point(53, 72);
 			this.btnSetRunTime.Name = "btnSetRunTime";
 			this.btnSetRunTime.Size = new System.Drawing.Size(119, 31);
 			this.btnSetRunTime.TabIndex = 13;
 			this.btnSetRunTime.Text = "设  置";
 			this.btnSetRunTime.UseVisualStyleBackColor = true;
-			// 
-			// label11
-			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(207, 45);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(17, 12);
-			this.label11.TabIndex = 6;
-			this.label11.Text = "日";
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(150, 44);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(17, 12);
-			this.label10.TabIndex = 5;
-			this.label10.Text = "月";
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(90, 44);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(17, 12);
-			this.label9.TabIndex = 4;
-			this.label9.Text = "年";
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(206, 12);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(17, 12);
-			this.label8.TabIndex = 3;
-			this.label8.Text = "日";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(150, 14);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(17, 12);
-			this.label7.TabIndex = 2;
-			this.label7.Text = "月";
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(90, 14);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(17, 12);
-			this.label6.TabIndex = 1;
-			this.label6.Text = "年";
-			// 
-			// txtEndDay
-			// 
-			this.txtEndDay.Location = new System.Drawing.Point(166, 41);
-			this.txtEndDay.Name = "txtEndDay";
-			this.txtEndDay.Size = new System.Drawing.Size(41, 21);
-			this.txtEndDay.TabIndex = 0;
-			this.txtEndDay.Text = "31";
-			// 
-			// txtStaDay
-			// 
-			this.txtStaDay.BackColor = System.Drawing.SystemColors.Window;
-			this.txtStaDay.Location = new System.Drawing.Point(166, 9);
-			this.txtStaDay.Name = "txtStaDay";
-			this.txtStaDay.Size = new System.Drawing.Size(41, 21);
-			this.txtStaDay.TabIndex = 0;
-			this.txtStaDay.Text = "31";
-			// 
-			// txtEndMonth
-			// 
-			this.txtEndMonth.Location = new System.Drawing.Point(108, 41);
-			this.txtEndMonth.Name = "txtEndMonth";
-			this.txtEndMonth.Size = new System.Drawing.Size(41, 21);
-			this.txtEndMonth.TabIndex = 0;
-			this.txtEndMonth.Text = "12";
-			// 
-			// txtEndYear
-			// 
-			this.txtEndYear.Location = new System.Drawing.Point(48, 41);
-			this.txtEndYear.Name = "txtEndYear";
-			this.txtEndYear.Size = new System.Drawing.Size(41, 21);
-			this.txtEndYear.TabIndex = 0;
-			this.txtEndYear.Text = "2015";
-			// 
-			// txtStaMonth
-			// 
-			this.txtStaMonth.BackColor = System.Drawing.SystemColors.Window;
-			this.txtStaMonth.Location = new System.Drawing.Point(108, 9);
-			this.txtStaMonth.Name = "txtStaMonth";
-			this.txtStaMonth.Size = new System.Drawing.Size(41, 21);
-			this.txtStaMonth.TabIndex = 0;
-			this.txtStaMonth.Text = "12";
-			// 
-			// txtStaYear
-			// 
-			this.txtStaYear.BackColor = System.Drawing.SystemColors.Window;
-			this.txtStaYear.Location = new System.Drawing.Point(48, 9);
-			this.txtStaYear.Name = "txtStaYear";
-			this.txtStaYear.Size = new System.Drawing.Size(41, 21);
-			this.txtStaYear.TabIndex = 0;
-			this.txtStaYear.Text = "2015";
 			// 
 			// groupBox2
 			// 
@@ -473,10 +345,9 @@
 			// pnlOrder
 			// 
 			this.pnlOrder.BackColor = System.Drawing.SystemColors.Highlight;
-			this.pnlOrder.Controls.Add(this.textBox1);
-			this.pnlOrder.Controls.Add(this.btnSaveFile);
-			this.pnlOrder.Controls.Add(this.btnOpenFile);
 			this.pnlOrder.Controls.Add(this.label26);
+			this.pnlOrder.Controls.Add(this.textBox1);
+			this.pnlOrder.Controls.Add(this.btnOpenFile);
 			this.pnlOrder.Location = new System.Drawing.Point(300, 134);
 			this.pnlOrder.Name = "pnlOrder";
 			this.pnlOrder.Size = new System.Drawing.Size(408, 153);
@@ -491,20 +362,10 @@
 			this.textBox1.Size = new System.Drawing.Size(331, 26);
 			this.textBox1.TabIndex = 2;
 			// 
-			// btnSaveFile
-			// 
-			this.btnSaveFile.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.btnSaveFile.Location = new System.Drawing.Point(237, 33);
-			this.btnSaveFile.Name = "btnSaveFile";
-			this.btnSaveFile.Size = new System.Drawing.Size(112, 45);
-			this.btnSaveFile.TabIndex = 1;
-			this.btnSaveFile.Text = "保存文件";
-			this.btnSaveFile.UseVisualStyleBackColor = true;
-			// 
 			// btnOpenFile
 			// 
 			this.btnOpenFile.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.btnOpenFile.Location = new System.Drawing.Point(78, 33);
+			this.btnOpenFile.Location = new System.Drawing.Point(137, 37);
 			this.btnOpenFile.Name = "btnOpenFile";
 			this.btnOpenFile.Size = new System.Drawing.Size(112, 45);
 			this.btnOpenFile.TabIndex = 0;
@@ -525,6 +386,10 @@
 			// pnlFunction
 			// 
 			this.pnlFunction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+			this.pnlFunction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pnlFunction.Controls.Add(this.label7);
+			this.pnlFunction.Controls.Add(this.label6);
+			this.pnlFunction.Controls.Add(this.button1);
 			this.pnlFunction.Controls.Add(this.pctbxStatu);
 			this.pnlFunction.Location = new System.Drawing.Point(300, 134);
 			this.pnlFunction.Name = "pnlFunction";
@@ -535,29 +400,24 @@
 			// pnlSearchData
 			// 
 			this.pnlSearchData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-			this.pnlSearchData.Controls.Add(this.btnSearch);
+			this.pnlSearchData.Controls.Add(this.dtpDataSerach);
+			this.pnlSearchData.Controls.Add(this.btnDataSearch);
 			this.pnlSearchData.Controls.Add(this.label30);
-			this.pnlSearchData.Controls.Add(this.label27);
-			this.pnlSearchData.Controls.Add(this.textBox2);
-			this.pnlSearchData.Controls.Add(this.label28);
-			this.pnlSearchData.Controls.Add(this.textBox4);
-			this.pnlSearchData.Controls.Add(this.label29);
-			this.pnlSearchData.Controls.Add(this.textBox3);
 			this.pnlSearchData.Location = new System.Drawing.Point(300, 134);
 			this.pnlSearchData.Name = "pnlSearchData";
 			this.pnlSearchData.Size = new System.Drawing.Size(408, 153);
 			this.pnlSearchData.TabIndex = 20;
 			this.pnlSearchData.Visible = false;
 			// 
-			// btnSearch
+			// btnDataSearch
 			// 
-			this.btnSearch.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.btnSearch.Location = new System.Drawing.Point(139, 102);
-			this.btnSearch.Name = "btnSearch";
-			this.btnSearch.Size = new System.Drawing.Size(116, 39);
-			this.btnSearch.TabIndex = 22;
-			this.btnSearch.Text = "查询";
-			this.btnSearch.UseVisualStyleBackColor = true;
+			this.btnDataSearch.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.btnDataSearch.Location = new System.Drawing.Point(139, 102);
+			this.btnDataSearch.Name = "btnDataSearch";
+			this.btnDataSearch.Size = new System.Drawing.Size(116, 39);
+			this.btnDataSearch.TabIndex = 22;
+			this.btnDataSearch.Text = "查询";
+			this.btnDataSearch.UseVisualStyleBackColor = true;
 			// 
 			// label30
 			// 
@@ -569,65 +429,53 @@
 			this.label30.TabIndex = 21;
 			this.label30.Text = "请选择查询日期:";
 			// 
-			// label27
+			// dtpEndRun
 			// 
-			this.label27.AutoSize = true;
-			this.label27.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label27.Location = new System.Drawing.Point(331, 58);
-			this.label27.Name = "label27";
-			this.label27.Size = new System.Drawing.Size(31, 25);
-			this.label27.TabIndex = 20;
-			this.label27.Text = "日";
+			this.dtpEndRun.Font = new System.Drawing.Font("微软雅黑 Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.dtpEndRun.Location = new System.Drawing.Point(48, 37);
+			this.dtpEndRun.Name = "dtpEndRun";
+			this.dtpEndRun.Size = new System.Drawing.Size(167, 29);
+			this.dtpEndRun.TabIndex = 16;
 			// 
-			// textBox2
+			// dtpSatrRun
 			// 
-			this.textBox2.BackColor = System.Drawing.SystemColors.Window;
-			this.textBox2.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.textBox2.Location = new System.Drawing.Point(261, 55);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(59, 33);
-			this.textBox2.TabIndex = 15;
-			this.textBox2.Text = "31";
+			this.dtpSatrRun.Font = new System.Drawing.Font("微软雅黑 Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.dtpSatrRun.Location = new System.Drawing.Point(48, 4);
+			this.dtpSatrRun.Name = "dtpSatrRun";
+			this.dtpSatrRun.Size = new System.Drawing.Size(167, 29);
+			this.dtpSatrRun.TabIndex = 17;
 			// 
-			// label28
+			// dtpDataSerach
 			// 
-			this.label28.AutoSize = true;
-			this.label28.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label28.Location = new System.Drawing.Point(220, 58);
-			this.label28.Name = "label28";
-			this.label28.Size = new System.Drawing.Size(31, 25);
-			this.label28.TabIndex = 19;
-			this.label28.Text = "月";
+			this.dtpDataSerach.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.dtpDataSerach.Location = new System.Drawing.Point(54, 58);
+			this.dtpDataSerach.Name = "dtpDataSerach";
+			this.dtpDataSerach.Size = new System.Drawing.Size(269, 33);
+			this.dtpDataSerach.TabIndex = 18;
 			// 
-			// textBox4
+			// button1
 			// 
-			this.textBox4.BackColor = System.Drawing.SystemColors.Window;
-			this.textBox4.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.textBox4.Location = new System.Drawing.Point(43, 55);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(62, 33);
-			this.textBox4.TabIndex = 17;
-			this.textBox4.Text = "2015";
+			this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+			this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.button1.FlatAppearance.BorderSize = 0;
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button1.Location = new System.Drawing.Point(266, 16);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(104, 103);
+			this.button1.TabIndex = 2;
+			this.button1.UseVisualStyleBackColor = true;
 			// 
-			// label29
+			// pctbxStatu
 			// 
-			this.label29.AutoSize = true;
-			this.label29.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label29.Location = new System.Drawing.Point(111, 58);
-			this.label29.Name = "label29";
-			this.label29.Size = new System.Drawing.Size(31, 25);
-			this.label29.TabIndex = 18;
-			this.label29.Text = "年";
-			// 
-			// textBox3
-			// 
-			this.textBox3.BackColor = System.Drawing.SystemColors.Window;
-			this.textBox3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.textBox3.Location = new System.Drawing.Point(149, 55);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(59, 33);
-			this.textBox3.TabIndex = 16;
-			this.textBox3.Text = "12";
+			this.pctbxStatu.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.off;
+			this.pctbxStatu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pctbxStatu.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.pctbxStatu.Location = new System.Drawing.Point(31, 8);
+			this.pctbxStatu.Name = "pctbxStatu";
+			this.pctbxStatu.Size = new System.Drawing.Size(191, 113);
+			this.pctbxStatu.TabIndex = 1;
+			this.pctbxStatu.TabStop = false;
+			this.pctbxStatu.Click += new System.EventHandler(this.pictureBox1_Click);
 			// 
 			// panel2
 			// 
@@ -797,27 +645,36 @@
 			this.pctbxSetOrder.TabStop = false;
 			this.pctbxSetOrder.Click += new System.EventHandler(this.pctbxSetOrder_Click);
 			// 
-			// pctbxStatu
+			// label6
 			// 
-			this.pctbxStatu.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.off;
-			this.pctbxStatu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pctbxStatu.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.pctbxStatu.Location = new System.Drawing.Point(21, 16);
-			this.pctbxStatu.Name = "pctbxStatu";
-			this.pctbxStatu.Size = new System.Drawing.Size(210, 122);
-			this.pctbxStatu.TabIndex = 1;
-			this.pctbxStatu.TabStop = false;
-			this.pctbxStatu.Click += new System.EventHandler(this.pictureBox1_Click);
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label6.Location = new System.Drawing.Point(103, 122);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(50, 25);
+			this.label6.TabIndex = 21;
+			this.label6.Text = "开关";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label7.Location = new System.Drawing.Point(291, 122);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(50, 25);
+			this.label7.TabIndex = 22;
+			this.label7.Text = "复位";
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(720, 443);
+			this.ClientSize = new System.Drawing.Size(720, 454);
 			this.Controls.Add(this.pnlFunction);
 			this.Controls.Add(this.label25);
 			this.Controls.Add(this.label24);
 			this.Controls.Add(this.label23);
+			this.Controls.Add(this.pnlOrder);
 			this.Controls.Add(this.label22);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.pictureBox4);
@@ -826,7 +683,6 @@
 			this.Controls.Add(this.pctbxSetOrder);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.gpbSetting);
-			this.Controls.Add(this.pnlOrder);
 			this.Controls.Add(this.pnlSearchData);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -842,8 +698,10 @@
 			this.pnlOrder.ResumeLayout(false);
 			this.pnlOrder.PerformLayout();
 			this.pnlFunction.ResumeLayout(false);
+			this.pnlFunction.PerformLayout();
 			this.pnlSearchData.ResumeLayout(false);
 			this.pnlSearchData.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).EndInit();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -852,7 +710,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSearchData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetFunction)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetOrder)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -874,18 +731,6 @@
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Button btnSetRunTime;
-		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.TextBox txtEndDay;
-		private System.Windows.Forms.TextBox txtStaDay;
-		private System.Windows.Forms.TextBox txtEndMonth;
-		private System.Windows.Forms.TextBox txtEndYear;
-		private System.Windows.Forms.TextBox txtStaMonth;
-		private System.Windows.Forms.TextBox txtStaYear;
 		private System.Windows.Forms.PictureBox pctbxSetOrder;
 		private System.Windows.Forms.PictureBox pctbxSetFunction;
 		private System.Windows.Forms.PictureBox pctbxSearchData;
@@ -912,19 +757,18 @@
 		private System.Windows.Forms.Panel pnlOrder;
 		private System.Windows.Forms.Label label26;
 		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.Button btnSaveFile;
 		private System.Windows.Forms.Button btnOpenFile;
 		private System.Windows.Forms.Panel pnlFunction;
 		private System.Windows.Forms.Panel pnlSearchData;
 		private System.Windows.Forms.Label label30;
-		private System.Windows.Forms.Label label27;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.Label label28;
-		private System.Windows.Forms.TextBox textBox4;
-		private System.Windows.Forms.Label label29;
-		private System.Windows.Forms.TextBox textBox3;
-		private System.Windows.Forms.Button btnSearch;
+		private System.Windows.Forms.Button btnDataSearch;
 		private System.Windows.Forms.PictureBox pctbxStatu;
+		private System.Windows.Forms.DateTimePicker dtpSatrRun;
+		private System.Windows.Forms.DateTimePicker dtpEndRun;
+		private System.Windows.Forms.DateTimePicker dtpDataSerach;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label6;
 
 	}
 }
