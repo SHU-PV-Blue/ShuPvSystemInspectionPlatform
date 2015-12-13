@@ -67,16 +67,16 @@
 			this.btnReset = new System.Windows.Forms.Button();
 			this.pctbxStatu = new System.Windows.Forms.PictureBox();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.pctbxError = new System.Windows.Forms.PictureBox();
+			this.pctbxAnalyze = new System.Windows.Forms.PictureBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
-			this.label17 = new System.Windows.Forms.Label();
-			this.label18 = new System.Windows.Forms.Label();
-			this.label19 = new System.Windows.Forms.Label();
+			this.lblComID = new System.Windows.Forms.Label();
+			this.lblAzimuth = new System.Windows.Forms.Label();
+			this.lblObliquity = new System.Windows.Forms.Label();
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.pctbxSearchData = new System.Windows.Forms.PictureBox();
 			this.pctbxSetFunction = new System.Windows.Forms.PictureBox();
@@ -90,8 +90,8 @@
 			this.pnlSearchData.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).BeginInit();
 			this.panel2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxError)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxAnalyze)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSearchData)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetFunction)).BeginInit();
@@ -509,40 +509,40 @@
 			this.panel2.BackColor = System.Drawing.Color.Transparent;
 			this.panel2.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.实验平台图;
 			this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.panel2.Controls.Add(this.pictureBox2);
-			this.panel2.Controls.Add(this.pictureBox1);
+			this.panel2.Controls.Add(this.pctbxError);
+			this.panel2.Controls.Add(this.pctbxAnalyze);
 			this.panel2.Controls.Add(this.label21);
 			this.panel2.Controls.Add(this.label20);
 			this.panel2.Controls.Add(this.label15);
 			this.panel2.Controls.Add(this.label14);
 			this.panel2.Controls.Add(this.label16);
-			this.panel2.Controls.Add(this.label17);
-			this.panel2.Controls.Add(this.label18);
-			this.panel2.Controls.Add(this.label19);
+			this.panel2.Controls.Add(this.lblComID);
+			this.panel2.Controls.Add(this.lblAzimuth);
+			this.panel2.Controls.Add(this.lblObliquity);
 			this.panel2.Location = new System.Drawing.Point(6, 18);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(402, 112);
 			this.panel2.TabIndex = 3;
 			// 
-			// pictureBox2
+			// pctbxError
 			// 
-			this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-			this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pictureBox2.Location = new System.Drawing.Point(352, 63);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(44, 33);
-			this.pictureBox2.TabIndex = 13;
-			this.pictureBox2.TabStop = false;
+			this.pctbxError.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pctbxError.BackgroundImage")));
+			this.pctbxError.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pctbxError.Location = new System.Drawing.Point(352, 63);
+			this.pctbxError.Name = "pctbxError";
+			this.pctbxError.Size = new System.Drawing.Size(44, 33);
+			this.pctbxError.TabIndex = 13;
+			this.pctbxError.TabStop = false;
 			// 
-			// pictureBox1
+			// pctbxAnalyze
 			// 
-			this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.pictureBox1.Location = new System.Drawing.Point(352, 9);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(44, 33);
-			this.pictureBox1.TabIndex = 12;
-			this.pictureBox1.TabStop = false;
+			this.pctbxAnalyze.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pctbxAnalyze.BackgroundImage")));
+			this.pctbxAnalyze.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pctbxAnalyze.Location = new System.Drawing.Point(352, 9);
+			this.pctbxAnalyze.Name = "pctbxAnalyze";
+			this.pctbxAnalyze.Size = new System.Drawing.Size(44, 33);
+			this.pctbxAnalyze.TabIndex = 12;
+			this.pctbxAnalyze.TabStop = false;
 			// 
 			// label21
 			// 
@@ -594,36 +594,36 @@
 			this.label16.TabIndex = 7;
 			this.label16.Text = "倾   角：";
 			// 
-			// label17
+			// lblComID
 			// 
-			this.label17.AutoSize = true;
-			this.label17.BackColor = System.Drawing.Color.Transparent;
-			this.label17.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label17.Location = new System.Drawing.Point(95, 3);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(23, 25);
-			this.label17.TabIndex = 4;
-			this.label17.Text = "0";
+			this.lblComID.AutoSize = true;
+			this.lblComID.BackColor = System.Drawing.Color.Transparent;
+			this.lblComID.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.lblComID.Location = new System.Drawing.Point(95, 3);
+			this.lblComID.Name = "lblComID";
+			this.lblComID.Size = new System.Drawing.Size(23, 25);
+			this.lblComID.TabIndex = 4;
+			this.lblComID.Text = "0";
 			// 
-			// label18
+			// lblAzimuth
 			// 
-			this.label18.AutoSize = true;
-			this.label18.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label18.Location = new System.Drawing.Point(95, 38);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(23, 25);
-			this.label18.TabIndex = 5;
-			this.label18.Text = "0";
+			this.lblAzimuth.AutoSize = true;
+			this.lblAzimuth.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.lblAzimuth.Location = new System.Drawing.Point(95, 38);
+			this.lblAzimuth.Name = "lblAzimuth";
+			this.lblAzimuth.Size = new System.Drawing.Size(23, 25);
+			this.lblAzimuth.TabIndex = 5;
+			this.lblAzimuth.Text = "0";
 			// 
-			// label19
+			// lblObliquity
 			// 
-			this.label19.AutoSize = true;
-			this.label19.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label19.Location = new System.Drawing.Point(95, 71);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(23, 25);
-			this.label19.TabIndex = 6;
-			this.label19.Text = "0";
+			this.lblObliquity.AutoSize = true;
+			this.lblObliquity.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.lblObliquity.Location = new System.Drawing.Point(95, 71);
+			this.lblObliquity.Name = "lblObliquity";
+			this.lblObliquity.Size = new System.Drawing.Size(23, 25);
+			this.lblObliquity.TabIndex = 6;
+			this.lblObliquity.Text = "0";
 			// 
 			// pictureBox4
 			// 
@@ -714,8 +714,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).EndInit();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxError)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pctbxAnalyze)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSearchData)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxSetFunction)).EndInit();
@@ -750,16 +750,16 @@
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.Label label17;
-		private System.Windows.Forms.Label label18;
-		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.Label lblComID;
+		private System.Windows.Forms.Label lblAzimuth;
+		private System.Windows.Forms.Label lblObliquity;
 		private System.Windows.Forms.Label label16;
-		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox pctbxAnalyze;
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.Label label14;
-		private System.Windows.Forms.PictureBox pictureBox2;
+		private System.Windows.Forms.PictureBox pctbxError;
 		private System.Windows.Forms.Label label22;
 		private System.Windows.Forms.Label label23;
 		private System.Windows.Forms.Label label24;
