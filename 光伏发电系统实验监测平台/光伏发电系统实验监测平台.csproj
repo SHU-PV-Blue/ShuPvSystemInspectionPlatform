@@ -52,7 +52,12 @@
     <Compile Include="Analyzer\VIAnalyzer.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandReader.cs" />
+    <Compile Include="Components\Atmospherium.cs" />
     <Compile Include="Components\Component.cs" />
+    <Compile Include="Components\IV.cs" />
+    <Compile Include="Components\Relay.cs" />
+    <Compile Include="Components\Relay32.cs" />
+    <Compile Include="Components\SCM.cs" />
     <Compile Include="Components\Status.cs" />
     <Compile Include="Database\DatabaseConnection.cs" />
     <Compile Include="Database\DatabaseCore.cs" />
