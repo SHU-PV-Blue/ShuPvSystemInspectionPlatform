@@ -286,6 +286,7 @@ namespace 光伏发电系统实验监测平台.Manager
 				status.OleDbCon.Close();
 			if (_serialPort != null && _serialPort.IsOpen)
 				_serialPort.Close();
+			Ends();
 		}
 
 		void WritePort(byte [] bytes)
