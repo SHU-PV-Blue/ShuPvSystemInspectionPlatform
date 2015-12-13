@@ -79,6 +79,8 @@
 			this.pctbxSearchData = new System.Windows.Forms.PictureBox();
 			this.pctbxSetFunction = new System.Windows.Forms.PictureBox();
 			this.pctbxSetOrder = new System.Windows.Forms.PictureBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
 			this.gpbSetting.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -111,7 +113,7 @@
 			this.gpbSetting.Controls.Add(this.label1);
 			this.gpbSetting.Location = new System.Drawing.Point(12, 12);
 			this.gpbSetting.Name = "gpbSetting";
-			this.gpbSetting.Size = new System.Drawing.Size(258, 285);
+			this.gpbSetting.Size = new System.Drawing.Size(258, 275);
 			this.gpbSetting.TabIndex = 0;
 			this.gpbSetting.TabStop = false;
 			this.gpbSetting.Text = "参数设置";
@@ -126,7 +128,7 @@
 			// 
 			// btnSetting
 			// 
-			this.btnSetting.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.btnSetting.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.btnSetting.Location = new System.Drawing.Point(60, 204);
 			this.btnSetting.Name = "btnSetting";
 			this.btnSetting.Size = new System.Drawing.Size(139, 52);
@@ -279,7 +281,7 @@
 			// btnSetRunTime
 			// 
 			this.btnSetRunTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSetRunTime.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.btnSetRunTime.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.btnSetRunTime.Location = new System.Drawing.Point(53, 72);
 			this.btnSetRunTime.Name = "btnSetRunTime";
 			this.btnSetRunTime.Size = new System.Drawing.Size(119, 31);
@@ -385,9 +387,11 @@
 			// 
 			this.pnlFunction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.pnlFunction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.pnlFunction.Controls.Add(this.label7);
+			this.pnlFunction.Controls.Add(this.label6);
 			this.pnlFunction.Controls.Add(this.button1);
 			this.pnlFunction.Controls.Add(this.pctbxStatu);
-			this.pnlFunction.Location = new System.Drawing.Point(58, 460);
+			this.pnlFunction.Location = new System.Drawing.Point(300, 134);
 			this.pnlFunction.Name = "pnlFunction";
 			this.pnlFunction.Size = new System.Drawing.Size(408, 153);
 			this.pnlFunction.TabIndex = 19;
@@ -451,12 +455,13 @@
 			// 
 			// button1
 			// 
+			this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
 			this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.button1.FlatAppearance.BorderSize = 0;
 			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button1.Location = new System.Drawing.Point(266, 16);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(123, 122);
+			this.button1.Size = new System.Drawing.Size(104, 103);
 			this.button1.TabIndex = 2;
 			this.button1.UseVisualStyleBackColor = true;
 			// 
@@ -465,9 +470,9 @@
 			this.pctbxStatu.BackgroundImage = global::光伏发电系统实验监测平台.Properties.Resources.off;
 			this.pctbxStatu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
 			this.pctbxStatu.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.pctbxStatu.Location = new System.Drawing.Point(21, 16);
+			this.pctbxStatu.Location = new System.Drawing.Point(31, 8);
 			this.pctbxStatu.Name = "pctbxStatu";
-			this.pctbxStatu.Size = new System.Drawing.Size(210, 122);
+			this.pctbxStatu.Size = new System.Drawing.Size(191, 113);
 			this.pctbxStatu.TabIndex = 1;
 			this.pctbxStatu.TabStop = false;
 			this.pctbxStatu.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -640,11 +645,31 @@
 			this.pctbxSetOrder.TabStop = false;
 			this.pctbxSetOrder.Click += new System.EventHandler(this.pctbxSetOrder_Click);
 			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label6.Location = new System.Drawing.Point(103, 122);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(50, 25);
+			this.label6.TabIndex = 21;
+			this.label6.Text = "开关";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label7.Location = new System.Drawing.Point(291, 122);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(50, 25);
+			this.label7.TabIndex = 22;
+			this.label7.Text = "复位";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(720, 625);
+			this.ClientSize = new System.Drawing.Size(720, 454);
 			this.Controls.Add(this.pnlFunction);
 			this.Controls.Add(this.label25);
 			this.Controls.Add(this.label24);
@@ -673,6 +698,7 @@
 			this.pnlOrder.ResumeLayout(false);
 			this.pnlOrder.PerformLayout();
 			this.pnlFunction.ResumeLayout(false);
+			this.pnlFunction.PerformLayout();
 			this.pnlSearchData.ResumeLayout(false);
 			this.pnlSearchData.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pctbxStatu)).EndInit();
@@ -741,6 +767,8 @@
 		private System.Windows.Forms.DateTimePicker dtpEndRun;
 		private System.Windows.Forms.DateTimePicker dtpDataSerach;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label6;
 
 	}
 }

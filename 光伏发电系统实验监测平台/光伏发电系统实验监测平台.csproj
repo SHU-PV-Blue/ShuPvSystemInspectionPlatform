@@ -186,7 +186,7 @@
     <None Include="Resources\实验平台图.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Reset.png" />
+    <None Include="Resources\Reset1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
