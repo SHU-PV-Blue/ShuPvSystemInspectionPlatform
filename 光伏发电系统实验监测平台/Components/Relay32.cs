@@ -58,6 +58,7 @@ namespace 光伏发电系统实验监测平台.Components
                     str = obliquityDec[random.Next(2)];
                     break;
                 default:
+                    throw new Exception("指令未找到");
                     break;
             }
             return Transfer.SToBa(str);
