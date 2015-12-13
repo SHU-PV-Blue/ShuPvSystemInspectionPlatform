@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.Excel;
 using 光伏发电系统实验监测平台.Tool;
+
 namespace 光伏发电系统实验监测平台.Database
 {
 	class DatabaseExporter
@@ -87,11 +88,20 @@ namespace 光伏发电系统实验监测平台.Database
 				Worksheet wshs = wb.Sheets[3];
 				wshs.Cells[sheet2Row, cols++] = dr["Hour"] + ":" + dr["Minute"] + ":" + dr["Second"];
 				wshs.Cells[sheet2Row, cols++] = dr["ComponentId"];
-				wshs.Cells[sheet1Row, col++] = dr["Azimuth"];
-				wshs.Cells[sheet1Row, col++] = dr["Obliquity"];
-				IVTransfer ivTransfer = new IVTransfer();
-				//foreach(string ivTransfer.IVStransfer(（string） dr["CurrentSeq"]);
-
+				wshs.Cells[sheet2Row, cols++] = dr["Azimuth"];
+				wshs.Cells[sheet2Row, cols++] = dr["Obliquity"];
+				
+				int secondCols = cols;
+				foreach(double currentSeq in IVTransfer.IVStransfer((string)dr["CurrentSeq"]))
+				{
+					wshs.Cells[sheet2Row, cols++] = currentSeq;
+				}
+				++sheet2Row;
+				foreach (double voltageSeq in IVTransfer.IVStransfer((string)dr["VoltageSeq"]))
+				{
+					wshs.Cells[sheet2Row, secondCols++] = voltageSeq;
+				}
+				++sheet2Row;
 			}
 			return true;
 		}
