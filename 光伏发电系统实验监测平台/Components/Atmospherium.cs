@@ -118,7 +118,7 @@ namespace 光伏发电系统实验监测平台.Components
 			}
 			try
 			{
-				dataCore.InsertData("WeatherTable", QXdataDic);	//插入数据
+				dataCore.InsertData("dbo_WeatherTable", QXdataDic);	//插入数据
 			}
 			catch (Exception ex)
 			{

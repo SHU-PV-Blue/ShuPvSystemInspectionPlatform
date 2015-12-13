@@ -18,14 +18,10 @@ using 光伏发电系统实验监测平台.Database;
 namespace 光伏发电系统实验监测平台.Manager
 {
 	/// <summary>
-	/// 指令执行完毕事件
+	/// 收发器事件
 	/// </summary>
-	public delegate void EndedEventHandler();
+	public delegate void TransceiverEventHandler();
 
-	/// <summary>
-	/// 状体改变事件
-	/// </summary>
-	public delegate void ChangedEventHandler();
 
 	class Transceiver
 	{
@@ -39,9 +35,25 @@ namespace 光伏发电系统实验监测平台.Manager
 		const double initAzimuth = -10;
 		const double initObliquity = 22;
 
-		public event EndedEventHandler Ended;
+		/// <summary>
+		/// 命令执行完事件
+		/// </summary>
+		public event TransceiverEventHandler Ends;
 
-		public event ChangedEventHandler Changed;
+		/// <summary>
+		/// 状态改变事件
+		/// </summary>
+		public event TransceiverEventHandler Changed;
+
+		/// <summary>
+		/// 解析事件
+		/// </summary>
+		public event TransceiverEventHandler Analyzed;
+
+		/// <summary>
+		/// 异常事件
+		/// </summary>
+		public event TransceiverEventHandler Excepted;
 
 		/// <summary>
 		/// 构造函数
@@ -129,8 +141,9 @@ namespace 光伏发电系统实验监测平台.Manager
 			foreach(var b in readbyte)
 				status.MessageQueue.Add(new KeyValuePair<byte, bool>(b, true));
 			Recorder.ReciveLog(status.Time, Transfer.BaToS(readbyte));
-			if(MainAnalyzer.Analyze(status))
+			if (MainAnalyzer.Analyze(status, Excepted))
 				Changed();
+			Analyzed();
 		}
 
 		void Work()
