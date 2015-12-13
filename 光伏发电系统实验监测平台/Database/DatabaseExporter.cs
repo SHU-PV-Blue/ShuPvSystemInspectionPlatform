@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Office.Core;
 using Microsoft.Office.Interop.Excel;
 using 光伏发电系统实验监测平台.Tool;
 
