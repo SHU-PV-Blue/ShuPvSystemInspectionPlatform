@@ -22,8 +22,9 @@ namespace 光伏发电系统实验监测平台
 		}
 
 		bool SeriaOpen = false;									//串口状态，默认为关
+		Timer nowTime;											//用于显示当前时间的计时器
 
-		private void pictureBox1_Click(object sender, EventArgs e)
+		private void pctbxStatu_Click(object sender, EventArgs e)
 		{
 			if (SeriaOpen == false)
 			{
@@ -47,17 +48,17 @@ namespace 光伏发电系统实验监测平台
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			mkdir();
-			string[] ports = SerialPort.GetPortNames();
-			Array.Sort(ports);
-			cmbPorts.Items.AddRange(ports);
+			Mkdir();
+			ScanPort();
 			Initcmb();
+			SetNowTimer();
+
 		}
 
 		/// <summary>
 		/// 检查并创建路径
 		/// </summary>
-		private void mkdir()
+		private void Mkdir()
 		{
 			DirectoryInfo dirInfo;
 			dirInfo = new DirectoryInfo("ReceiveData");
@@ -72,6 +73,23 @@ namespace 光伏发电系统实验监测平台
 			dirInfo = new DirectoryInfo("Excel");
 			if (!dirInfo.Exists)
 				dirInfo.Create();
+		}
+
+		/// <summary>
+		/// 扫描串口
+		/// </summary>
+		private void ScanPort()
+		{
+			try
+			{
+				string[] ports = SerialPort.GetPortNames();
+				Array.Sort(ports);
+				cmbPorts.Items.AddRange(ports);
+			}
+			catch
+			{
+				return;
+			}
 		}
 
 		/// <summary>
@@ -92,6 +110,20 @@ namespace 光伏发电系统实验监测平台
 				return;
 			}
 
+		}
+
+		public void SetNowTimer()
+		{
+			nowTime = new Timer();
+			nowTime.Interval = 1000;
+			nowTime.Start();
+			nowTime.Tick += nowTime_Tick;
+		}
+
+		void nowTime_Tick(object sender, EventArgs e)
+		{
+			lblTimeNow.Text = DateTime.Now.ToString();
+			//throw new NotImplementedException();
 		}
 
 		private void pctbxSetOrder_Click(object sender, EventArgs e)
@@ -151,6 +183,11 @@ namespace 光伏发电系统实验监测平台
 			if (openSettingFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				System.Diagnostics.Process.Start(openSettingFile.FileName);
 			txtSettingFilePath.Text = openSettingFile.FileName;
+		}
+
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			nowTime.Stop();
 		}
 
 	}
