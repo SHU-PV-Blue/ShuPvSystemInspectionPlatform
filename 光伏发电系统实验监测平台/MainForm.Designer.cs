@@ -47,7 +47,6 @@
 			this.dtpEndRun = new System.Windows.Forms.DateTimePicker();
 			this.label13 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
-			this.btnSetRunTime = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.pctbxError = new System.Windows.Forms.PictureBox();
@@ -84,6 +83,7 @@
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.lblTimeNow = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
+			this.lblTip = new System.Windows.Forms.Label();
 			this.gpbSetting.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -140,6 +140,7 @@
 			this.btnSetting.TabIndex = 12;
 			this.btnSetting.Text = "设  置";
 			this.btnSetting.UseVisualStyleBackColor = true;
+			this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
 			// 
 			// cmbParity
 			// 
@@ -261,7 +262,6 @@
 			this.panel1.Controls.Add(this.dtpEndRun);
 			this.panel1.Controls.Add(this.label13);
 			this.panel1.Controls.Add(this.label12);
-			this.panel1.Controls.Add(this.btnSetRunTime);
 			this.panel1.Location = new System.Drawing.Point(11, 18);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(232, 112);
@@ -270,7 +270,7 @@
 			// dtpSatrRun
 			// 
 			this.dtpSatrRun.Font = new System.Drawing.Font("微软雅黑 Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.dtpSatrRun.Location = new System.Drawing.Point(48, 4);
+			this.dtpSatrRun.Location = new System.Drawing.Point(48, 24);
 			this.dtpSatrRun.Name = "dtpSatrRun";
 			this.dtpSatrRun.Size = new System.Drawing.Size(167, 29);
 			this.dtpSatrRun.TabIndex = 17;
@@ -278,7 +278,7 @@
 			// dtpEndRun
 			// 
 			this.dtpEndRun.Font = new System.Drawing.Font("微软雅黑 Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.dtpEndRun.Location = new System.Drawing.Point(48, 37);
+			this.dtpEndRun.Location = new System.Drawing.Point(48, 71);
 			this.dtpEndRun.Name = "dtpEndRun";
 			this.dtpEndRun.Size = new System.Drawing.Size(167, 29);
 			this.dtpEndRun.TabIndex = 16;
@@ -288,7 +288,7 @@
 			this.label13.AutoSize = true;
 			this.label13.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.label13.ForeColor = System.Drawing.Color.White;
-			this.label13.Location = new System.Drawing.Point(8, 34);
+			this.label13.Location = new System.Drawing.Point(8, 72);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(38, 28);
 			this.label13.TabIndex = 14;
@@ -299,23 +299,11 @@
 			this.label12.AutoSize = true;
 			this.label12.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.label12.ForeColor = System.Drawing.Color.White;
-			this.label12.Location = new System.Drawing.Point(8, 4);
+			this.label12.Location = new System.Drawing.Point(8, 24);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(38, 28);
 			this.label12.TabIndex = 14;
 			this.label12.Text = "起:";
-			// 
-			// btnSetRunTime
-			// 
-			this.btnSetRunTime.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.btnSetRunTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSetRunTime.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.btnSetRunTime.Location = new System.Drawing.Point(53, 72);
-			this.btnSetRunTime.Name = "btnSetRunTime";
-			this.btnSetRunTime.Size = new System.Drawing.Size(119, 31);
-			this.btnSetRunTime.TabIndex = 13;
-			this.btnSetRunTime.Text = "设  置";
-			this.btnSetRunTime.UseVisualStyleBackColor = true;
 			// 
 			// groupBox2
 			// 
@@ -686,8 +674,10 @@
 			// 
 			// groupBox3
 			// 
+			this.groupBox3.Controls.Add(this.lblTip);
 			this.groupBox3.Controls.Add(this.lblTimeNow);
 			this.groupBox3.Controls.Add(this.label8);
+			this.groupBox3.ForeColor = System.Drawing.Color.Black;
 			this.groupBox3.Location = new System.Drawing.Point(13, 231);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(257, 66);
@@ -706,11 +696,21 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(13, 20);
+			this.label8.Location = new System.Drawing.Point(13, 17);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(59, 12);
 			this.label8.TabIndex = 0;
 			this.label8.Text = "当前时间:";
+			// 
+			// lblTip
+			// 
+			this.lblTip.AutoSize = true;
+			this.lblTip.ForeColor = System.Drawing.Color.Red;
+			this.lblTip.Location = new System.Drawing.Point(15, 35);
+			this.lblTip.Name = "lblTip";
+			this.lblTip.Size = new System.Drawing.Size(221, 12);
+			this.lblTip.TabIndex = 2;
+			this.lblTip.Text = "串口未配置，程序不会自动按下自动按钮";
 			// 
 			// MainForm
 			// 
@@ -781,7 +781,6 @@
 		private System.Windows.Forms.Button btnSetting;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.Button btnSetRunTime;
 		private System.Windows.Forms.PictureBox pctbxSetOrder;
 		private System.Windows.Forms.PictureBox pctbxSetFunction;
 		private System.Windows.Forms.PictureBox pctbxSearchData;
@@ -823,6 +822,7 @@
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Label lblTimeNow;
 		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label lblTip;
 
 	}
 }
