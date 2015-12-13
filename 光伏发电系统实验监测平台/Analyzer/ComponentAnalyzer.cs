@@ -9,14 +9,16 @@ namespace 光伏发电系统实验监测平台.Analyzer
 {
 	class ComponentAnalyzer : Component
 	{
-        public override void Analyze(Status status)
+
+        public override bool Analyze(Status status)
         {
-            
+
+            return true;
         }
 
-        public override void GetCommand()
+        public override byte[] GetCommand(String commandName)
         {
-            
+            return new byte[4];
         }
     }
 }
