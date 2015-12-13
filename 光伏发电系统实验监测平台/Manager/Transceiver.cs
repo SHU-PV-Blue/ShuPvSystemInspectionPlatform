@@ -99,12 +99,13 @@ namespace 光伏发电系统实验监测平台.Manager
 					{
 						case Command.Operates.关闭:
 							{
-								//TODO
+								_serialPort.Close();
 								break;
 							}
 						case Command.Operates.打开:
 							{
-								//TODO
+								_serialPort.BaudRate = command.Argument;
+								_serialPort.Open();
 								break;
 							}
 						case Command.Operates.旋转倾角:
@@ -119,28 +120,36 @@ namespace 光伏发电系统实验监测平台.Manager
 							}
 						case Command.Operates.查询曲线仪:
 							{
-								//TODO
+								byte[] bytes = (new IV()).GetCommand("查询");
+								_serialPort.Write(bytes, 0, bytes.Length);
 								break;
 							}
 						case Command.Operates.查询气象仪:
 							{
-								//TODO
+								byte[] bytes = (new Atmospherium()).GetCommand("查询");
+								_serialPort.Write(bytes, 0, bytes.Length);
 								break;
 							}
 						case Command.Operates.等待:
 							{
-								//TODO
+								Thread.Sleep(command.Argument);
 								break;
 							}
 						case Command.Operates.选择组件:
 							{
-								//TODO
+								byte[] bytes = (new Relay8()).GetCommand("组件" + command.Argument);
+								_serialPort.Write(bytes, 0, bytes.Length);
+								break;
+							}
+						case Command.Operates.断开组件:
+							{
+								byte[] bytes = (new Relay8()).GetCommand("断开");
+								_serialPort.Write(bytes, 0, bytes.Length);
 								break;
 							}
 						default:
 							{
-								//TODO
-								break;
+								throw new Exception("不支持的指令");
 							}
 					}
 				--_cycle;
