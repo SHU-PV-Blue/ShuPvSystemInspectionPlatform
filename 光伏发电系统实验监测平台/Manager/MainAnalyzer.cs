@@ -57,8 +57,7 @@ namespace 光伏发电系统实验监测平台.Manager
 					status.MessageQueue[i] = new KeyValuePair<byte, bool>(status.MessageQueue[i].Key, false);
 				}
 
-				//TODO:写入出错记录
-				//_errorLog.Add("Error#" + time + "#" + lineIndex + "#" + Transfer.BaToS(errorData.ToArray()));
+				Recorder.ErrorLog(status.Time, Transfer.BaToS(errorData.ToArray()));
 			}
 
 			return isSCM;
