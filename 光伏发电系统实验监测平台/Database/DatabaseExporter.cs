@@ -101,7 +101,7 @@ namespace 光伏发电系统实验监测平台.Database
 					}
 					++sheet3Row;
 				}
-				wb.SaveAs(path + _dt.Year + "年" + _dt.Month + "月" + _dt.Day + "日.xlsx");
+				wb.SaveAs(path + _dt.Year + "-" + _dt.Month + "-" + _dt.Day + ".xlsx");
 				wb.Close();
 				wbks.Close();
 				return true;
