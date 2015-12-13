@@ -11,7 +11,7 @@ namespace 光伏发电系统实验监测平台.Commands
 		/// <summary>
 		/// 操作类型集合
 		/// </summary>
-		public enum Operates { 打开, 关闭, 等待, 旋转方位角, 旋转倾角, 查询气象仪, 查询曲线仪, 选择组件};
+		public enum Operates { 打开, 关闭, 等待, 旋转方位角, 旋转倾角, 查询气象仪, 查询曲线仪, 选择组件, 断开组件};
 
 		/// <summary>
 		/// 根据操作名返回操作
@@ -38,6 +38,8 @@ namespace 光伏发电系统实验监测平台.Commands
 					return Operates.查询曲线仪;
 				case "选择组件":
 					return Operates.选择组件;
+				case "断开组件":
+					return Operates.断开组件;
 				default:
 					throw new Exception("操作名有误:" + operateName);
 			}
