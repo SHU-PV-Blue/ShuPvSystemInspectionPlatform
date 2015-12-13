@@ -8,8 +8,8 @@ namespace 光伏发电系统实验监测平台.Components
 {
     abstract class Component
     {
-        public abstract void Analyze(Status status);
+        public abstract bool Analyze(Status status);
 
-        public abstract void GetCommand();
+        public abstract byte[] GetCommand(String commandName);
     }
 }
