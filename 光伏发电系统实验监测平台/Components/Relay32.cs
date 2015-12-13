@@ -9,7 +9,19 @@ namespace 光伏发电系统实验监测平台.Components
 {
     class Relay32 : Component
     {
-        private const string Relay32ReturnStr = "010F000000205413";    //32路继电器返回指令
+        private string[] obliquityDec = { "010F0000002004040400008479",           //组件6倾角减少
+                                         "010F000000200408080000472A" };
+        private string[] obliquityInc = { "010F00000020040101000094B4",           //组件6倾角增加
+                                          "010F00000020040202000064F0" };
+
+        private string[] azimuthInc = { "010F0000002004000002024429",             //组件6方位角增加
+                                          "010F00000020040000010104D8" };
+        private string[] azimuthDec = { "010F000000200400000404C78B",             //组件6方位角减少
+                                          "010F000000200400000808C28E"};
+
+        private string disCon = "010F000000200400000000C488";                     //32路继电器全断指令
+
+        private const string Relay32ReturnStr = "010F000000205413";               //32路继电器返回指令
         public override bool Analyze(Status status)
         {
             byte[] bytes = status.MessageQueue.Select(b => b.Key).ToArray();
@@ -25,7 +37,28 @@ namespace 光伏发电系统实验监测平台.Components
 
         public override byte[] GetCommand(string commandName)
         {
-            throw new NotImplementedException();
+            String str = "";
+            switch (commandName)
+            {
+                case "断开":
+                    str = disCon;
+                    break;
+                case "方位角增加":
+                    str = azimuthInc[new Random().Next(2)];
+                    break;
+                case "方位角减少":
+                    str = azimuthDec[new Random().Next(2)];
+                    break;
+                case "倾角增加":
+                    str = obliquityInc[new Random().Next(2)];
+                    break;
+                case "倾角减少":
+                    str = obliquityInc[new Random().Next(2)];
+                    break;
+                default:
+                    break;
+            }
+            return Transfer.SToBa(str);
         }
     }
 }
