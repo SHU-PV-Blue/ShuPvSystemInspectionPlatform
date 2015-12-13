@@ -38,8 +38,8 @@ namespace 光伏发电系统实验监测平台.Manager
 			status.Time = DateTime.Now;
 			status.MessageQueue = new List<KeyValuePair<byte, bool>>();
 			status.ComponentId = initComponentId;
-			//TODO://status.Azimuth = initAzimuth;
-			//TODO://status.Obliquity = initObliquity;
+			status.Azimuth = initAzimuth;
+			status.Obliquity = initObliquity;
 			if (_sendTread != null && _sendTread.IsAlive)
 				_sendTread.Abort();
 			_sendTread = new Thread(new ThreadStart(Work));
