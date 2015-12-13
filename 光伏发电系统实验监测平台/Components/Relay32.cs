@@ -42,7 +42,7 @@ namespace 光伏发电系统实验监测平台.Components
             String str = "";
             switch (commandName)
             {
-                case "断开":
+                case "停转":
                     str = disCon;
                     break;
                 case "方位角增加":
