@@ -22,11 +22,12 @@ namespace 光伏发电系统实验监测平台
 			InitializeComponent();
 		}
 
-		bool SeriaOpen = false;									//串口状态，默认为关
-		Timer nowTime;											//用于显示当前时间的计时器
-		SerialPort _serialPort;									//串口对象
-		bool _ifSet = false;									//是否已经设置好了串口
-
+		private bool SeriaOpen = false;									//串口状态，默认为关
+		private Timer nowTime;											//用于显示当前时间的计时器
+	    private Timer SetLightTimer;
+        private SerialPort _serialPort;									//串口对象
+		private bool _ifSet = false;									//是否已经设置好了串口
+        
 		/// <summary>
 		/// 收发器
 		/// </summary>
@@ -43,12 +44,12 @@ namespace 光伏发电系统实验监测平台
 				pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2;
 				btnSetting.Enabled = false;
 #warning 这里参数要改
-				_transceiver.Start(CommandReader.LoadCommands(txtSettingFilePath.Text), 1);
+				_transceiver.Start(CommandReader.LoadCommands(txtSettingFilePath.Text),int.Parse(txtCycle.Text));
 			}
 			else
 			{
+                SeriaOpen = false;
 				pctbxStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.off;
-				SeriaOpen = false;
 				btnReset.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Reset;
 				btnReset.Enabled = true;
 				pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2__2_;
@@ -64,29 +65,36 @@ namespace 光伏发电系统实验监测平台
 			ScanPort();
 			Initcmb();
 			SetNowTimer();
+		    SetLight();
 			_serialPort = new SerialPort();
 			_transceiver = new Transceiver(_serialPort);
 			_transceiver.Analyzed += new TransceiverEventHandler(delegate()
 			{
 				//解析时候的工作
-#warning 未完成
-			});
+                pctbxAnalyze.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Green;
+#warning 解析时候的工作，未测试
+            });
 			_transceiver.Changed += new TransceiverEventHandler(delegate()
 			{
-				//解析时候的工作
-				var x = _transceiver.status.Azimuth.ToString();
-#warning 未完成
-			});
+				//状态发生变化时候的工作
+				var x = _transceiver.status;
+			    lblAzimuth.Text = x.Azimuth.ToString();
+			    lblComID.Text = x.ComponentId.ToString();
+			    lblObliquity.Text = x.Obliquity.ToString();
+#warning 状态发生变化时候的工作，未测试
+            });
 			_transceiver.Excepted += new TransceiverEventHandler(delegate()
 			{
-				//发生异常时候的工作
-#warning 未完成
-			});
+			    pctbxError.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Red;
+                //发生异常时候的工作
+#warning 发生异常时候的工作，未测试
+            });
 			_transceiver.Ends += new TransceiverEventHandler(delegate()
 			{
 				//指令完了时候的工作
-#warning 未完成
-			});
+                pctbxStatu_Click(sender,e);
+#warning 指令完了时候的工作， 未测试
+            });
 		}
 
 		/// <summary>
@@ -159,6 +167,26 @@ namespace 光伏发电系统实验监测平台
 			lblTimeNow.Text = DateTime.Now.ToString();
 			//throw new NotImplementedException();
 		}
+
+	    private void SetLight()
+	    {
+	        SetLightTimer = new Timer();
+	        SetLightTimer.Interval = 500;
+            SetLightTimer.Start();
+            SetLightTimer.Tick += SetLightTimer_Tick;
+	    }
+
+        void SetLightTimer_Tick(object sender, EventArgs e)
+        {
+            if (pctbxAnalyze.BackgroundImage != 光伏发电系统实验监测平台.Properties.Resources.Balck)
+            {
+                pctbxAnalyze.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Balck;
+            }
+            if (pctbxError.BackgroundImage != 光伏发电系统实验监测平台.Properties.Resources.Balck)
+            {
+                pctbxError.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Balck;
+            }
+        }
 
 		private void pctbxSetOrder_Click(object sender, EventArgs e)
 		{
