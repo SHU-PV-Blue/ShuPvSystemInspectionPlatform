@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using 光伏发电系统实验监测平台.Commands;
 using 光伏发电系统实验监测平台.Manager;
+using 光伏发电系统实验监测平台.Components;
 using System.IO.Ports;
 using Microsoft.Office;
 using System.IO;
@@ -48,30 +49,29 @@ namespace 光伏发电系统实验监测平台
 			SetLight();
 			_serialPort = new SerialPort();
 			_transceiver = new Transceiver(_serialPort);
-			_transceiver.Analyzed += new TransceiverEventHandler(delegate()
+			_transceiver.Analyzed += new TransceiverEventHandler(delegate(Status status)
 			{
 				//解析时候的工作
-				pctbxAnalyze.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Green;
-#warning 解析时候的工作，未测试
+				this.Invoke(new EventHandler(delegate {pctbxAnalyze.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Green;}));
 			});
-			_transceiver.Changed += new TransceiverEventHandler(delegate()
+			_transceiver.Changed += new TransceiverEventHandler(delegate(Status status)
 			{
 				//状态发生变化时候的工作
-				var x = _transceiver.status;
-				lblAzimuth.Text = x.Azimuth.ToString();
-				lblComID.Text = x.ComponentId.ToString();
-				lblObliquity.Text = x.Obliquity.ToString();
+				this.Invoke(new EventHandler(delegate {
+					lblComID.Text = status.ComponentId.ToString();
+					lblAzimuth.Text = status.Azimuth.ToString();
+					lblObliquity.Text = status.Obliquity.ToString();
+				}));
 			});
-			_transceiver.Excepted += new TransceiverEventHandler(delegate()
+			_transceiver.Excepted += new TransceiverEventHandler(delegate(Status status)
 			{
-				pctbxError.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Red;
 				//发生异常时候的工作
-#warning 发生异常时候的工作，未测试
+				this.Invoke(new EventHandler(delegate { pctbxError.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Red; }));
 			});
-			_transceiver.Ends += new TransceiverEventHandler(delegate()
+			_transceiver.Ends += new TransceiverEventHandler(delegate(Status status)
 			{
 				//指令完了时候的工作
-				pctbxStatu_Click(sender, e);
+				this.Invoke(new EventHandler(delegate { pctbxStatu_Click(sender, e); }));
 			});
 		}
 
@@ -144,7 +144,7 @@ namespace 光伏发电系统实验监测平台
 		}
 
 		/// <summary>
-		/// ??按钮单击事件
+		/// 选择指令设置按钮单击事件
 		/// </summary>
 		private void pctbxSetOrder_Click(object sender, EventArgs e)
 		{
@@ -157,7 +157,7 @@ namespace 光伏发电系统实验监测平台
 		}
 
 		/// <summary>
-		/// ??按钮单击事件
+		/// 选择功能设置单击事件
 		/// </summary>
 		private void pctbxSetFunction_Click(object sender, EventArgs e)
 		{
@@ -170,7 +170,7 @@ namespace 光伏发电系统实验监测平台
 		}
 
 		/// <summary>
-		/// ??按钮单击事件
+		/// 选择数据查询单击事件
 		/// </summary>
 		private void pctbxSearchData_Click(object sender, EventArgs e)
 		{

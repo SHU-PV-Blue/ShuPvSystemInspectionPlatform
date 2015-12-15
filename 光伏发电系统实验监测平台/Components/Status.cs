@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace 光伏发电系统实验监测平台.Components
 {
-    class Status
+    public class Status
     {
 
         /// <summary>

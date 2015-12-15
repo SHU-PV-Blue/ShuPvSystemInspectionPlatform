@@ -63,7 +63,7 @@ namespace 光伏发电系统实验监测平台.Manager
 				}
 
 				Recorder.ErrorLog(status.Time, Transfer.BaToS(errorData.ToArray()));
-				Excepted();
+				Excepted(status);
 			}
 
 			return isSCM;

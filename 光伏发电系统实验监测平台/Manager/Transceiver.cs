@@ -20,7 +20,7 @@ namespace 光伏发电系统实验监测平台.Manager
 	/// <summary>
 	/// 收发器事件
 	/// </summary>
-	public delegate void TransceiverEventHandler();
+	public delegate void TransceiverEventHandler(Status status);
 
 
 	class Transceiver
@@ -29,7 +29,7 @@ namespace 光伏发电系统实验监测平台.Manager
 		Thread _sendTread;
 		Command[] _commands;
 		int _cycle;
-		public Status status;
+		Status status;
 
 		const int initComponentId = 6;
 		const double initAzimuth = -10;
@@ -142,8 +142,8 @@ namespace 光伏发电系统实验监测平台.Manager
 				status.MessageQueue.Add(new KeyValuePair<byte, bool>(b, true));
 			Recorder.ReciveLog(status.Time, Transfer.BaToS(readbyte));
 			if (MainAnalyzer.Analyze(status, Excepted))
-				Changed();
-			Analyzed();
+				Changed(status);
+			Analyzed(status);
 		}
 
 		void Work()
@@ -266,7 +266,7 @@ namespace 光伏发电系统实验监测平台.Manager
 								byte[] bytes = (new Relay8()).GetCommand("组件" + command.Argument);
 								WritePort(bytes);
 								status.ComponentId = command.Argument;
-								Changed();
+								Changed(status);
 								break;
 							}
 						case Command.Operates.断开组件:
@@ -286,7 +286,7 @@ namespace 光伏发电系统实验监测平台.Manager
 				status.OleDbCon.Close();
 			if (_serialPort != null && _serialPort.IsOpen)
 				_serialPort.Close();
-			Ends();
+			Ends(status);
 		}
 
 		void WritePort(byte [] bytes)
