@@ -24,7 +24,7 @@ namespace 光伏发电系统实验监测平台
 		}
 
 		#region 字段
-		private bool SeriaOpen = false;									//串口状态，默认为关
+		private bool ifSwitchOn = false;
 		private Timer nowTime;											//用于显示当前时间的计时器
 		private Timer SetLightTimer;
 		private SerialPort _serialPort;									//串口对象
@@ -71,7 +71,7 @@ namespace 光伏发电系统实验监测平台
 			_transceiver.Ends += new TransceiverEventHandler(delegate(Status status)
 			{
 				//指令完了时候的工作
-				this.Invoke(new EventHandler(delegate { pctbxStatu_Click(sender, e); }));
+				this.Invoke(new EventHandler(delegate { SwitchOff(); }));
 			});
 		}
 
@@ -88,36 +88,7 @@ namespace 光伏发电系统实验监测平台
 		/// </summary>
 		private void pctbxStatu_Click(object sender, EventArgs e)
 		{
-			if (SeriaOpen == false)
-			{
-				if (!_ifSetPort)
-				{
-					MessageBox.Show("请先配置串口!", "串口未配置", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					return;
-				}
-				if (string.IsNullOrEmpty(txtSettingFilePath.Text))
-				{
-					MessageBox.Show("请先配置伪指令代码!", "伪指令代码未配置", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					return;
-				}
-				SeriaOpen = true;
-				pctbxStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.on;
-				btnReset.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Reset_gray;
-				btnReset.Enabled = false;
-				pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2;
-				btnSetting.Enabled = false;
-				_transceiver.Start(CommandReader.LoadCommands(txtSettingFilePath.Text), int.Parse(txtCycle.Text));
-			}
-			else
-			{
-				SeriaOpen = false;
-				pctbxStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.off;
-				btnReset.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Reset;
-				btnReset.Enabled = true;
-				pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2__2_;
-				btnSetting.Enabled = true;
-				_transceiver.Stop();
-			}
+
 		}
 
 		/// <summary>
@@ -347,7 +318,54 @@ namespace 光伏发电系统实验监测平台
             SetLightTimer.Tick += SetLightTimer_Tick;
 		}
 
+		/// <summary>
+		/// 启动
+		/// </summary>
+		private void SwitchOn()
+		{
+			ifSwitchOn = true;
+			btnSwitch.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.on;
+			btnReset.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Reset_gray;
+			btnReset.Enabled = false;
+			pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2;
+			btnSetting.Enabled = false;
+			_transceiver.Start(CommandReader.LoadCommands(txtSettingFilePath.Text), int.Parse(txtCycle.Text));
+		}
+
+		private void SwitchOff()
+		{
+			ifSwitchOn = false;
+			btnSwitch.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.off;
+			btnReset.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Reset;
+			btnReset.Enabled = true;
+			pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2__2_;
+			btnSetting.Enabled = true;
+			_transceiver.Stop();
+		}
+
 		#endregion
+
+		private void btnSwitch_Click(object sender, EventArgs e)
+		{
+			if(ifSwitchOn)
+			{
+				SwitchOff();
+			}
+			else
+			{
+				if (!_ifSetPort)
+				{
+					MessageBox.Show("请先配置串口!", "串口未配置", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
+				if (string.IsNullOrEmpty(txtSettingFilePath.Text))
+				{
+					MessageBox.Show("请先配置伪指令代码!", "伪指令代码未配置", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
+				SwitchOn();
+			}
+		}
 
 	}
 }
