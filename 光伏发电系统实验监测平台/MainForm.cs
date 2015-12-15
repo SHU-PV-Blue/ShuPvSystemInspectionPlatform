@@ -329,7 +329,6 @@ namespace 光伏发电系统实验监测平台
 			btnReset.Enabled = false;
 			pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2;
 			btnSetting.Enabled = false;
-			_transceiver.Start(CommandReader.LoadCommands(txtSettingFilePath.Text), int.Parse(txtCycle.Text));
 		}
 
 		private void SwitchOff()
@@ -340,7 +339,6 @@ namespace 光伏发电系统实验监测平台
 			btnReset.Enabled = true;
 			pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2__2_;
 			btnSetting.Enabled = true;
-			_transceiver.Stop();
 		}
 
 		#endregion
@@ -349,6 +347,7 @@ namespace 光伏发电系统实验监测平台
 		{
 			if(ifSwitchOn)
 			{
+				_transceiver.Stop();
 				SwitchOff();
 			}
 			else
@@ -364,6 +363,7 @@ namespace 光伏发电系统实验监测平台
 					return;
 				}
 				SwitchOn();
+				_transceiver.Start(CommandReader.LoadCommands(txtSettingFilePath.Text), int.Parse(txtCycle.Text));
 			}
 		}
 
