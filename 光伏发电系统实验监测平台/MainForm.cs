@@ -26,17 +26,31 @@ namespace 光伏发电系统实验监测平台
 		private Timer nowTime;											//用于显示当前时间的计时器
 	    private Timer SetLightTimer;
         private SerialPort _serialPort;									//串口对象
-		private bool _ifSet = false;									//是否已经设置好了串口
+		private bool _ifSetPort = false;									//是否已经设置好了串口
         
 		/// <summary>
 		/// 收发器
 		/// </summary>
 		Transceiver _transceiver;
 	
+
+		/// <summary>
+		/// 开关按钮按下事件
+		/// </summary>
 		private void pctbxStatu_Click(object sender, EventArgs e)
 		{
 			if (SeriaOpen == false)
 			{
+				if (!_ifSetPort)
+				{
+					MessageBox.Show("请先配置串口!", "串口未配置", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
+				if (string.IsNullOrEmpty(txtSettingFilePath.Text))
+				{
+					MessageBox.Show("请先配置伪指令代码!", "伪指令代码未配置", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
 				SeriaOpen = true;
 				pctbxStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.on;
 				btnReset.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Reset_gray;
@@ -136,11 +150,11 @@ namespace 光伏发电系统实验监测平台
 		/// </summary>
 		private void Initcmb()
 		{
-				cmbPorts.SelectedIndex = 0;
-				txtBaudRate.Text = "不指定";
-				cmbDataBit.SelectedIndex = 0;
-				cmbParity.SelectedIndex = 0;
-				cmbStopBit.SelectedIndex = 0;
+			cmbPorts.SelectedIndex = 0;
+			txtBaudRate.Text = "不指定";
+			cmbDataBit.SelectedIndex = 0;
+			cmbParity.SelectedIndex = 0;
+			cmbStopBit.SelectedIndex = 0;
 		}
 
 		public void SetNowTimer()
@@ -234,6 +248,11 @@ namespace 光伏发电系统实验监测平台
 			if (openSettingFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				System.Diagnostics.Process.Start(openSettingFile.FileName);
 			txtSettingFilePath.Text = openSettingFile.FileName;
+			if (!string.IsNullOrEmpty(txtSettingFilePath.Text) && _ifSetPort)
+			{
+				lblTip.Text = "每天六点整时，程序将自动按下启动按钮";
+				lblTip.ForeColor = Color.Green;
+			}
 		}
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -243,7 +262,7 @@ namespace 光伏发电系统实验监测平台
 
 		private void btnSetting_Click(object sender, EventArgs e)
 		{
-			_ifSet = true;
+			_ifSetPort = true;
 			_serialPort.PortName = cmbPorts.Text;
 			switch (cmbParity.Text)
 			{
@@ -281,8 +300,11 @@ namespace 光伏发电系统实验监测平台
 					break;
 			}
 			btnSetting.Enabled = false;
-			lblTip.Text = "每天六点整时，程序将自动按下启动按钮\n收发结束后，将自动解析";
-			lblTip.ForeColor = Color.Green;
+			if (!string.IsNullOrEmpty(txtSettingFilePath.Text))
+			{
+				lblTip.Text = "每天六点整时，程序将自动按下启动按钮";
+				lblTip.ForeColor = Color.Green;
+			}
 		}
 
 
