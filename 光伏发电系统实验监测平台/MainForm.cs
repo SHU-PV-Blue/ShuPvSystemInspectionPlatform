@@ -43,7 +43,6 @@ namespace 光伏发电系统实验监测平台
 				btnReset.Enabled = false;
 				pctbxRunStatu.BackgroundImage = 光伏发电系统实验监测平台.Properties.Resources.Sun2;
 				btnSetting.Enabled = false;
-#warning 这里参数要改
 				_transceiver.Start(CommandReader.LoadCommands(txtSettingFilePath.Text),int.Parse(txtCycle.Text));
 			}
 			else
@@ -81,7 +80,6 @@ namespace 光伏发电系统实验监测平台
 			    lblAzimuth.Text = x.Azimuth.ToString();
 			    lblComID.Text = x.ComponentId.ToString();
 			    lblObliquity.Text = x.Obliquity.ToString();
-#warning 状态发生变化时候的工作，未测试
             });
 			_transceiver.Excepted += new TransceiverEventHandler(delegate()
 			{
@@ -93,7 +91,6 @@ namespace 光伏发电系统实验监测平台
 			{
 				//指令完了时候的工作
                 pctbxStatu_Click(sender,e);
-#warning 指令完了时候的工作， 未测试
             });
 		}
 
@@ -139,19 +136,11 @@ namespace 光伏发电系统实验监测平台
 		/// </summary>
 		private void Initcmb()
 		{
-			try
-			{
 				cmbPorts.SelectedIndex = 0;
-				txtBaudRate.Text = "9600";
+				txtBaudRate.Text = "不指定";
 				cmbDataBit.SelectedIndex = 0;
 				cmbParity.SelectedIndex = 0;
 				cmbStopBit.SelectedIndex = 0;
-			}
-			catch (Exception ex)
-			{
-				return;
-			}
-
 		}
 
 		public void SetNowTimer()

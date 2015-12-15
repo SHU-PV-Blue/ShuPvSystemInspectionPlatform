@@ -136,7 +136,6 @@ namespace 光伏发电系统实验监测平台.Components
 		{
 			string messageString = "";
 			List<Byte> messageList = new List<byte>();
-			int j = 0;
 			for (int i = 0; i < messgeQueue.Count; i++)
 			{
 				if (messgeQueue[i].Value == true)
