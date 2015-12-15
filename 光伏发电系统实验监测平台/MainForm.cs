@@ -158,6 +158,11 @@ namespace 光伏发电系统实验监测平台
 		/// </summary>
 		private void btnReset_Click(object sender, EventArgs e)
 		{
+			if (!_ifSetPort)
+			{
+				MessageBox.Show("请先配置串口!", "串口未配置", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
 			_transceiver.Reset();
 		}
 

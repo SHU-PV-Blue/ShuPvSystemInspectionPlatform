@@ -59,11 +59,6 @@ namespace 光伏发电系统实验监测平台.Manager
 		/// </summary>
 		public event TransceiverEventHandler Excepted;
 
-		/// <summary>
-		/// 复位完成事件
-		/// </summary>
-		public event TransceiverEventHandler Reseted;//我是故意拼错哒~
-
 		#endregion
 
 		#region 公开方法
@@ -144,7 +139,6 @@ namespace 光伏发电系统实验监测平台.Manager
 			commands[2] = new Command(Command.Operates.旋转倾角, (int)initObliquity);
 			commands[3] = new Command(Command.Operates.关闭, 0);
 			Start(commands, 1);
-			Reseted(_status);
 		}
 
 		#endregion
