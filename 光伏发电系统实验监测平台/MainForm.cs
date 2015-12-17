@@ -47,6 +47,7 @@ namespace 光伏发电系统实验监测平台
 			Initcmb();
 			SetNowTimer();
 			SetLight();
+			dtpEndRun.Value = DateTime.Now.Date.AddDays(7);
 			_serialPort = new SerialPort();
 			_transceiver = new Transceiver(_serialPort);
 			_transceiver.Analyzed += new TransceiverEventHandler(delegate(Status status)
@@ -378,7 +379,7 @@ namespace 光伏发电系统实验监测平台
 				result += "串口未配置,";
 				isReady = false;
 			}
-			if (!(DateTime.Now.Date >= dtpSatrRun.Value.Date && DateTime.Now.Date <= dtpEndRun.Value.Date))
+			if (!(DateTime.Now.Date >= dtpStartRun.Value.Date && DateTime.Now.Date <= dtpEndRun.Value.Date))
 			{
 				result += "不在指定日期内,";
 				isReady = false;
