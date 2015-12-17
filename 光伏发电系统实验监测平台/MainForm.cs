@@ -82,13 +82,32 @@ namespace 光伏发电系统实验监测平台
 		{
 			nowTime.Stop();
 		}
-		
+
 		/// <summary>
 		/// 开关按钮按下事件
 		/// </summary>
-		private void pctbxStatu_Click(object sender, EventArgs e)
+		private void btnSwitch_Click(object sender, EventArgs e)
 		{
-
+			if (ifSwitchOn)
+			{
+				_transceiver.Stop();
+				SwitchOff();
+			}
+			else
+			{
+				if (!_ifSetPort)
+				{
+					MessageBox.Show("请先配置串口!", "串口未配置", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
+				if (string.IsNullOrEmpty(txtSettingFilePath.Text))
+				{
+					MessageBox.Show("请先配置伪指令代码!", "伪指令代码未配置", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
+				SwitchOn();
+				_transceiver.Start(CommandReader.LoadCommands(txtSettingFilePath.Text), int.Parse(txtCycle.Text));
+			}
 		}
 
 		/// <summary>
@@ -97,6 +116,12 @@ namespace 光伏发电系统实验监测平台
 		void nowTime_Tick(object sender, EventArgs e)
 		{
 			lblTimeNow.Text = DateTime.Now.ToString();
+			if (CheckReadyToAutoStart())
+				if(DateTime.Now.Hour == 6 && DateTime.Now.Minute == 0)
+					if(DateTime.Now.Second == 0 || DateTime.Now.Second == 1)
+						if(!ifSwitchOn)
+							btnSwitch_Click(sender, e);
+				//之所以写成这样是为了调试
 		}
 
 		/// <summary>
@@ -194,11 +219,6 @@ namespace 光伏发电系统实验监测平台
 			if (openSettingFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				System.Diagnostics.Process.Start(openSettingFile.FileName);
 			txtSettingFilePath.Text = openSettingFile.FileName;
-			if (!string.IsNullOrEmpty(txtSettingFilePath.Text) && _ifSetPort)
-			{
-				lblTip.Text = "每天六点整时，程序将自动按下启动按钮";
-				lblTip.ForeColor = Color.Green;
-			}
 		}
 
 		/// <summary>
@@ -244,11 +264,6 @@ namespace 光伏发电系统实验监测平台
 					break;
 			}
 			btnSetting.Enabled = false;
-			if (!string.IsNullOrEmpty(txtSettingFilePath.Text))
-			{
-				lblTip.Text = "每天六点整时，程序将自动按下启动按钮";
-				lblTip.ForeColor = Color.Green;
-			}
 		}
 
 		#endregion
@@ -336,6 +351,9 @@ namespace 光伏发电系统实验监测平台
 			btnSetting.Enabled = false;
 		}
 
+		/// <summary>
+		/// 关闭
+		/// </summary>
 		private void SwitchOff()
 		{
 			ifSwitchOn = false;
@@ -346,31 +364,40 @@ namespace 光伏发电系统实验监测平台
 			btnSetting.Enabled = true;
 		}
 
-		#endregion
-
-		private void btnSwitch_Click(object sender, EventArgs e)
+		bool CheckReadyToAutoStart()
 		{
-			if(ifSwitchOn)
+			string result = "";
+			bool isReady = true;
+			if (string.IsNullOrEmpty(txtSettingFilePath.Text))
 			{
-				_transceiver.Stop();
-				SwitchOff();
+				result += "指令未指定,";
+				isReady = false;
+			}
+			if (!_ifSetPort)
+			{
+				result += "串口未配置,";
+				isReady = false;
+			}
+			if (!(DateTime.Now.Date >= dtpSatrRun.Value.Date && DateTime.Now.Date <= dtpEndRun.Value.Date))
+			{
+				result += "不在指定日期内,";
+				isReady = false;
+			}
+			if(isReady)
+			{
+				lblTip.Text = "每天六点整时，程序自动启动";
+				lblTip.ForeColor = Color.Green;
 			}
 			else
 			{
-				if (!_ifSetPort)
-				{
-					MessageBox.Show("请先配置串口!", "串口未配置", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					return;
-				}
-				if (string.IsNullOrEmpty(txtSettingFilePath.Text))
-				{
-					MessageBox.Show("请先配置伪指令代码!", "伪指令代码未配置", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					return;
-				}
-				SwitchOn();
-				_transceiver.Start(CommandReader.LoadCommands(txtSettingFilePath.Text), int.Parse(txtCycle.Text));
+				lblTip.Text = result + "自动启动无效";
+				lblTip.ForeColor = Color.Red;
 			}
+			return isReady;
 		}
+
+		#endregion
+
 
 	}
 }
