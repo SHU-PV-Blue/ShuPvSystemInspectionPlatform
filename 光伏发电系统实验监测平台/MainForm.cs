@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using 光伏发电系统实验监测平台.Commands;
 using 光伏发电系统实验监测平台.Manager;
 using 光伏发电系统实验监测平台.Components;
+using 光伏发电系统实验监测平台.Database;
 using System.IO.Ports;
 using Microsoft.Office;
 using System.IO;
@@ -73,6 +74,8 @@ namespace 光伏发电系统实验监测平台
 			{
 				//指令完了时候的工作
 				this.Invoke(new EventHandler(delegate { SwitchOff(); }));
+				DatabaseExporter dbex = new DatabaseExporter(DateTime.Now);
+				dbex.Export();
 			});
 		}
 
