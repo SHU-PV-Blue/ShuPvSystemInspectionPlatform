@@ -125,6 +125,7 @@ namespace 光伏发电系统实验监测平台.Manager
 				WritePort(bytes);
 				Thread.Sleep(100);
 				_serialPort.Close();
+				Thread.Sleep(100);
 			}
 			Ends(_status);
 		}
