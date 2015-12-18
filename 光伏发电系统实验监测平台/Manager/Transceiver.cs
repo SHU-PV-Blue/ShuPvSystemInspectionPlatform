@@ -123,6 +123,7 @@ namespace 光伏发电系统实验监测平台.Manager
 				_serialPort.Open();
 				byte[] bytes = (new Relay32()).GetCommand("停转");
 				WritePort(bytes);
+				Thread.Sleep(100);
 				_serialPort.Close();
 			}
 			Ends(_status);
@@ -161,6 +162,7 @@ namespace 光伏发电系统实验监测平台.Manager
 
 		void Work()
 		{
+			const int scmCycle = 500;//角度仪查询周期
 			try
 			{
 				while (_cycle > 0)
@@ -183,7 +185,7 @@ namespace 光伏发电系统实验监测平台.Manager
 								{
 									byte[] bytes = (new SCM()).GetCommand("查询倾斜角");
 									WritePort(bytes);
-									Thread.Sleep(100);
+									Thread.Sleep(scmCycle);
 
 
 									if (_status.Obliquity < command.Argument)
@@ -203,28 +205,26 @@ namespace 光伏发电系统实验监测平台.Manager
 									{
 										bytes = (new SCM()).GetCommand("查询倾斜角");
 										WritePort(bytes);
-										Thread.Sleep(100);
+										Thread.Sleep(scmCycle);
 										if (Math.Abs(_status.Obliquity - command.Argument) < 0.5)
 											break;
 										if (sw.ElapsedMilliseconds > 20 * 1000)
 										{
 											bytes = (new Relay32()).GetCommand("停转");
 											WritePort(bytes);
-											Thread.Sleep(100);
 											throw new Exception("电机运作异常,调整倾斜角失败");
 										}
 									}
 									bytes = (new SCM()).GetCommand("查询倾斜角");
 									WritePort(bytes);
-									Thread.Sleep(100);
+									Thread.Sleep(scmCycle);
 									break;
 								}
 							case Command.Operates.旋转方位角:
 								{
 									byte[] bytes = (new SCM()).GetCommand("查询方位角");
 									WritePort(bytes);
-									Thread.Sleep(100);
-
+									Thread.Sleep(scmCycle);
 
 									if (_status.Azimuth < command.Argument)
 									{
@@ -243,20 +243,19 @@ namespace 光伏发电系统实验监测平台.Manager
 									{
 										bytes = (new SCM()).GetCommand("查询方位角");
 										WritePort(bytes);
-										Thread.Sleep(100);
+										Thread.Sleep(scmCycle);
 										if (Math.Abs(_status.Azimuth - command.Argument) < 0.5)
 											break;
 										if (sw.ElapsedMilliseconds > 20 * 1000)
 										{
 											bytes = (new Relay32()).GetCommand("停转");
 											WritePort(bytes);
-											Thread.Sleep(100);
 											throw new Exception("电机运作异常,调整方位角失败");
 										}
 									}
 									bytes = (new SCM()).GetCommand("查询方位角");
 									WritePort(bytes);
-									Thread.Sleep(100);
+									Thread.Sleep(scmCycle);
 									break;
 								}
 							case Command.Operates.查询曲线仪:
