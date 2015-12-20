@@ -34,7 +34,7 @@ namespace 光伏发电系统实验监测平台.Manager
 		Status _status;
 
 		const int initComponentId = 6;
-		const double initAzimuth = -10;
+		const double initAzimuth = 170;
 		const double initObliquity = 22;
 		#endregion
 
@@ -88,11 +88,10 @@ namespace 光伏发电系统实验监测平台.Manager
 			_status.ComponentId = initComponentId;
 			_status.Azimuth = initAzimuth;
 			_status.Obliquity = initObliquity;
-			OleDbConnection oleDbCon;
 			try
 			{
-				oleDbCon = DatabaseConnection.GetConnection();
-				oleDbCon.Open();
+				_status.OleDbCon = DatabaseConnection.GetConnection();
+				_status.OleDbCon.Open();
 			}
 			catch (Exception ex)
 			{
@@ -156,14 +155,23 @@ namespace 光伏发电系统实验监测平台.Manager
 			foreach(var b in readbyte)
 				_status.MessageQueue.Add(new KeyValuePair<byte, bool>(b, true));
 			Recorder.ReciveLog(_status.Time, Transfer.BaToS(readbyte));
-			if (MainAnalyzer.Analyze(_status, Excepted))
-				Changed(_status);
-			Analyzed(_status);
+			try
+			{
+				if (MainAnalyzer.Analyze(_status, Excepted))
+					Changed(_status);
+				Analyzed(_status);
+			}
+			catch (Exception ex)
+			{
+				Stop();
+				MessageBox.Show(ex.Message, "解析异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		void Work()
 		{
 			const int scmCycle = 500;//角度仪查询周期
+			const int djDelay = 100;
 			try
 			{
 				while (_cycle > 0)
@@ -193,11 +201,13 @@ namespace 光伏发电系统实验监测平台.Manager
 									{
 										bytes = (new Relay32()).GetCommand("倾角增加");
 										WritePort(bytes);
+										Thread.Sleep(djDelay);
 									}
 									else
 									{
 										bytes = (new Relay32()).GetCommand("倾角减少");
 										WritePort(bytes);
+										Thread.Sleep(djDelay);
 									}
 
 									Stopwatch sw = new Stopwatch();
@@ -231,11 +241,13 @@ namespace 光伏发电系统实验监测平台.Manager
 									{
 										bytes = (new Relay32()).GetCommand("方位角增加");
 										WritePort(bytes);
+										Thread.Sleep(djDelay);
 									}
 									else
 									{
 										bytes = (new Relay32()).GetCommand("方位角减少");
 										WritePort(bytes);
+										Thread.Sleep(djDelay);
 									}
 
 									Stopwatch sw = new Stopwatch();
