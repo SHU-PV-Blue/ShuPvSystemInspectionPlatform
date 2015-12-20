@@ -119,6 +119,8 @@ namespace 光伏发电系统实验监测平台.Manager
 			while(sendCount-- > 0)
 			{
 				_serialPort.BaudRate = 9600;
+				if(_serialPort.IsOpen)
+					_serialPort.Close();
 				_serialPort.Open();
 				byte[] bytes = (new Relay32()).GetCommand("停转");
 				WritePort(bytes);
@@ -218,7 +220,12 @@ namespace 光伏发电系统实验监测平台.Manager
 										WritePort(bytes);
 										Thread.Sleep(scmCycle);
 										if (Math.Abs(_status.Obliquity - command.Argument) < 0.5)
+										{
+											bytes = (new Relay32()).GetCommand("停转");
+											WritePort(bytes);
+											Thread.Sleep(djDelay);
 											break;
+										}
 										if (sw.ElapsedMilliseconds > 20 * 1000)
 										{
 											bytes = (new Relay32()).GetCommand("停转");
@@ -258,7 +265,12 @@ namespace 光伏发电系统实验监测平台.Manager
 										WritePort(bytes);
 										Thread.Sleep(scmCycle);
 										if (Math.Abs(_status.Azimuth - command.Argument) < 0.5)
+										{
+											bytes = (new Relay32()).GetCommand("停转");
+											WritePort(bytes);
+											Thread.Sleep(djDelay);
 											break;
+										}
 										if (sw.ElapsedMilliseconds > 20 * 1000)
 										{
 											bytes = (new Relay32()).GetCommand("停转");

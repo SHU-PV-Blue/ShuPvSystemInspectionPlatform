@@ -28,7 +28,7 @@ namespace 光伏发电系统实验监测平台.Database
 				System.Data.DataTable ivDt = dbCore.SelectData("dbo_IVTable", query);
 				System.Data.DataTable weatherDt = dbCore.SelectData("dbo_WeatherTable", query);
 				dbCon.Close();
-				if (ivDt.Rows.Count == 0 || weatherDt.Rows.Count == 0)
+				if (ivDt.Rows.Count == 0 && weatherDt.Rows.Count == 0)
 					return false;
 				DataView dv = ivDt.DefaultView;
 				dv.Sort = "[Hour] ASC, [Minute] ASC, [Second] ASC";
@@ -101,6 +101,8 @@ namespace 光伏发电系统实验监测平台.Database
 					}
 					++sheet3Row;
 				}
+				excel.DisplayAlerts = false;
+				excel.AlertBeforeOverwriting = false;
 				wb.SaveAs(path + _dt.Year + "-" + _dt.Month + "-" + _dt.Day + ".xlsx");
 				wb.Close();
 				wbks.Close();
