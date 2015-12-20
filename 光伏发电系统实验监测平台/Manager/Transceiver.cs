@@ -120,7 +120,10 @@ namespace 光伏发电系统实验监测平台.Manager
 			{
 				_serialPort.BaudRate = 9600;
 				if(_serialPort.IsOpen)
+				{
 					_serialPort.Close();
+					Thread.Sleep(100);
+				}
 				_serialPort.Open();
 				byte[] bytes = (new Relay32()).GetCommand("停转");
 				WritePort(bytes);
