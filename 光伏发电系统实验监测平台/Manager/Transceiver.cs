@@ -205,15 +205,13 @@ namespace 光伏发电系统实验监测平台.Manager
 									if (_status.Obliquity < command.Argument)
 									{
 										bytes = (new Relay32()).GetCommand("倾角增加");
-										WritePort(bytes);
-										Thread.Sleep(djDelay);
 									}
 									else
 									{
 										bytes = (new Relay32()).GetCommand("倾角减少");
-										WritePort(bytes);
-										Thread.Sleep(djDelay);
 									}
+									WritePort(bytes);
+									Thread.Sleep(djDelay);
 
 									Stopwatch sw = new Stopwatch();
 									sw.Start();
@@ -231,8 +229,6 @@ namespace 光伏发电系统实验监测平台.Manager
 										}
 										if (sw.ElapsedMilliseconds > 20 * 1000)
 										{
-											bytes = (new Relay32()).GetCommand("停转");
-											WritePort(bytes);
 											throw new Exception("电机运作异常,调整倾斜角失败");
 										}
 									}
@@ -250,15 +246,13 @@ namespace 光伏发电系统实验监测平台.Manager
 									if (_status.Azimuth < command.Argument)
 									{
 										bytes = (new Relay32()).GetCommand("方位角增加");
-										WritePort(bytes);
-										Thread.Sleep(djDelay);
 									}
 									else
 									{
 										bytes = (new Relay32()).GetCommand("方位角减少");
-										WritePort(bytes);
-										Thread.Sleep(djDelay);
 									}
+									WritePort(bytes);
+									Thread.Sleep(djDelay);
 
 									Stopwatch sw = new Stopwatch();
 									sw.Start();
@@ -276,8 +270,6 @@ namespace 光伏发电系统实验监测平台.Manager
 										}
 										if (sw.ElapsedMilliseconds > 20 * 1000)
 										{
-											bytes = (new Relay32()).GetCommand("停转");
-											WritePort(bytes);
 											throw new Exception("电机运作异常,调整方位角失败");
 										}
 									}
