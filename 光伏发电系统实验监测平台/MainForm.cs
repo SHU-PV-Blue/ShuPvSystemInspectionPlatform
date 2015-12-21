@@ -97,7 +97,6 @@ namespace 光伏发电系统实验监测平台
 			if (ifSwitchOn)
 			{
 				_transceiver.Stop();
-				SwitchOff();
 			}
 			else
 			{

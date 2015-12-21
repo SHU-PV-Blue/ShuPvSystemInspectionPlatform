@@ -33,7 +33,6 @@ namespace 光伏发电系统实验监测平台.Manager
 		int _cycle;
 		Status _status;
 		bool _needStopSendThread;
-		bool _stopLock;
 
 		const int initComponentId = 6;
 		const double initAzimuth = 170;
@@ -111,26 +110,8 @@ namespace 光伏发电系统实验监测平台.Manager
 		/// </summary>
 		public void Stop()
 		{
-			_stopLock = true;
-			if (_sendTread != null && _sendTread.IsAlive && Thread.CurrentThread != _sendTread)
+			if (_sendTread != null && _sendTread.IsAlive)
 				_sendTread.Abort();
-			Thread.Sleep(200);//等待线程关闭，不确定是否必要
-
-			if (_serialPort != null && _serialPort.IsOpen)
-				_serialPort.Close();
-			if (_status.OleDbCon != null && _status.OleDbCon.State == ConnectionState.Open)
-				_status.OleDbCon.Close();
-			Thread.Sleep(200);//等待串口关闭
-
-			_serialPort.BaudRate = 9600;
-			_serialPort.Open();
-			Thread.Sleep(100);//等待串口打开，不确定是否必要
-			byte[] bytes = (new Relay32()).GetCommand("停转");
-			WritePort(bytes);
-			Thread.Sleep(200);//等待指令送达
-			_serialPort.Close();
-			Ends(_status);
-			_stopLock = false;
 		}
 
 		/// <summary>
@@ -168,7 +149,8 @@ namespace 光伏发电系统实验监测平台.Manager
 			catch (Exception ex)
 			{
 				_status.exception = new Exception("解析异常:" + ex.Message, ex);
-				Stop();
+				if (_sendTread != null && _sendTread.IsAlive)
+					_sendTread.Abort();
 			}
 		}
 
@@ -319,8 +301,6 @@ namespace 光伏发电系统实验监测平台.Manager
 			catch (ThreadAbortException ex)
 			{
 				//Do nothing
-				//这里有要容易出错的逻辑
-				//Stop()如果被其他人调用,发送线程会被终止,触发ThreadAbortException异常,而仍会调用Stop()
 			}
 			catch(Exception ex)
 			{
@@ -328,8 +308,7 @@ namespace 光伏发电系统实验监测平台.Manager
 			}
 			finally
 			{
-				if(!_stopLock)
-					Stop();
+				ForceStop();
 			}
 		}
 
@@ -340,6 +319,26 @@ namespace 光伏发电系统实验监测平台.Manager
 			Recorder.SendLog(_status.Time, Transfer.BaToS(bytes));
 		}
 
+		/// <summary>
+		/// 强制停止
+		/// </summary>
+		void ForceStop()
+		{
+			if (_serialPort != null && _serialPort.IsOpen)
+				_serialPort.Close();
+			if (_status.OleDbCon != null && _status.OleDbCon.State == ConnectionState.Open)
+				_status.OleDbCon.Close();
+			Thread.Sleep(200);//等待串口关闭
+
+			_serialPort.BaudRate = 9600;
+			_serialPort.Open();
+			Thread.Sleep(100);//等待串口打开，不确定是否必要
+			byte[] bytes = (new Relay32()).GetCommand("停转");
+			WritePort(bytes);
+			Thread.Sleep(200);//等待指令送达
+			_serialPort.Close();
+			Ends(_status);
+		}
 		#endregion
 	}
 }
