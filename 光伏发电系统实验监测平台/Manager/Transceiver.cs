@@ -32,7 +32,7 @@ namespace 光伏发电系统实验监测平台.Manager
 		Command[] _commands;
 		int _cycle;
 		Status _status;
-		bool _needSendThread;
+		bool _needStopSendThread;
 		bool _stopLock;
 
 		const int initComponentId = 6;
@@ -103,21 +103,34 @@ namespace 光伏发电系统实验监测平台.Manager
 			if (_sendTread != null && _sendTread.IsAlive)
 				_sendTread.Abort();
 			_sendTread = new Thread(new ThreadStart(Work));
-			_needSendThread = true;
-			_stopLock = false;
 			_sendTread.Start();
 		}
 
 		/// <summary>
-		/// 停止
+		/// 强行停止
 		/// </summary>
 		public void Stop()
 		{
-			if (_stopLock)
-				return;
 			_stopLock = true;
-			_needSendThread = false;
-			ForceStop();
+			if (_sendTread != null && _sendTread.IsAlive && Thread.CurrentThread != _sendTread)
+				_sendTread.Abort();
+			Thread.Sleep(200);//等待线程关闭，不确定是否必要
+
+			if (_serialPort != null && _serialPort.IsOpen)
+				_serialPort.Close();
+			if (_status.OleDbCon != null && _status.OleDbCon.State == ConnectionState.Open)
+				_status.OleDbCon.Close();
+			Thread.Sleep(200);//等待串口关闭
+
+			_serialPort.BaudRate = 9600;
+			_serialPort.Open();
+			Thread.Sleep(100);//等待串口打开，不确定是否必要
+			byte[] bytes = (new Relay32()).GetCommand("停转");
+			WritePort(bytes);
+			Thread.Sleep(200);//等待指令送达
+			_serialPort.Close();
+			Ends(_status);
+			_stopLock = false;
 		}
 
 		/// <summary>
@@ -168,9 +181,6 @@ namespace 光伏发电系统实验监测平台.Manager
 				while (_cycle > 0)
 				{
 					foreach (Command command in _commands)
-					{
-						if (!_needSendThread)
-							return;
 						switch (command.Operate)
 						{
 							case Command.Operates.关闭:
@@ -204,7 +214,7 @@ namespace 光伏发电系统实验监测平台.Manager
 
 									Stopwatch sw = new Stopwatch();
 									sw.Start();
-									while (_needSendThread)
+									while (true)
 									{
 										bytes = (new SCM()).GetCommand("查询倾斜角");
 										WritePort(bytes);
@@ -245,7 +255,7 @@ namespace 光伏发电系统实验监测平台.Manager
 
 									Stopwatch sw = new Stopwatch();
 									sw.Start();
-									while (_needSendThread)
+									while (true)
 									{
 										bytes = (new SCM()).GetCommand("查询方位角");
 										WritePort(bytes);
@@ -303,10 +313,14 @@ namespace 光伏发电系统实验监测平台.Manager
 									throw new Exception("不支持的指令");
 								}
 						}
-					}
-						
 					--_cycle;
 				}
+			}
+			catch (ThreadAbortException ex)
+			{
+				//Do nothing
+				//这里有要容易出错的逻辑
+				//Stop()如果被其他人调用,发送线程会被终止,触发ThreadAbortException异常,而仍会调用Stop()
 			}
 			catch(Exception ex)
 			{
@@ -314,7 +328,8 @@ namespace 光伏发电系统实验监测平台.Manager
 			}
 			finally
 			{
-				ForceStop();
+				if(!_stopLock)
+					Stop();
 			}
 		}
 
@@ -323,31 +338,6 @@ namespace 光伏发电系统实验监测平台.Manager
 			_status.Time = DateTime.Now;
 			_serialPort.Write(bytes, 0, bytes.Length);
 			Recorder.SendLog(_status.Time, Transfer.BaToS(bytes));
-		}
-
-		/// <summary>
-		/// 强行停止
-		/// </summary>
-		void ForceStop()
-		{
-			_needSendThread = false;
-			while (_sendTread != null && _sendTread.IsAlive)
-				Thread.Sleep(100);//等待线程关闭
-#error 如果执行这个函数的就是_sendTread，循环将不会退出，线程失控
-			if (_serialPort != null && _serialPort.IsOpen)
-				_serialPort.Close();
-			if (_status.OleDbCon != null && _status.OleDbCon.State == ConnectionState.Open)
-				_status.OleDbCon.Close();
-			Thread.Sleep(200);//等待串口关闭
-
-			_serialPort.BaudRate = 9600;
-			_serialPort.Open();
-			Thread.Sleep(100);//等待串口打开，不确定是否必要
-			byte[] bytes = (new Relay32()).GetCommand("停转");
-			WritePort(bytes);
-			Thread.Sleep(200);//等待指令送达
-			_serialPort.Close();
-			Ends(_status);
 		}
 
 		#endregion
