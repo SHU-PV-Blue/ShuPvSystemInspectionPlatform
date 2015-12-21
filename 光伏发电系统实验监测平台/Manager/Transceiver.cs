@@ -32,6 +32,8 @@ namespace 光伏发电系统实验监测平台.Manager
 		Command[] _commands;
 		int _cycle;
 		Status _status;
+		bool _needStopSendThread;
+		bool _stopLock;
 
 		const int initComponentId = 6;
 		const double initAzimuth = 170;
@@ -109,6 +111,7 @@ namespace 光伏发电系统实验监测平台.Manager
 		/// </summary>
 		public void Stop()
 		{
+			_stopLock = true;
 			if (_sendTread != null && _sendTread.IsAlive && Thread.CurrentThread != _sendTread)
 				_sendTread.Abort();
 			Thread.Sleep(200);//等待线程关闭，不确定是否必要
@@ -127,6 +130,7 @@ namespace 光伏发电系统实验监测平台.Manager
 			Thread.Sleep(200);//等待指令送达
 			_serialPort.Close();
 			Ends(_status);
+			_stopLock = false;
 		}
 
 		/// <summary>
@@ -312,13 +316,20 @@ namespace 光伏发电系统实验监测平台.Manager
 					--_cycle;
 				}
 			}
+			catch (ThreadAbortException ex)
+			{
+				//Do nothing
+				//这里有要容易出错的逻辑
+				//Stop()如果被其他人调用,发送线程会被终止,触发ThreadAbortException异常,而仍会调用Stop()
+			}
 			catch(Exception ex)
 			{
 				_status.exception = new Exception("上位机平台运行异常:" + ex.Message, ex);
 			}
 			finally
 			{
-				Stop();
+				if(!_stopLock)
+					Stop();
 			}
 		}
 
