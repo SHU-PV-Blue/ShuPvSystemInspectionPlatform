@@ -76,6 +76,8 @@ namespace 光伏发电系统实验监测平台
 				this.Invoke(new EventHandler(delegate { SwitchOff(); }));
 				DatabaseExporter dbex = new DatabaseExporter(DateTime.Now);
 				dbex.Export();
+				if (status.exception != null)
+					MessageBox.Show(status.exception.Message, "异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			});
 		}
 

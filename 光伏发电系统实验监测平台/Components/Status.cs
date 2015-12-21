@@ -39,5 +39,10 @@ namespace 光伏发电系统实验监测平台.Components
         /// 倾角
         /// </summary>
         public double Obliquity { get; set; }
+
+		/// <summary>
+		/// 异常
+		/// </summary>
+		public Exception exception { get; set; }
     }
 }

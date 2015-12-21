@@ -111,26 +111,21 @@ namespace 光伏发电系统实验监测平台.Manager
 		{
 			if (_sendTread != null && _sendTread.IsAlive && Thread.CurrentThread != _sendTread)
 				_sendTread.Abort();
+			Thread.Sleep(200);//等待线程关闭，不确定是否必要
+
 			if (_serialPort != null && _serialPort.IsOpen)
 				_serialPort.Close();
 			if (_status.OleDbCon != null && _status.OleDbCon.State == ConnectionState.Open)
 				_status.OleDbCon.Close();
-			int sendCount = 3;
-			while(sendCount-- > 0)
-			{
-				_serialPort.BaudRate = 9600;
-				if(_serialPort.IsOpen)
-				{
-					_serialPort.Close();
-					Thread.Sleep(100);
-				}
-				_serialPort.Open();
-				byte[] bytes = (new Relay32()).GetCommand("停转");
-				WritePort(bytes);
-				Thread.Sleep(100);
-				_serialPort.Close();
-				Thread.Sleep(100);
-			}
+			Thread.Sleep(200);//等待串口关闭
+
+			_serialPort.BaudRate = 9600;
+			_serialPort.Open();
+			Thread.Sleep(100);//等待串口打开，不确定是否必要
+			byte[] bytes = (new Relay32()).GetCommand("停转");
+			WritePort(bytes);
+			Thread.Sleep(200);//等待指令送达
+			_serialPort.Close();
 			Ends(_status);
 		}
 
@@ -168,8 +163,8 @@ namespace 光伏发电系统实验监测平台.Manager
 			}
 			catch (Exception ex)
 			{
+				_status.exception = new Exception("解析异常:" + ex.Message, ex);
 				Stop();
-				MessageBox.Show(ex.Message, "解析异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
@@ -319,10 +314,12 @@ namespace 光伏发电系统实验监测平台.Manager
 			}
 			catch(Exception ex)
 			{
-				Stop();
-				MessageBox.Show(ex.Message, "上位机平台运行异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				_status.exception = new Exception("上位机平台运行异常:" + ex.Message, ex);
 			}
-			Stop();
+			finally
+			{
+				Stop();
+			}
 		}
 
 		void WritePort(byte [] bytes)
