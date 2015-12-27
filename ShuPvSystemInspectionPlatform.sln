@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "光伏发电系统实验监测平台", "光伏发电系统实验监测平台\光伏发电系统实验监测平台.csproj", "{9ABB255E-16F6-452E-B2AC-8CEB6026D30A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "旧版数据导出工具", "旧版数据导出工具\旧版数据导出工具.csproj", "{2B3016D9-51F2-4E88-B8F0-5483C352F315}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9ABB255E-16F6-452E-B2AC-8CEB6026D30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ABB255E-16F6-452E-B2AC-8CEB6026D30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ABB255E-16F6-452E-B2AC-8CEB6026D30A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B3016D9-51F2-4E88-B8F0-5483C352F315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3016D9-51F2-4E88-B8F0-5483C352F315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3016D9-51F2-4E88-B8F0-5483C352F315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3016D9-51F2-4E88-B8F0-5483C352F315}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Microsoft.Office.Interop.Excel;
+
 using System.Data;
 using System.Data.OleDb;
-using Microsoft.Office.Interop.Excel;
+
+using 光伏发电系统实验监测平台.Database;
 using 光伏发电系统实验监测平台.Tool;
 
-namespace 光伏发电系统实验监测平台.Database
+namespace 旧版数据导出工具
 {
-	class DatabaseExporter
+	class OldExporter
 	{
+		
 		DateTime _dt;
-		public DatabaseExporter(DateTime dt)
+		public OldExporter(DateTime dt)
 		{
 			_dt = dt;
 		}
@@ -26,7 +34,7 @@ namespace 光伏发电系统实验监测平台.Database
 				query.Add("Month", _dt.Month.ToString());
 				query.Add("Day", _dt.Day.ToString());
 				System.Data.DataTable ivDt = dbCore.SelectData("dbo_IVTable", query);
-				System.Data.DataTable weatherDt = dbCore.SelectData("dbo_WeatherTable", query);
+				System.Data.DataTable weatherDt = dbCore.SelectData("MeteorologicalData", query);
 				dbCon.Close();
 				if (ivDt.Rows.Count == 0 && weatherDt.Rows.Count == 0)
 					return false;
