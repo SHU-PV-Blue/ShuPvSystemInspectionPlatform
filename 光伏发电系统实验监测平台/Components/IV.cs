@@ -20,62 +20,82 @@ namespace 光伏发电系统实验监测平台.Components
             byte[] byteArray = status.MessageQueue.Select(b => b.Key).ToArray();
             string byteStr = Transfer.BaToS(byteArray);
 
-            string Regex = @"AA0012019001([A-Za-z0-9_]{800})CC33C33CAA0012029090([A-Za-z0-9_]{800})CC33C33CAA0012091100([A-Za-z0-9_]{34})CC33C33C";
-            Regex Re = new Regex(Regex);
+			//string Regex = @"AA0012019001([A-Za-z0-9_]{800})CC33C33CAA0012029090([A-Za-z0-9_]{800})CC33C33CAA0012091100([A-Za-z0-9_]{34})CC33C33C";
 
+			//如果三个包头正常
+			//AA000105CC33C33CAA00002102CC33C33CAA00142402CC33C33C
+			//****123456789ABC****123456789ABCDE****123456789ABCDE
+			//AA00{12}AA00{14}AA00{14}
+			string regex1 = @"AA00([A-Za-z0-9_]{12})AA00([A-Za-z0-9_]{14})AA00([A-Za-z0-9_]{14})";
+			//                     Groups1               Groups2               Groups3
 
-            if (Re.IsMatch(byteStr))
-            {
-                Match byteMatch = Re.Match(byteStr);
-                string reasultStr = byteMatch.Groups[3].Value;
-                int Tep = Convert.ToInt32(Inverse(reasultStr.Substring(2, 4)), 16);
-                double Vo = Convert.ToInt32(Inverse(reasultStr.Substring(10, 4)), 16) / 10.0;
-                double Is = Convert.ToInt32(Inverse(reasultStr.Substring(14, 4)), 16) / 100.0;
-                double Vm = Convert.ToInt32(Inverse(reasultStr.Substring(18, 4)), 16) / 10.0;
-                double Im = Convert.ToInt32(Inverse(reasultStr.Substring(22, 4)), 16) / 100.0;
-                double Pm = Convert.ToInt64(Inverse(reasultStr.Substring(26, 8)), 16) / 10.0;
+			//如果三个包尾正常
+			//AA000105CC33C33CAA00002102CC33C33CAA00142402CC33C33C
+			//12345678********123456789A********123456789A********
+			//{8}CC33C33C{10}CC33C33C{10}CC33C33C
+			string regex2 = @"([A-Za-z0-9_]{8})CC33C33C([A-Za-z0-9_]{10})CC33C33C([A-Za-z0-9_]{10})CC33C33C";
+			//                 Groups1                  Groups2                   Groups3
 
-                int index = -1;
-                if ((index = byteStr.IndexOf(byteMatch.Value, index + 1)) != -1)
-                {
-                    for (int i = index / 2; i < (index + byteMatch.Length) / 2; i++)
-                        status.MessageQueue[i] = new KeyValuePair<byte, bool>(status.MessageQueue[i].Key, false);
-                }
+			//数据部分不检查；
+			string regexData = @"([A-Za-z0-9_]{12})([A-Za-z0-9_]{800})([A-Za-z0-9_]{20})([A-Za-z0-9_]{800})([A-Za-z0-9_]{20})([A-Za-z0-9_]{34})([A-Za-z0-9_]{8})";
+			//                   Groups4            Groups5            Groups6          Groups7             Groups8          Groups9           Groups10
 
-                int year = status.Time.Year;
-                int month = status.Time.Month;
-                int day = status.Time.Day;
-                int hour = status.Time.Hour;
-                int minute = status.Time.Minute;
-                int second = status.Time.Second;
-                IVdataDic.Add("Year", year.ToString());
-                IVdataDic.Add("Month", month.ToString());
-                IVdataDic.Add("Day", day.ToString());
-                IVdataDic.Add("Hour", hour.ToString());
-                IVdataDic.Add("Minute", minute.ToString());
-                IVdataDic.Add("Second", second.ToString());
-                IVdataDic.Add("ComponentId", status.ComponentId.ToString());
-                IVdataDic.Add("Component1Temperature", Tep.ToString());
-                IVdataDic.Add("OpenCircuitVoltage", Vo.ToString());
-                IVdataDic.Add("ShortCircuitCurrent", Is.ToString());
-                IVdataDic.Add("MaxPowerVoltage", Vm.ToString());
-                IVdataDic.Add("MaxPowerCurrent", Im.ToString());
-                IVdataDic.Add("MaxPower", Pm.ToString());
-                IVdataDic.Add("Azimuth", status.Azimuth.ToString());
-                IVdataDic.Add("Obliquity", status.Obliquity.ToString());
-                IVdataDic.Add("CurrentSeq", "'" + byteMatch.Groups[1].Value + "'");
-                IVdataDic.Add("VoltageSeq", "'" + byteMatch.Groups[2].Value + "'");
+			Regex Re = new Regex(regex1 + regexData);
+			if (!Re.IsMatch(byteStr))
+			{
+				Re = new Regex(regex2 + regexData);
+				if (!Re.IsMatch(byteStr))
+					return false;
+			}
 
-                try
-                {
-                    dataCore.InsertData("dbo_IVTable", IVdataDic);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
+			Match byteMatch = Re.Match(byteStr);
+			string reasultStr = byteMatch.Groups[9].Value;
+			int Tep = Convert.ToInt32(Inverse(reasultStr.Substring(2, 4)), 16);
+			double Vo = Convert.ToInt32(Inverse(reasultStr.Substring(10, 4)), 16) / 10.0;
+			double Is = Convert.ToInt32(Inverse(reasultStr.Substring(14, 4)), 16) / 100.0;
+			double Vm = Convert.ToInt32(Inverse(reasultStr.Substring(18, 4)), 16) / 10.0;
+			double Im = Convert.ToInt32(Inverse(reasultStr.Substring(22, 4)), 16) / 100.0;
+			double Pm = Convert.ToInt64(Inverse(reasultStr.Substring(26, 8)), 16) / 10.0;
 
+			int index = -1;
+			if ((index = byteStr.IndexOf(byteMatch.Value, index + 1)) != -1)
+			{
+				for (int i = index / 2; i < (index + byteMatch.Length) / 2; i++)
+					status.MessageQueue[i] = new KeyValuePair<byte, bool>(status.MessageQueue[i].Key, false);
+			}
+
+			int year = status.Time.Year;
+			int month = status.Time.Month;
+			int day = status.Time.Day;
+			int hour = status.Time.Hour;
+			int minute = status.Time.Minute;
+			int second = status.Time.Second;
+			IVdataDic.Add("Year", year.ToString());
+			IVdataDic.Add("Month", month.ToString());
+			IVdataDic.Add("Day", day.ToString());
+			IVdataDic.Add("Hour", hour.ToString());
+			IVdataDic.Add("Minute", minute.ToString());
+			IVdataDic.Add("Second", second.ToString());
+			IVdataDic.Add("ComponentId", status.ComponentId.ToString());
+			IVdataDic.Add("Component1Temperature", Tep.ToString());
+			IVdataDic.Add("OpenCircuitVoltage", Vo.ToString());
+			IVdataDic.Add("ShortCircuitCurrent", Is.ToString());
+			IVdataDic.Add("MaxPowerVoltage", Vm.ToString());
+			IVdataDic.Add("MaxPowerCurrent", Im.ToString());
+			IVdataDic.Add("MaxPower", Pm.ToString());
+			IVdataDic.Add("Azimuth", status.Azimuth.ToString());
+			IVdataDic.Add("Obliquity", status.Obliquity.ToString());
+			IVdataDic.Add("CurrentSeq", "'" + byteMatch.Groups[5].Value + "'");
+			IVdataDic.Add("VoltageSeq", "'" + byteMatch.Groups[7].Value + "'");
+
+			try
+			{
+				dataCore.InsertData("dbo_IVTable", IVdataDic);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
 
             return true;
         }
