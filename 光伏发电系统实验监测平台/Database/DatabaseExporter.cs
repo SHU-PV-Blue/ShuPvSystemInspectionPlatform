@@ -51,7 +51,7 @@ namespace 光伏发电系统实验监测平台.Database
 					wsh.Cells[row, col++] = dr["Rasiation(W/m2)"];
 					wsh.Cells[row, col++] = dr["WindDirection"];
 					wsh.Cells[row, col++] = dr["Humidity(%RH)"];
-					string str = "[Hour] = " + dr["Hour"] + " and " + "[Minute] = " + dr["Minute"] + " and " + "[Second] = " + dr["Second"];
+					string str = "[Hour] = " + dr["Hour"] + " and " + "[Minute] = " + dr["Minute"];
 					DataRow[] result = ivDt.Select(str);
 					if (result.Length != 0)
 						wsh.Cells[row, col++] = result[0]["Component1Temperature"];
