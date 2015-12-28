@@ -25,7 +25,7 @@ namespace 光伏发电系统实验监测平台.Components
                 Match match = ObRe.Match(byteStr);
                 if (SumChecker.CheckSum(match.Value.Substring(2, 12), match.Groups[2].Value))
                 {
-                    status.Obliquity = Convert.ToInt32(match.Groups[1].Value) / 100.0;
+                    status.Component6Obliquity = Convert.ToInt32(match.Groups[1].Value) / 100.0;
                     int index = -1;
                     if ((index = byteStr.IndexOf(match.Value, index + 1)) != -1)
                     {
@@ -41,7 +41,7 @@ namespace 光伏发电系统实验监测平台.Components
                 Match match = AzRe.Match(byteStr);
                 if (SumChecker.CheckSum(match.Value.Substring(2, 12), match.Groups[2].Value))
                 {
-                    status.Azimuth = Convert.ToInt32(match.Groups[1].Value) / 100.0;
+					status.Component6Azimuth = Convert.ToInt32(match.Groups[1].Value) / 100.0;
                     int index = -1;
                     if ((index = byteStr.IndexOf(match.Value, index + 1)) != -1)
                     {

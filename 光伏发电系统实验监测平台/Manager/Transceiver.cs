@@ -32,7 +32,6 @@ namespace 光伏发电系统实验监测平台.Manager
 		Command[] _commands;
 		int _cycle;
 		Status _status;
-		bool _needStopSendThread;
 
 		const int initComponentId = 6;
 		const double initAzimuth = 170;
@@ -87,8 +86,8 @@ namespace 光伏发电系统实验监测平台.Manager
 			_status.Time = DateTime.Now;
 			_status.MessageQueue = new List<KeyValuePair<byte, bool>>();
 			_status.ComponentId = initComponentId;
-			_status.Azimuth = initAzimuth;
-			_status.Obliquity = initObliquity;
+			_status.Component6Azimuth = double.NaN;
+			_status.Component6Obliquity = double.NaN;
 			try
 			{
 				_status.OleDbCon = DatabaseConnection.GetConnection();
@@ -183,7 +182,7 @@ namespace 光伏发电系统实验监测平台.Manager
 									Thread.Sleep(scmCycle);
 
 
-									if (_status.Obliquity < command.Argument)
+									if (_status.Component6Obliquity < command.Argument)
 									{
 										bytes = (new Relay32()).GetCommand("倾角增加");
 									}
@@ -201,7 +200,7 @@ namespace 光伏发电系统实验监测平台.Manager
 										bytes = (new SCM()).GetCommand("查询倾斜角");
 										WritePort(bytes);
 										Thread.Sleep(scmCycle);
-										if (Math.Abs(_status.Obliquity - command.Argument) < 0.5)
+										if (Math.Abs(_status.Component6Obliquity - command.Argument) < 0.5)
 										{
 											bytes = (new Relay32()).GetCommand("停转");
 											WritePort(bytes);
@@ -224,7 +223,7 @@ namespace 光伏发电系统实验监测平台.Manager
 									WritePort(bytes);
 									Thread.Sleep(scmCycle);
 
-									if (_status.Azimuth < command.Argument)
+									if (_status.Component6Azimuth < command.Argument)
 									{
 										bytes = (new Relay32()).GetCommand("方位角增加");
 									}
@@ -242,7 +241,7 @@ namespace 光伏发电系统实验监测平台.Manager
 										bytes = (new SCM()).GetCommand("查询方位角");
 										WritePort(bytes);
 										Thread.Sleep(scmCycle);
-										if (Math.Abs(_status.Azimuth - command.Argument) < 0.5)
+										if (Math.Abs(_status.Component6Azimuth - command.Argument) < 0.5)
 										{
 											bytes = (new Relay32()).GetCommand("停转");
 											WritePort(bytes);
@@ -298,7 +297,7 @@ namespace 光伏发电系统实验监测平台.Manager
 					--_cycle;
 				}
 			}
-			catch (ThreadAbortException ex)
+			catch (ThreadAbortException)
 			{
 				//Do nothing
 			}

@@ -33,12 +33,50 @@ namespace 光伏发电系统实验监测平台.Components
         /// <summary>
         /// 方位角
         /// </summary>
-        public double Azimuth { get; set; }
+        public double Azimuth
+		{
+			get
+			{
+			if(ComponentId == 6)
+				return Component6Azimuth;
+			else
+				return 180;
+			}
+		}
 
         /// <summary>
         /// 倾角
         /// </summary>
-        public double Obliquity { get; set; }
+        public double Obliquity
+		{
+			get
+			{
+				switch (ComponentId)
+				{
+					case 1:
+						return 3;
+					case 2:
+						return 22;
+					case 3:
+						return 27;
+					case 4:
+						return 32;
+					case 5:
+						return 37;
+				}
+				return Component6Obliquity;
+			}
+		}
+
+		/// <summary>
+		/// 组件6的方位角
+		/// </summary>
+		public double Component6Azimuth { get; set; }
+
+		/// <summary>
+		/// 组件6的倾角
+		/// </summary>
+		public double Component6Obliquity { get; set; }
 
 		/// <summary>
 		/// 异常
