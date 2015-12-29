@@ -91,12 +91,12 @@ namespace 光伏发电系统实验监测平台.Database
 					wshs.Cells[sheet3Row, cols++] = dr["Obliquity"];
 
 					int secondCols = cols;
-					foreach (double currentSeq in IVTransfer.IVStransfer((string)dr["CurrentSeq"]))
+					foreach (double currentSeq in IVTransfer.TransferCurrent((string)dr["CurrentSeq"]))
 					{
 						wshs.Cells[sheet3Row, cols++] = currentSeq;
 					}
 					++sheet3Row;
-					foreach (double voltageSeq in IVTransfer.IVStransfer((string)dr["VoltageSeq"]))
+					foreach (double voltageSeq in IVTransfer.TransferVoltage((string)dr["VoltageSeq"]))
 					{
 						wshs.Cells[sheet3Row, secondCols++] = voltageSeq;
 					}

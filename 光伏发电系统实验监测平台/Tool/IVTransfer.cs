@@ -8,16 +8,37 @@ namespace 光伏发电系统实验监测平台.Tool
 {
     class IVTransfer
     {
-        public static double[] IVStransfer(string IVString)
+		/// <summary>
+		/// 解析电压,一位小数
+		/// </summary>
+        public static double[] TransferVoltage(string IVString)
         {
             double[] IVData = new double[200];
             for (int i = 0; i < 800; i += 4)
             {
-                IVData[i / 4] = Convert.ToInt32(Inverse(IVString.Substring(i, 4)), 16) / 100.0;
+                IVData[i / 4] = Convert.ToInt32(Inverse(IVString.Substring(i, 4)), 16) / 10.0;
             }
             return IVData;
         }
 
+		/// <summary>
+		/// 解析电流,两位小数
+		/// </summary>
+		public static double[] TransferCurrent(string IVString)
+		{
+			double[] IVData = new double[200];
+			for (int i = 0; i < 800; i += 4)
+			{
+				IVData[i / 4] = Convert.ToInt32(Inverse(IVString.Substring(i, 4)), 16) / 100.0;
+			}
+			return IVData;
+		}
+
+		/// <summary>
+		/// 将string翻转
+		/// </summary>
+		/// <param name="str">"ABCD"</param>
+		/// <returns>"CDAB"</returns>
         public static string Inverse(string str)
         {
             int length = str.Length;
