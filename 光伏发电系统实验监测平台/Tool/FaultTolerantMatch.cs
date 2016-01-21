@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace 容错匹配办法
+namespace 光伏发电系统实验监测平台.Tool
 {
 	class FaultTolerantMatch
 	{
@@ -26,9 +26,9 @@ namespace 容错匹配办法
 			{
 				int faultCount = 0;
 				bool marched = true;
-				for(int i = 0; i < targetString.Length; ++i)
+				for (int i = 0; i < targetString.Length; ++i)
 				{
-					if(sourceString[index + i] != targetString[i])
+					if (sourceString[index + i] != targetString[i])
 					{
 						++faultCount;
 						if (faultCount > faultTolerance)

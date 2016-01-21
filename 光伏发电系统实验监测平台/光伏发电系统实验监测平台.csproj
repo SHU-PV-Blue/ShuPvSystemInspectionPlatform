@@ -71,6 +71,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tool\CRC16.cs" />
+    <Compile Include="Tool\FaultTolerantMatch.cs" />
     <Compile Include="Tool\IVTransfer.cs" />
     <Compile Include="Tool\Recorder.cs" />
     <Compile Include="Tool\SumChecker.cs" />

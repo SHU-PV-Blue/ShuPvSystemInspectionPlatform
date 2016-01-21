@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "光伏发电系统实验监
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "手动解析工具", "手动解析工具\手动解析工具.csproj", "{84CF3B2F-B87F-4D2F-A261-0A04C0394FD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "容错匹配办法", "容错匹配办法\容错匹配办法.csproj", "{1B961DF8-BDE7-4E72-B72F-F955184AA34E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{84CF3B2F-B87F-4D2F-A261-0A04C0394FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84CF3B2F-B87F-4D2F-A261-0A04C0394FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84CF3B2F-B87F-4D2F-A261-0A04C0394FD7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B961DF8-BDE7-4E72-B72F-F955184AA34E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B961DF8-BDE7-4E72-B72F-F955184AA34E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B961DF8-BDE7-4E72-B72F-F955184AA34E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B961DF8-BDE7-4E72-B72F-F955184AA34E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
