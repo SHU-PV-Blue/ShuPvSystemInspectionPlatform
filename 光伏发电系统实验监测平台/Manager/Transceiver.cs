@@ -181,14 +181,19 @@ namespace 光伏发电系统实验监测平台.Manager
 									WritePort(bytes);
 									Thread.Sleep(scmCycle);
 
+									if (Math.Abs(_status.Component6Obliquity - command.Argument) < 0.5)
+										break;//不需要调整
 
+									int direction;
 									if (_status.Component6Obliquity < command.Argument)
 									{
 										bytes = (new Relay32()).GetCommand("倾角增加");
+										direction = 1;
 									}
 									else
 									{
 										bytes = (new Relay32()).GetCommand("倾角减少");
+										direction = -1;
 									}
 									WritePort(bytes);
 									Thread.Sleep(djDelay);
@@ -200,7 +205,7 @@ namespace 光伏发电系统实验监测平台.Manager
 										bytes = (new SCM()).GetCommand("查询倾斜角");
 										WritePort(bytes);
 										Thread.Sleep(scmCycle);
-										if (Math.Abs(_status.Component6Obliquity - command.Argument) < 0.5)
+										if (Math.Abs(_status.Component6Obliquity - command.Argument) < 0.5 || (_status.Component6Obliquity - command.Argument) * direction > 1)
 										{
 											bytes = (new Relay32()).GetCommand("停转");
 											WritePort(bytes);
@@ -223,13 +228,19 @@ namespace 光伏发电系统实验监测平台.Manager
 									WritePort(bytes);
 									Thread.Sleep(scmCycle);
 
+									if (Math.Abs(_status.Component6Azimuth - command.Argument) < 0.5)
+										break;//不需要调整
+
+									int direction;
 									if (_status.Component6Azimuth < command.Argument)
 									{
 										bytes = (new Relay32()).GetCommand("方位角增加");
+										direction = 1;
 									}
 									else
 									{
 										bytes = (new Relay32()).GetCommand("方位角减少");
+										direction = -1;
 									}
 									WritePort(bytes);
 									Thread.Sleep(djDelay);
@@ -241,7 +252,7 @@ namespace 光伏发电系统实验监测平台.Manager
 										bytes = (new SCM()).GetCommand("查询方位角");
 										WritePort(bytes);
 										Thread.Sleep(scmCycle);
-										if (Math.Abs(_status.Component6Azimuth - command.Argument) < 0.5)
+										if (Math.Abs(_status.Component6Azimuth - command.Argument) < 0.5 || (_status.Component6Azimuth - command.Argument) * direction > 1)
 										{
 											bytes = (new Relay32()).GetCommand("停转");
 											WritePort(bytes);
